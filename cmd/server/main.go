@@ -29,10 +29,12 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 
 	"github.com/Tencent/WeKnora/internal/config"
 	"github.com/Tencent/WeKnora/internal/container"
@@ -41,7 +43,55 @@ import (
 	"github.com/Tencent/WeKnora/internal/types/interfaces"
 )
 
+// loadEnvironment 在 main 函数开始时加载环境变量
+func loadEnvironment() error {
+	log.Println("正在加载环境变量...")
+
+	// 尝试加载 .env 文件
+	if err := godotenv.Load(); err != nil {
+		log.Printf("警告: 无法加载 .env 文件: %v", err)
+		log.Println("将继续使用系统环境变量")
+	} else {
+		log.Println("成功加载 .env 文件")
+	}
+
+	// 验证必需的环境变量
+	requiredVars := []string{
+		"DB_DRIVER", "DB_HOST", "DB_PORT", "DB_USER", "DB_PASSWORD", "DB_NAME",
+	}
+
+	var missingVars []string
+	for _, varName := range requiredVars {
+		if os.Getenv(varName) == "" {
+			missingVars = append(missingVars, varName)
+		}
+	}
+
+	if len(missingVars) > 0 {
+		return fmt.Errorf("缺少必需的环境变量: %s\n请检查 .env 文件或系统环境变量",
+			strings.Join(missingVars, ", "))
+	}
+
+	// 打印配置摘要
+	log.Printf("数据库配置: %s://%s:%s@%s:%s/%s",
+		os.Getenv("DB_DRIVER"),
+		os.Getenv("DB_USER"),
+		"***", // 隐藏密码
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_NAME"))
+
+	return nil
+}
+
 func main() {
+	log.Println("Starting main function")
+
+	// 新增：加载环境变量
+	if err := loadEnvironment(); err != nil {
+		log.Fatalf("环境变量加载失败: %v", err)
+	}
+
 	// Set log format with request ID
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds | log.Lshortfile)
 	log.SetOutput(os.Stdout)
