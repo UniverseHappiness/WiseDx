@@ -1280,7 +1280,7 @@ export default {
     close: "关闭设置",
   },
   platform: {
-    subtitle: "企业级智能文档检索框架",
+    subtitle: "医学领域RAG智能检索系统",
     description: "让复杂文档理解与精准检索变得简单",
     rag: "RAG 增强生成",
     hybridSearch: "混合检索",

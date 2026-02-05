@@ -208,7 +208,7 @@ const indexKey = (index: number, item: WebFetchResultItem): string => {
   transition: color 0.15s ease;
 
   &:hover {
-    color: #07c05f;
+    color: #D97706;
     text-decoration: underline;
   }
 }
@@ -224,8 +224,8 @@ const indexKey = (index: number, item: WebFetchResultItem): string => {
   align-items: center;
   padding: 2px 6px;
   border-radius: 999px;
-  background: rgba(7, 192, 95, 0.08);
-  color: #0f7a49;
+  background: rgba(217, 119, 6, 0.08);
+  color: #B45309;
   font-size: 10px;
   font-weight: 600;
   line-height: 1.4;
@@ -241,7 +241,7 @@ const indexKey = (index: number, item: WebFetchResultItem): string => {
 }
 
 .info-field .field-value a {
-  color: #07c05f;
+  color: #D97706;
   text-decoration: none;
 
   &:hover {

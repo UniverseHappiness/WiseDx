@@ -270,8 +270,8 @@ onBeforeUnmount(() => {
     background: #ffffff;
     border-radius: 6px;
     padding: 8px 12px;
-    border: 1px solid #07c05f;
-    box-shadow: 0 1px 3px rgba(7, 192, 95, 0.06);
+    border: 1px solid #D97706;
+    box-shadow: 0 1px 3px rgba(217, 119, 6, 0.06);
     transition: all 0.2s ease;
 }
 
@@ -329,7 +329,7 @@ onBeforeUnmount(() => {
     }
 
     :deep(blockquote) {
-        border-left: 2px solid #07c05f;
+        border-left: 2px solid #D97706;
         padding-left: 10px;
         margin: 6px 0;
         color: #6b7280;
@@ -342,7 +342,7 @@ onBeforeUnmount(() => {
     }
 
     :deep(a) {
-        color: #07c05f;
+        color: #D97706;
         text-decoration: none;
 
         &:hover {
@@ -439,7 +439,7 @@ onBeforeUnmount(() => {
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: #07c05f;
+        background: #D97706;
         animation: typingBounce 1.4s ease-in-out infinite;
         
         &:nth-child(1) {
@@ -523,18 +523,18 @@ onBeforeUnmount(() => {
         }
         
         &:hover:not(:disabled) {
-            background: rgba(7, 192, 95, 0.08);
-            border-color: rgba(7, 192, 95, 0.3);
-            color: #07c05f;
+            background: rgba(217, 119, 6, 0.08);
+            border-color: rgba(217, 119, 6, 0.3);
+            color: #D97706;
             
             .t-icon {
-                color: #07c05f;
+                color: #D97706;
             }
         }
         
         &:active:not(:disabled) {
-            background: rgba(7, 192, 95, 0.12);
-            border-color: rgba(7, 192, 95, 0.4);
+            background: rgba(217, 119, 6, 0.12);
+            border-color: rgba(217, 119, 6, 0.4);
             transform: translateY(0.5px);
         }
     }

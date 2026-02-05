@@ -1158,8 +1158,8 @@ const handleCancel = () => {
   &.t-is-focused .t-input__wrap,
   &.t-is-focused input,
   &.t-is-focused textarea {
-    border-color: #07C05F;
-    box-shadow: 0 0 0 2px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.1);
   }
 }
 
@@ -1193,7 +1193,7 @@ const handleCancel = () => {
 
     &:hover {
       .t-radio__label {
-        color: #07C05F;
+        color: #D97706;
       }
     }
   }
@@ -1205,7 +1205,7 @@ const handleCancel = () => {
   }
 
   .t-radio__input:checked + .t-radio__label {
-    color: #07C05F;
+    color: #D97706;
     font-weight: 500;
   }
 }
@@ -1239,12 +1239,12 @@ const handleCancel = () => {
     transition: all 0.15s ease;
 
     &.t-button--theme-primary {
-      background: #07C05F;
-      border-color: #07C05F;
+      background: #D97706;
+      border-color: #D97706;
 
       &:hover {
-        background: #06b04d;
-        border-color: #06b04d;
+        background: #B45309;
+        border-color: #B45309;
       }
 
       &:active {
@@ -1258,9 +1258,9 @@ const handleCancel = () => {
       border-color: #d9d9d9;
 
       &:hover {
-        border-color: #07C05F;
-        color: #07C05F;
-        background: rgba(7, 192, 95, 0.04);
+        border-color: #D97706;
+        color: #D97706;
+        background: rgba(217, 119, 6, 0.04);
       }
     }
   }
@@ -1298,7 +1298,7 @@ const handleCancel = () => {
     flex: 1;
 
     &.success {
-      color: #059669;
+      color: #B45309;
     }
 
     &.error {
@@ -1319,7 +1319,7 @@ const handleCancel = () => {
     flex-shrink: 0;
 
     &.available {
-      color: #07C05F;
+      color: #D97706;
     }
 
     &.unavailable {
@@ -1338,13 +1338,13 @@ const handleCancel = () => {
   
   .downloaded-icon {
     font-size: 14px;
-    color: #07C05F;
+    color: #D97706;
     flex-shrink: 0;
   }
   
   .download-icon {
     font-size: 14px;
-    color: #07C05F;
+    color: #D97706;
     flex-shrink: 0;
   }
   
@@ -1362,7 +1362,7 @@ const handleCancel = () => {
   
   &.download {
     .model-name {
-      color: #07C05F;
+      color: #D97706;
       font-weight: 500;
     }
   }
@@ -1378,13 +1378,13 @@ const handleCancel = () => {
   .spinning {
     animation: spin 1s linear infinite;
     font-size: 14px;
-    color: #07C05F;
+    color: #D97706;
   }
   
   .progress-text {
     font-size: 12px;
     font-weight: 500;
-    color: #07C05F;
+    color: #D97706;
   }
 }
 
@@ -1401,7 +1401,7 @@ const handleCancel = () => {
       top: 0;
       bottom: 0;
       width: var(--progress, 0%);
-      background: linear-gradient(90deg, rgba(7, 192, 95, 0.08), rgba(7, 192, 95, 0.15));
+      background: linear-gradient(90deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.15));
       transition: width 0.3s ease;
       z-index: 0;
       border-radius: 5px 0 0 5px;
@@ -1440,8 +1440,8 @@ const handleCancel = () => {
   flex-shrink: 0;
 
   &:hover {
-    color: #07C05F;
-    background: rgba(7, 192, 95, 0.04);
+    color: #D97706;
+    background: rgba(217, 119, 6, 0.04);
   }
 }
 
@@ -1473,7 +1473,7 @@ const handleCancel = () => {
   color: #e34d59;
 
   &.success {
-    color: #07C05F;
+    color: #D97706;
   }
 }
 
@@ -1496,7 +1496,7 @@ const handleCancel = () => {
     margin-right: 2px;
 
     &.info {
-      color: #07C05F;
+      color: #D97706;
     }
   }
 
@@ -1508,9 +1508,9 @@ const handleCancel = () => {
 
   // ReRank提示使用主题绿色风格，与主页面保持一致
   &.rerank-tip {
-    background: #f0fdf6;
-    border: 1px solid #d1fae5;
-    border-left: 3px solid #07C05F;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-left: 3px solid #D97706;
 
     .tip-text {
       color: #166534;
@@ -1518,7 +1518,7 @@ const handleCancel = () => {
   }
 
   :deep(.tip-link) {
-    color: #07C05F;
+    color: #D97706;
     font-size: 13px;
     font-weight: 500;
     padding: 4px 6px 4px 10px !important;
@@ -1534,12 +1534,12 @@ const handleCancel = () => {
     transition: all 0.2s ease;
 
     &:hover {
-      background: rgba(7, 192, 95, 0.08) !important;
-      color: #05a04f !important;
+      background: rgba(217, 119, 6, 0.08) !important;
+      color: #B45309 !important;
     }
 
     &:active {
-      background: rgba(7, 192, 95, 0.12) !important;
+      background: rgba(217, 119, 6, 0.12) !important;
     }
 
     .t-icon {

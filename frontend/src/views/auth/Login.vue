@@ -1,182 +1,6 @@
 <template>
   <div class="login-layout">
-    <!-- Global Animated Background - Knowledge Graph -->
-    <div class="animated-bg">
-      <!-- Knowledge Nodes with Icons -->
-      <div class="knowledge-node node-1">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-        </svg>
-        </div>
-      <div class="knowledge-node node-2">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-3">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <!-- Vector embedding points -->
-          <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
-          <circle cx="12" cy="5" r="1.5" fill="currentColor"/>
-          <circle cx="18" cy="7" r="1.5" fill="currentColor"/>
-          <circle cx="5" cy="12" r="1.5" fill="currentColor"/>
-          <circle cx="12" cy="12" r="2" fill="currentColor"/>
-          <circle cx="19" cy="13" r="1.5" fill="currentColor"/>
-          <circle cx="7" cy="18" r="1.5" fill="currentColor"/>
-          <circle cx="13" cy="19" r="1.5" fill="currentColor"/>
-          <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
-          <!-- Connection lines -->
-          <line x1="6" y1="6" x2="12" y2="5" stroke-width="1"/>
-          <line x1="12" y1="5" x2="18" y2="7" stroke-width="1"/>
-          <line x1="6" y1="6" x2="5" y2="12" stroke-width="1"/>
-          <line x1="12" y1="5" x2="12" y2="12" stroke-width="1"/>
-          <line x1="18" y1="7" x2="19" y2="13" stroke-width="1"/>
-          <line x1="5" y1="12" x2="12" y2="12" stroke-width="1"/>
-          <line x1="12" y1="12" x2="19" y2="13" stroke-width="1"/>
-          <line x1="5" y1="12" x2="7" y2="18" stroke-width="1"/>
-          <line x1="12" y1="12" x2="13" y2="19" stroke-width="1"/>
-          <line x1="19" y1="13" x2="18" y2="18" stroke-width="1"/>
-          <line x1="7" y1="18" x2="13" y2="19" stroke-width="1"/>
-          <line x1="13" y1="19" x2="18" y2="18" stroke-width="1"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-4">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-5">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-6">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-7">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 11l3 3L22 4"/>
-          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-8">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <ellipse cx="12" cy="5" rx="9" ry="3"/>
-          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-9">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-10">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-11">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/>
-          <path d="m21 21-4.35-4.35"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-12">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-          <line x1="12" y1="22.08" x2="12" y2="12"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-13">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 20h9"/>
-          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-14">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <line x1="3" y1="9" x2="21" y2="9"/>
-          <line x1="9" y1="21" x2="9" y2="9"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-15">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-16">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-17">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-18">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-19">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-      </div>
-      <div class="knowledge-node node-20">
-        <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-      </div>
 
-      <!-- Connection Lines -->
-      <svg class="knowledge-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <!-- Horizontal connections -->
-        <line class="connection-line line-1" x1="20" y1="15" x2="35" y2="25" />
-        <line class="connection-line line-2" x1="35" y1="25" x2="55" y2="20" />
-        <line class="connection-line line-3" x1="55" y1="20" x2="65" y2="15" />
-        <line class="connection-line line-4" x1="65" y1="15" x2="85" y2="12" />
-        
-        <!-- Middle layer connections -->
-        <line class="connection-line line-5" x1="8" y1="35" x2="25" y2="45" />
-        <line class="connection-line line-6" x1="25" y1="45" x2="45" y2="50" />
-        <line class="connection-line line-7" x1="45" y1="50" x2="65" y2="48" />
-        <line class="connection-line line-8" x1="65" y1="48" x2="72" y2="42" />
-        <line class="connection-line line-9" x1="72" y1="42" x2="90" y2="38" />
-        
-        <!-- Lower connections -->
-        <line class="connection-line line-10" x1="10" y1="55" x2="20" y2="60" />
-        <line class="connection-line line-11" x1="20" y1="60" x2="40" y2="70" />
-        <line class="connection-line line-12" x1="40" y1="70" x2="60" y2="75" />
-        <line class="connection-line line-13" x1="60" y1="75" x2="75" y2="80" />
-        
-        <!-- Vertical connections -->
-        <line class="connection-line line-14" x1="20" y1="15" x2="20" y2="60" />
-        <line class="connection-line line-15" x1="35" y1="25" x2="25" y2="45" />
-        <line class="connection-line line-16" x1="55" y1="20" x2="45" y2="50" />
-        <line class="connection-line line-17" x1="75" y1="30" x2="65" y2="48" />
-        <line class="connection-line line-18" x1="40" y1="70" x2="12" y2="68" />
-        <line class="connection-line line-19" x1="60" y1="75" x2="80" y2="65" />
-        <line class="connection-line line-20" x1="82" y1="52" x2="90" y2="38" />
-      </svg>
-    </div>
 
     <!-- Logo - Top Left -->
     <a href="https://github.com/Tencent/WeKnora" target="_blank" class="header-logo" :title="$t('common.github')">
@@ -711,19 +535,7 @@ onMounted(() => {
   min-height: 100vh;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(225deg, #022c22 0%, #064e3b 15%, #065f46 25%, #047857 38%, #059669 50%, #07C05F 65%, #10B981 78%, #34D399 90%, #6EE7B7 100%);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
-    pointer-events: none;
-  }
+  background: #f8fafc;
 }
 
 /* Global Animated Background - Knowledge Graph */
@@ -751,7 +563,7 @@ onMounted(() => {
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 
     0 0 15px rgba(255, 255, 255, 0.4),
-    0 0 30px rgba(16, 185, 129, 0.3),
+    0 0 30px rgba(245, 158, 11, 0.3),
     inset 0 0 15px rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
@@ -764,7 +576,7 @@ onMounted(() => {
   transform: scale(1.2);
   box-shadow: 
     0 0 20px rgba(255, 255, 255, 0.6),
-    0 0 40px rgba(16, 185, 129, 0.5),
+    0 0 40px rgba(245, 158, 11, 0.5),
     inset 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
@@ -772,7 +584,7 @@ onMounted(() => {
   width: 20px;
   height: 20px;
   color: rgba(255, 255, 255, 0.9);
-  filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.5));
+  filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.5));
 }
 
 .node-1 {
@@ -922,7 +734,7 @@ onMounted(() => {
   stroke-dasharray: 6, 3;
   stroke-linecap: round;
   animation: lineFlow 10s infinite linear;
-  filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.4));
+  filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.4));
 }
 
 .line-1 { animation-delay: 0s; }
@@ -959,38 +771,41 @@ onMounted(() => {
 .showcase-section {
   flex: 0 0 52%;
   display: flex;
-  align-items: flex-end;
-  padding: 100px 30px 100px 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 30px;
   box-sizing: border-box;
   position: relative;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
 }
 
 .showcase-content {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  margin-bottom: 60px;
+  text-align: center;
 }
 
 .showcase-subtitle {
   margin-top: 0;
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0 0 8px 0;
+  font-size: 28px;
+  color: #1e293b;
+  margin: 0 0 16px 0;
   font-family: "PingFang SC", sans-serif;
-  line-height: 1.4;
-  font-weight: 500;
+  line-height: 1.3;
+  font-weight: 600;
 }
 
 .showcase-description {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 0 28px 0;
+  font-size: 16px;
+  color: #64748b;
+  margin: 0 0 32px 0;
   font-family: "PingFang SC", sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .feature-tags {
@@ -998,18 +813,19 @@ onMounted(() => {
   gap: 12px;
   margin-bottom: 40px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tag {
   display: inline-block;
   padding: 8px 20px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  background: #f1f5f9;
   border-radius: 20px;
-  color: #ffffff;
+  color: #475569;
   font-size: 14px;
   font-weight: 500;
   font-family: "PingFang SC", sans-serif;
+  border: 1px solid #e2e8f0;
 }
 
 /* Carousel */
@@ -1072,11 +888,12 @@ onMounted(() => {
 .form-section {
   flex: 0 0 48%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  padding: 40px 50px 100px 30px;
+  padding: 60px 30px;
   box-sizing: border-box;
   position: relative;
+  background: #f8fafc;
 }
 
 .form-panel {
@@ -1089,61 +906,52 @@ onMounted(() => {
 
 .header-logo {
   position: fixed;
-  top: 32px;
-  left: 50px;
+  top: 28px;
+  left: 32px;
   z-index: 100;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 
   .logo-image {
-    width: 120px;
-      height: auto;
-    filter: brightness(1.1) contrast(1.05) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
-    transition: all 0.3s ease;
-  }
-
-  &:hover .logo-image {
-    filter: brightness(1.15) contrast(1.08) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.3));
+    width: 100px;
+    height: auto;
+    transition: all 0.2s ease;
   }
 }
 
 .header-links {
   position: fixed;
-  top: 28px;
-  right: 28px;
+  top: 24px;
+  right: 24px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   z-index: 100;
 }
 
 .header-link {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 15px;
+  gap: 6px;
+  padding: 8px 14px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
   text-decoration: none;
   font-size: 13px;
-    font-weight: 600;
+  font-weight: 500;
   font-family: "PingFang SC", sans-serif;
-  letter-spacing: 0.2px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   cursor: pointer;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   svg {
     flex-shrink: 0;
-    transition: transform 0.25s ease;
   }
 
   .link-text {
@@ -1151,22 +959,15 @@ onMounted(() => {
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 
-      0 4px 16px rgba(0, 0, 0, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.2);
-
-    svg {
-      transform: scale(1.08);
-    }
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #1e293b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   &:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transform: translateY(0);
   }
 }
 
@@ -1174,34 +975,25 @@ onMounted(() => {
   position: relative;
 
   button {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(8px);
-    color: #ffffff;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #475569;
 
     .lang-flag-icon {
-    font-size: 16px;
+      font-size: 16px;
       line-height: 1;
       flex-shrink: 0;
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.3);
-      border-color: rgba(255, 255, 255, 0.4);
-      color: #ffffff;
-      box-shadow: 
-        0 4px 16px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(255, 255, 255, 0.2);
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #1e293b;
     }
 
     svg:last-child {
       margin-left: 2px;
       flex-shrink: 0;
-      transition: transform 0.25s ease;
-    }
-
-    &:hover svg:last-child {
-      transform: translateY(2px);
     }
   }
 }
@@ -1211,11 +1003,10 @@ onMounted(() => {
   top: calc(100% + 8px);
   right: 0;
   min-width: 160px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(14px);
-  border: 1px solid #E5E7EB;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   z-index: 1000;
   animation: dropdownFadeIn 0.2s ease-out;
@@ -1242,7 +1033,7 @@ onMounted(() => {
   }
 
   .check-icon {
-    color: #10B981;
+    color: #F59E0B;
     font-weight: 700;
     font-size: 14px;
     flex-shrink: 0;
@@ -1254,7 +1045,7 @@ onMounted(() => {
 
   &.active {
     background: #F0FDF4;
-    color: #059669;
+    color: #B45309;
   }
 }
 
@@ -1270,15 +1061,15 @@ onMounted(() => {
 }
 
 .form-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
+  background: #ffffff;
+  border-radius: 12px;
   padding: 40px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   animation: slideInRight 0.4s ease-out;
-  border: none;
+  border: 1px solid #e2e8f0;
   width: 100%;
+  max-width: 400px;
 }
 
 .form-header {
@@ -1326,12 +1117,12 @@ onMounted(() => {
     transition: all 0.2s;
     
     &:focus-within {
-      border-color: #07C05F;
-      box-shadow: 0 0 0 3px rgba(7, 192, 95, 0.1);
+      border-color: #D97706;
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
     }
     
     &:hover {
-      border-color: #07C05F;
+      border-color: #D97706;
     }
     
     .t-input__inner {
@@ -1378,14 +1169,14 @@ onMounted(() => {
   transition: all 0.3s;
 
   :deep(.t-button) {
-    background-color: #07C05F;
-    border-color: #07C05F;
+    background-color: #D97706;
+    border-color: #D97706;
 
     &:hover {
-      background-color: #06a855;
-      border-color: #06a855;
+      background-color: #B45309;
+      border-color: #B45309;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(7, 192, 95, 0.3);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
     }
 
     &:active {
@@ -1404,14 +1195,14 @@ onMounted(() => {
   border-bottom: 1px solid #E5E7EB;
 
   .link-button {
-    color: #07C05F;
+    color: #D97706;
     text-decoration: none;
     margin-left: 4px;
     font-weight: 500;
     transition: all 0.2s;
 
     &:hover {
-      color: #06a855;
+      color: #B45309;
       text-decoration: underline;
     }
   }
@@ -1437,8 +1228,8 @@ onMounted(() => {
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #D1FAE5;
-      color: #059669;
+      background: #FEF3C7;
+      color: #D97706;
       display: flex;
       align-items: center;
       justify-content: center;

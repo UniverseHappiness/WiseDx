@@ -110,7 +110,7 @@ const getWebSearchDisplayText = (item) => {
     width: 100%;
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(7, 192, 95, 0.08);
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.08);
     overflow: hidden;
     box-sizing: border-box;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -131,7 +131,7 @@ const getWebSearchDisplayText = (item) => {
             img {
                 width: 16px;
                 height: 16px;
-                color: #07c05f;
+                color: #D97706;
                 fill: currentColor;
                 margin-right: 8px;
             }
@@ -145,12 +145,12 @@ const getWebSearchDisplayText = (item) => {
         .refer_show_icon {
             font-size: 14px;
             padding: 0 2px 1px 2px;
-            color: #07c05f;
+            color: #D97706;
         }
     }
 
     .refer_header:hover {
-        background-color: rgba(7, 192, 95, 0.04);
+        background-color: rgba(217, 119, 6, 0.04);
         cursor: pointer;
     }
 
@@ -168,13 +168,13 @@ const getWebSearchDisplayText = (item) => {
     color: #000000e6;
     line-height: 23px;
     text-align: justify;
-    border: 1px solid #07c05f33;
+    border: 1px solid #D9770633;
     padding: 8px;
 }
 
 .doc {
     text-decoration: none;
-    color: #07c05f;
+    color: #D97706;
     cursor: pointer;
     display: inline-block;
     white-space: nowrap;
@@ -187,7 +187,7 @@ const getWebSearchDisplayText = (item) => {
     border-bottom: 1px solid transparent;
     
     &:hover {
-        border-bottom-color: #07c05f;
+        border-bottom-color: #D97706;
     }
     
     &.doc-web {

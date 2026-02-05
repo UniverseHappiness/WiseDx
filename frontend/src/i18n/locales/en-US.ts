@@ -1747,7 +1747,7 @@ export default {
     close: 'Close Settings'
   },
   platform: {
-    subtitle: 'Enterprise-level Intelligent Document Retrieval Framework',
+    subtitle: 'Medical Domain RAG Intelligent Retrieval System',
     description: 'Making complex document understanding and precise retrieval simple',
     rag: 'RAG Enhanced Generation',
     hybridSearch: 'Hybrid Search',

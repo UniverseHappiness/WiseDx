@@ -283,7 +283,7 @@ onUnmounted(() => {
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background: linear-gradient(135deg, #07C05F 0%, #05A34E 100%);
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -407,7 +407,7 @@ onUnmounted(() => {
   }
 
   &:hover .menu-external-icon {
-    color: #07c05f;
+    color: #D97706;
   }
 }
 

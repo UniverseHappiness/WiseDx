@@ -1367,7 +1367,7 @@ const showAgentNotReadyMessage = (agent: CustomAgent, reasons: string[]) => {
         e.preventDefault();
         router.push(`/platform/agents?edit=${agent.id}`);
       },
-      style: 'color: #07C05F; text-decoration: none; font-weight: 500; cursor: pointer; align-self: flex-start;',
+      style: 'color: #D97706; text-decoration: none; font-weight: 500; cursor: pointer; align-self: flex-start;',
       onMouseenter: (e: Event) => {
         (e.target as HTMLElement).style.textDecoration = 'underline';
       },
@@ -1404,7 +1404,7 @@ const toggleWebSearch = () => {
           e.preventDefault();
           handleGoToWebSearchSettings();
         },
-        style: 'color: #07C05F; text-decoration: none; font-weight: 500; cursor: pointer; align-self: flex-start;',
+        style: 'color: #D97706; text-decoration: none; font-weight: 500; cursor: pointer; align-self: flex-start;',
         onMouseenter: (e: Event) => {
           (e.target as HTMLElement).style.textDecoration = 'underline';
         },
@@ -1747,7 +1747,7 @@ const getImgSrc = (url: string) => {
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.04), 0 12px 12px -1px rgba(0, 0, 0, 0.08);
   
   &:focus-within {
-    border-color: var(--td-brand-color, #07C05F);
+    border-color: var(--td-brand-color, #D97706);
   }
 }
 
@@ -1776,11 +1776,11 @@ const getImgSrc = (url: string) => {
   
   /* KB - Document (Greenish tint) */
   &.kb-tag {
-    background: rgba(16, 185, 129, 0.08);
-    color: #059669;
+    background: rgba(245, 158, 11, 0.08);
+    color: #B45309;
     
     .tag-icon {
-      color: #10b981;
+      color: #F59E0B;
     }
   }
 
@@ -1946,23 +1946,23 @@ const getImgSrc = (url: string) => {
   transition: background 0.12s, border-color 0.12s;
   position: relative;
   
-  // 内置普通模式 - 绿色
+  // 内置普通模式 - 棕色
   &.is-normal {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%);
-    border-color: rgba(16, 185, 129, 0.35);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%);
+    border-color: rgba(245, 158, 11, 0.35);
     
     .agent-mode-text {
-      color: #059669;
+      color: #B45309;
       font-weight: 600;
     }
     
     .dropdown-arrow {
-      color: #059669;
+      color: #B45309;
     }
     
     &:hover {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(16, 185, 129, 0.12) 100%);
-      border-color: rgba(16, 185, 129, 0.5);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(245, 158, 11, 0.12) 100%);
+      border-color: rgba(245, 158, 11, 0.5);
     }
   }
   
@@ -2023,8 +2023,8 @@ const getImgSrc = (url: string) => {
   flex-shrink: 0;
   
   &.normal {
-    background: rgba(7, 192, 95, 0.12);
-    color: #059669;
+    background: rgba(217, 119, 6, 0.12);
+    color: #B45309;
   }
   
   &.agent {
@@ -2053,11 +2053,11 @@ const getImgSrc = (url: string) => {
   position: relative;
   
   &.active {
-    background: rgba(16, 185, 129, 0.1);
-    color: #07C05F;
+    background: rgba(245, 158, 11, 0.1);
+    color: #D97706;
     
     &:hover {
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(245, 158, 11, 0.15);
     }
   }
   
@@ -2070,7 +2070,7 @@ const getImgSrc = (url: string) => {
     }
     
     &.active:hover {
-      background: rgba(16, 185, 129, 0.1);
+      background: rgba(245, 158, 11, 0.1);
     }
   }
 }
@@ -2082,7 +2082,7 @@ const getImgSrc = (url: string) => {
   min-width: 16px;
   height: 16px;
   padding: 0 4px;
-  background: #07C05F;
+  background: #D97706;
   color: white;
   font-size: 10px;
   font-weight: 600;
@@ -2100,7 +2100,7 @@ const getImgSrc = (url: string) => {
 }
 
 .kb-btn.active .kb-btn-text {
-  color: #07C05F;
+  color: #D97706;
 }
 
 .websearch-btn {
@@ -2114,14 +2114,14 @@ const getImgSrc = (url: string) => {
   position: relative;
   
   &.active {
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(245, 158, 11, 0.1);
     
     .websearch-icon {
-      color: #07C05F;
+      color: #D97706;
     }
     
     &:hover {
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(245, 158, 11, 0.15);
     }
   }
   
@@ -2148,7 +2148,7 @@ const getImgSrc = (url: string) => {
     }
     
     &.active:hover {
-      background: rgba(16, 185, 129, 0.1);
+      background: rgba(245, 158, 11, 0.1);
     }
   }
 }
@@ -2170,7 +2170,7 @@ const getImgSrc = (url: string) => {
 }
 
 :global(.tooltip-with-link a) {
-  color: #07C05F;
+  color: #D97706;
   font-weight: 500;
   text-decoration: none;
 }
@@ -2205,21 +2205,21 @@ const getImgSrc = (url: string) => {
   width: 28px;
   height: 28px;
   padding: 0;
-  background: rgba(16, 185, 129, 0.08);
-  color: #07C05F;
-  border: 1.5px solid rgba(16, 185, 129, 0.2);
+  background: rgba(245, 158, 11, 0.08);
+  color: #D97706;
+  border: 1.5px solid rgba(245, 158, 11, 0.2);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   
   &:hover {
-    background: rgba(16, 185, 129, 0.12);
-    border-color: #07C05F;
+    background: rgba(245, 158, 11, 0.12);
+    border-color: #D97706;
   }
   
   &:active {
-    background: rgba(16, 185, 129, 0.15);
+    background: rgba(245, 158, 11, 0.15);
   }
   
   svg {
@@ -2230,7 +2230,7 @@ const getImgSrc = (url: string) => {
     content: '';
     width: 12px;
     height: 12px;
-    background: #07C05F;
+    background: #D97706;
     border-radius: 50%;
     display: block;
   }
@@ -2240,14 +2240,14 @@ const getImgSrc = (url: string) => {
   width: 28px;
   height: 28px;
   padding: 0;
-  background-color: #07C05F;
+  background-color: #D97706;
   
   &:hover:not(.disabled) {
-    background-color: #059669;
+    background-color: #B45309;
   }
   
   &.disabled {
-    background-color: #b5eccf;
+    background-color: #FDE68A;
   }
   
   img {
@@ -2269,8 +2269,8 @@ const getImgSrc = (url: string) => {
       opacity: 0.85;
       
       &:hover {
-        background: rgba(16, 185, 129, 0.1);
-        border-color: rgba(16, 185, 129, 0.3);
+        background: rgba(245, 158, 11, 0.1);
+        border-color: rgba(245, 158, 11, 0.3);
       }
     }
   }
@@ -2284,15 +2284,15 @@ const getImgSrc = (url: string) => {
   min-width: 100px;
   height: 22px;
   border-radius: 6px;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.1);
   transition: background 0.12s, border-color 0.12s;
   cursor: pointer;
 }
 
 .model-selector-trigger:hover {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.45);
 }
 
 .model-selector-trigger.disabled {
@@ -2301,15 +2301,15 @@ const getImgSrc = (url: string) => {
 }
 
 .model-selector-trigger.disabled:hover {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
 }
 
 .model-selector-name {
   flex: 1;
   font-size: 12px;
   font-weight: 600;
-  color: #07C05F;
+  color: #D97706;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2318,7 +2318,7 @@ const getImgSrc = (url: string) => {
 .model-dropdown-arrow {
   width: 10px;
   height: 10px;
-  color: #07C05F;
+  color: #D97706;
   flex-shrink: 0;
   transition: transform 0.12s;
   
@@ -2328,7 +2328,7 @@ const getImgSrc = (url: string) => {
 }
 
 .model-selector-trigger.disabled .model-dropdown-arrow {
-  color: rgba(16, 185, 129, 0.4);
+  color: rgba(245, 158, 11, 0.4);
 }
 
 .model-selector-overlay {
@@ -2383,7 +2383,7 @@ const getImgSrc = (url: string) => {
   border-radius: 4px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--td-brand-color, #07c05f);
+  color: var(--td-brand-color, #D97706);
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -2396,7 +2396,7 @@ const getImgSrc = (url: string) => {
   }
   
   &:hover {
-    color: var(--td-brand-color-hover, #05a04f);
+    color: var(--td-brand-color-hover, #B45309);
     background: var(--td-bg-color-secondarycontainer, #f3f3f3);
   }
 }
@@ -2417,10 +2417,10 @@ const getImgSrc = (url: string) => {
   }
   
   &.selected {
-    background: var(--td-brand-color-light, #eefdf5);
+    background: var(--td-brand-color-light, #FEF3C7);
     
     .model-option-name {
-      color: #10b981;
+      color: #F59E0B;
       font-weight: 600;
     }
   }
@@ -2474,8 +2474,8 @@ const getImgSrc = (url: string) => {
 }
 
 .model-badge-remote {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
+  background: rgba(245, 158, 11, 0.1);
+  color: #F59E0B;
 }
 
 .model-badge-local {
@@ -2534,10 +2534,10 @@ const getImgSrc = (url: string) => {
   }
   
   &.selected {
-    background: var(--td-brand-color-light, #eefdf5);
+    background: var(--td-brand-color-light, #FEF3C7);
     
     .agent-mode-option-name {
-      color: #10b981;
+      color: #F59E0B;
       font-weight: 700;
     }
   }
@@ -2568,7 +2568,7 @@ const getImgSrc = (url: string) => {
 .check-icon {
   width: 14px;
   height: 14px;
-  color: #10b981;
+  color: #F59E0B;
   flex-shrink: 0;
   margin-left: 6px;
 }
@@ -2592,7 +2592,7 @@ const getImgSrc = (url: string) => {
 }
 
 .agent-mode-link {
-  color: #10b981;
+  color: #F59E0B;
   text-decoration: none;
   font-size: 11px;
   font-weight: 500;
@@ -2602,7 +2602,7 @@ const getImgSrc = (url: string) => {
   transition: all 0.12s;
   
   &:hover {
-    color: #059669;
+    color: #B45309;
     text-decoration: underline;
   }
 }

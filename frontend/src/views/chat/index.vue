@@ -998,7 +998,7 @@ onBeforeRouteUpdate((to, from, next) => {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #07c05f;
+            background: #D97706;
             animation: typingBounce 1.4s ease-in-out infinite;
             
             &:nth-child(1) {

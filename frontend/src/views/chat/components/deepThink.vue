@@ -98,7 +98,7 @@ const safeProcessThinkContent = (content) => {
     width: 100%;
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(7, 192, 95, 0.08);
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.08);
     overflow: hidden;
     box-sizing: border-box;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,7 +115,7 @@ const safeProcessThinkContent = (content) => {
         user-select: none;
 
         &:hover {
-            background-color: rgba(7, 192, 95, 0.04);
+            background-color: rgba(217, 119, 6, 0.04);
         }
 
         .think-title {
@@ -160,7 +160,7 @@ const safeProcessThinkContent = (content) => {
         .toggle-icon-wrapper {
             font-size: 14px;
             padding: 0 2px 1px 2px;
-            color: #07c05f;
+            color: #D97706;
             
             .toggle-icon {
                 transition: transform 0.2s;

@@ -542,7 +542,7 @@ const handleConfigChange = () => {
   margin: 12px 0 0 0;
   background: #f8fafb;
   border-radius: 8px;
-  border-left: 3px solid #07C05F;
+  border-left: 3px solid #D97706;
   position: relative;
 }
 
@@ -559,7 +559,7 @@ const handleConfigChange = () => {
     color: #333333;
     margin: 0;
     padding-left: 8px;
-    border-left: 2px solid #07C05F;
+    border-left: 2px solid #D97706;
     
     .required {
       color: #e34d59;

@@ -304,7 +304,7 @@ onUnmounted(() => {
 
 .tenant-switch-icon {
   font-size: 14px;
-  color: #07c05f;
+  color: #D97706;
   flex-shrink: 0;
 }
 
@@ -355,8 +355,8 @@ onUnmounted(() => {
 
   &:focus-within {
     background: #fff;
-    border-color: #07c05f;
-    box-shadow: 0 0 0 2px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.1);
   }
 }
 
@@ -434,10 +434,10 @@ onUnmounted(() => {
   }
 
   &.selected {
-    background: rgba(7, 192, 95, 0.08);
+    background: rgba(217, 119, 6, 0.08);
 
     .tenant-item-name {
-      color: #07c05f;
+      color: #D97706;
       font-weight: 500;
     }
   }
@@ -466,7 +466,7 @@ onUnmounted(() => {
   transition: all 0.2s;
 
   &.active {
-    background: linear-gradient(135deg, #07C05F 0%, #05A34E 100%);
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
     color: #fff;
   }
 }
@@ -493,7 +493,7 @@ onUnmounted(() => {
 }
 
 .check-icon {
-  color: #07c05f;
+  color: #D97706;
   flex-shrink: 0;
 }
 

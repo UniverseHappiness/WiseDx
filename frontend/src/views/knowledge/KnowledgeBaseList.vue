@@ -638,7 +638,7 @@ const handleUploadFinishedEvent = (event: Event) => {
 }
 
 .upload-progress-icon {
-  color: #07c05f;
+  color: #D97706;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -685,7 +685,7 @@ const handleUploadFinishedEvent = (event: Event) => {
 
 .progress-bar-inner {
   height: 100%;
-  background: linear-gradient(90deg, #05a04f 0%, #07c05f 100%);
+  background: linear-gradient(90deg, #B45309 0%, #D97706 100%);
   transition: width 0.2s ease;
 }
 
@@ -711,8 +711,8 @@ const handleUploadFinishedEvent = (event: Event) => {
   height: 160px;
 
   &:hover {
-    border-color: #07c05f;
-    box-shadow: 0 4px 12px rgba(7, 192, 95, 0.12);
+    border-color: #D97706;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
   }
 
   &.uninitialized {
@@ -725,8 +725,8 @@ const handleUploadFinishedEvent = (event: Event) => {
     border-color: #e8f5ed;
 
     &:hover {
-      border-color: #07c05f;
-      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+      border-color: #D97706;
+      background: linear-gradient(135deg, #ffffff 0%, #FFFBEB 100%);
     }
 
     // 右上角装饰
@@ -737,7 +737,7 @@ const handleUploadFinishedEvent = (event: Event) => {
       right: 0;
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, rgba(7, 192, 95, 0.08) 0%, transparent 100%);
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08) 0%, transparent 100%);
       border-radius: 0 12px 0 100%;
       pointer-events: none;
       z-index: 0;
@@ -882,14 +882,14 @@ const handleUploadFinishedEvent = (event: Event) => {
   transition: background 0.2s ease;
 
   &.type-document {
-    background: rgba(7, 192, 95, 0.08);
-    color: #059669;
+    background: rgba(217, 119, 6, 0.08);
+    color: #B45309;
     width: auto;
     padding: 0 8px;
     gap: 4px;
 
     &:hover {
-      background: rgba(7, 192, 95, 0.12);
+      background: rgba(217, 119, 6, 0.12);
     }
 
     .badge-count {
@@ -962,26 +962,26 @@ const handleUploadFinishedEvent = (event: Event) => {
 
 @keyframes highlightFlash {
   0% {
-    border-color: #07c05f;
-    box-shadow: 0 0 0 0 rgba(7, 192, 95, 0.4);
+    border-color: #D97706;
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4);
     transform: scale(1);
   }
   50% {
-    border-color: #07c05f;
-    box-shadow: 0 0 0 8px rgba(7, 192, 95, 0);
+    border-color: #D97706;
+    box-shadow: 0 0 0 8px rgba(217, 119, 6, 0);
     transform: scale(1.02);
   }
   100% {
-    border-color: #07c05f;
-    box-shadow: 0 0 0 0 rgba(7, 192, 95, 0);
+    border-color: #D97706;
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
     transform: scale(1);
   }
 }
 
 .kb-card.highlight-flash {
   animation: highlightFlash 0.6s ease-in-out 3;
-  border-color: #07c05f !important;
-  box-shadow: 0 0 12px rgba(7, 192, 95, 0.3) !important;
+  border-color: #D97706 !important;
+  box-shadow: 0 0 12px rgba(217, 119, 6, 0.3) !important;
 }
 
 .card-time {
@@ -1205,12 +1205,12 @@ const handleUploadFinishedEvent = (event: Event) => {
   }
 
   .t-button--theme-primary {
-    background-color: #07c05f;
-    border-color: #07c05f;
+    background-color: #D97706;
+    border-color: #D97706;
 
     &:hover {
-      background-color: #05a04f;
-      border-color: #05a04f;
+      background-color: #B45309;
+      border-color: #B45309;
     }
   }
 }

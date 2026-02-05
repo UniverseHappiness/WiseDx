@@ -873,30 +873,30 @@ onBeforeUnmount(() => {
 }
 
 .toolbar-btn:hover {
-  background: rgba(7, 192, 95, 0.08);
-  color: #07c05f;
+  background: rgba(217, 119, 6, 0.08);
+  color: #D97706;
   
   .t-icon {
-    color: #07c05f;
+    color: #D97706;
   }
 }
 
 .toolbar-btn.active {
-  background: rgba(7, 192, 95, 0.12);
-  color: #07c05f;
+  background: rgba(217, 119, 6, 0.12);
+  color: #D97706;
   
   .t-icon {
-    color: #07c05f;
+    color: #D97706;
   }
 }
 
 .toolbar-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(7, 192, 95, 0.25);
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.25);
 }
 
 .toolbar-btn:active {
-  background: rgba(7, 192, 95, 0.15);
+  background: rgba(217, 119, 6, 0.15);
   transform: translateY(0.5px);
 }
 
@@ -948,12 +948,12 @@ onBeforeUnmount(() => {
 
 :deep(.toggle-view-btn.active),
 :deep(.toggle-view-btn:hover) {
-  background: rgba(7, 192, 95, 0.12) !important;
-  color: #059669 !important;
-  border-color: rgba(7, 192, 95, 0.4) !important;
+  background: rgba(217, 119, 6, 0.12) !important;
+  color: #B45309 !important;
+  border-color: rgba(217, 119, 6, 0.4) !important;
   
   .t-icon {
-    color: #059669;
+    color: #B45309;
   }
 }
 
@@ -1011,15 +1011,15 @@ onBeforeUnmount(() => {
   }
 
   :deep(blockquote) {
-    border-left: 4px solid #07c05f;
+    border-left: 4px solid #D97706;
     padding-left: 12px;
     color: #555;
     margin: 16px 0;
-    background: rgba(7, 192, 95, 0.08);
+    background: rgba(217, 119, 6, 0.08);
   }
 
   :deep(a) {
-    color: #07c05f;
+    color: #D97706;
   }
 }
 

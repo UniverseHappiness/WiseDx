@@ -395,7 +395,7 @@ watch(() => props.visible, async (v) => {
   transition: border 0.12s;
 }
 .kb-search-input:focus {
-  border-color: #10b981;
+  border-color: #F59E0B;
   background: #fff;
 }
 
@@ -424,7 +424,7 @@ watch(() => props.visible, async (v) => {
 .kb-item:hover,
 .kb-item.highlighted { background: #f6f8f7; }
 
-.kb-item.selected { background: #eefdf5; }
+.kb-item.selected { background: #FEF3C7; }
 
 .kb-item-left {
   display: flex;
@@ -443,8 +443,8 @@ watch(() => props.visible, async (v) => {
   flex-shrink: 0;
 }
 .checkbox.checked {
-  background: #10b981;
-  border-color: #10b981;
+  background: #F59E0B;
+  border-color: #F59E0B;
 }
 .checkbox.checked svg {
   width: 10px;
@@ -457,7 +457,7 @@ watch(() => props.visible, async (v) => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #059669;
+  color: #B45309;
   
   &.faq {
     color: #0052d9;
@@ -488,9 +488,9 @@ watch(() => props.visible, async (v) => {
   transition: all 0.12s;
 }
 .kb-btn:hover {
-  border-color: #10b981;
-  color: #10b981;
-  background: #f0fdf6;
+  border-color: #F59E0B;
+  color: #F59E0B;
+  background: #FFFBEB;
 }
 
 @keyframes fadeIn {

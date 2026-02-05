@@ -287,7 +287,7 @@ onMounted(() => {
   }
 
   .doc-link {
-    color: #07C05F;
+    color: #D97706;
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
@@ -297,7 +297,7 @@ onMounted(() => {
     transition: all 0.2s ease;
 
     &:hover {
-      color: #05a04f;
+      color: #B45309;
       text-decoration: underline;
     }
 

@@ -4,7 +4,7 @@
       <div v-for="(step, index) in data.steps" :key="step.id || index" class="step-item" :class="`status-${step.status}`">
         <div class="step-checkbox" :class="{ 'checked': step.status === 'completed', 'in-progress': step.status === 'in_progress' }">
           <svg v-if="step.status === 'completed'" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="2" width="12" height="12" rx="2" fill="#07C05F"/>
+            <rect x="2" y="2" width="12" height="12" rx="2" fill="#D97706"/>
             <path d="M5 8L7 10L11 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <svg v-else width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -83,7 +83,7 @@ const props = defineProps<Props>();
   &.checked {
     svg {
       rect {
-        fill: #07C05F;
+        fill: #D97706;
       }
     }
   }
@@ -91,7 +91,7 @@ const props = defineProps<Props>();
   &.in-progress {
     svg {
       rect {
-        stroke: #07C05F;
+        stroke: #D97706;
         stroke-width: 2;
       }
     }

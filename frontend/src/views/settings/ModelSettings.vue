@@ -602,9 +602,9 @@ onMounted(() => {
   overflow: visible;
 
   &:hover {
-    border-color: #07C05F;
+    border-color: #D97706;
     background: #f9fdfb;
-    box-shadow: 0 1px 4px rgba(7, 192, 95, 0.08);
+    box-shadow: 0 1px 4px rgba(217, 119, 6, 0.08);
   }
 
   // 内置模型样式
@@ -713,9 +713,9 @@ onMounted(() => {
   margin-top: 16px;
 
   .info-box {
-    background: #f0fdf6;
-    border: 1px solid #d1fae5;
-    border-left: 3px solid #07C05F;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-left: 3px solid #D97706;
     border-radius: 6px;
     padding: 16px;
   }
@@ -728,21 +728,21 @@ onMounted(() => {
 
     .info-icon {
       font-size: 16px;
-      color: #07C05F;
+      color: #D97706;
       flex-shrink: 0;
     }
 
     .info-title {
       font-size: 14px;
       font-weight: 500;
-      color: #059669;
+      color: #B45309;
     }
   }
 
   .info-content {
     font-size: 13px;
     line-height: 1.6;
-    color: #065f46;
+    color: #92400E;
 
     p {
       margin: 0 0 6px 0;
@@ -759,18 +759,18 @@ onMounted(() => {
 
         .link-icon {
           font-size: 13px;
-          color: #07C05F;
+          color: #D97706;
           flex-shrink: 0;
         }
 
         a {
-          color: #07C05F;
+          color: #D97706;
           text-decoration: none;
           font-weight: 500;
           transition: color 0.15s;
 
           &:hover {
-            color: #059669;
+            color: #B45309;
             text-decoration: underline;
           }
         }
@@ -787,13 +787,13 @@ onMounted(() => {
     transition: all 0.15s ease;
 
     &:hover {
-      background: #06b04d;
-      border-color: #06b04d;
+      background: #B45309;
+      border-color: #B45309;
     }
 
     &:active {
-      background: #059642;
-      border-color: #059642;
+      background: #78350F;
+      border-color: #78350F;
     }
   }
 
@@ -808,9 +808,9 @@ onMounted(() => {
       border-color: #d9d9d9;
 
       &:hover {
-        color: #07C05F;
-        border-color: #07C05F;
-        background: rgba(7, 192, 95, 0.04);
+        color: #D97706;
+        border-color: #D97706;
+        background: rgba(217, 119, 6, 0.04);
       }
     }
   }
@@ -831,7 +831,7 @@ onMounted(() => {
 
   &.t-tag--theme-success {
     background: #dcfce7;
-    color: #059669;
+    color: #B45309;
   }
 
   &.t-size-s {
@@ -862,7 +862,7 @@ onMounted(() => {
 
     &:hover {
       background: #f5f7fa;
-      color: #07C05F;
+      color: #D97706;
     }
 
     &:active {

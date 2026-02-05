@@ -144,12 +144,12 @@ onMounted(() => {
   
   .model-icon {
     font-size: 14px;
-    color: #07C05F;
+    color: #D97706;
   }
   
   .add-icon {
     font-size: 14px;
-    color: #07C05F;
+    color: #D97706;
   }
   
   .model-name {
@@ -159,7 +159,7 @@ onMounted(() => {
   
   &.add {
     .model-name {
-      color: #07C05F;
+      color: #D97706;
       font-weight: 500;
     }
   }

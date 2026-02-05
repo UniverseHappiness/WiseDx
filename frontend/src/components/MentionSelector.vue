@@ -166,8 +166,8 @@ const scrollToItem = (index: number) => {
 }
 
 .mention-item.active {
-  background: var(--td-brand-color-light, #e9f8ec);
-  color: var(--td-brand-color, #07c05f);
+  background: var(--td-brand-color-light, #FEF3C7);
+  color: var(--td-brand-color, #D97706);
 }
 
 .icon {
@@ -183,8 +183,8 @@ const scrollToItem = (index: number) => {
 
 /* Document KB - Greenish */
 .kb-icon {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
+  background: rgba(245, 158, 11, 0.1);
+  color: #F59E0B;
 }
 
 /* FAQ KB - Blueish */

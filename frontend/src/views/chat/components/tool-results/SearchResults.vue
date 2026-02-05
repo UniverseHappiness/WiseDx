@@ -151,7 +151,7 @@ const getRelevanceLabel = (level: RelevanceLevel): string => {
   transition: color 0.15s ease;
   
   &:hover {
-    color: #07c05f;
+    color: #D97706;
   }
 }
 

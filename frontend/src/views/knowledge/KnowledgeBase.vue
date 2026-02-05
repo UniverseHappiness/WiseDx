@@ -1376,8 +1376,8 @@ async function createNewSession(value: string): Promise<void> {
     width: 100%;
 
     &:hover {
-      background: #f6f8f7;
-      color: #10b981;
+      background: #ecece8;
+      color: #F59E0B;
     }
 
     .t-dropdown__item-icon {
@@ -1473,13 +1473,13 @@ async function createNewSession(value: string): Promise<void> {
         justify-content: center;
         font-size: 18px;
         font-weight: 600;
-        color: #00a870;
+        color: #D97706;
         line-height: 1;
         transition: background 0.2s ease, color 0.2s ease;
 
         &:hover {
           background: #f3f5f7;
-          color: #05a04f;
+          color: #B45309;
         }
       }
 
@@ -1515,7 +1515,7 @@ async function createNewSession(value: string): Promise<void> {
       :deep(.t-button) {
         padding: 0;
         font-size: 12px;
-        color: #00a870;
+        color: #D97706;
       }
     }
 
@@ -1586,17 +1586,17 @@ async function createNewSession(value: string): Promise<void> {
       }
 
       &.active {
-        background: #e6f7ec;
-        color: #00a870;
+        background: #FDE68A;
+        color: #D97706;
         font-weight: 500;
 
         .tag-list-left .t-icon {
-          color: #00a870;
+          color: #D97706;
         }
 
         .tag-count {
-          background: #b8f0d3;
-          color: #00a870;
+          background: #FDE68A;
+          color: #D97706;
           font-weight: 600;
         }
       }
@@ -1641,12 +1641,12 @@ async function createNewSession(value: string): Promise<void> {
         }
 
         :deep(.tag-action-btn.confirm) {
-          background: #eefcf5;
-          color: #059669;
+          background: #FEF3C7;
+          color: #B45309;
 
           &:hover {
-            background: #d9f7e9;
-            color: #047857;
+            background: #FBBF24;
+            color: #B45309;
           }
         }
 
@@ -1696,7 +1696,7 @@ async function createNewSession(value: string): Promise<void> {
         :deep(.t-input.t-is-focused),
         :deep(.t-input__wrap:hover),
         :deep(.t-input__wrap.t-is-focused) {
-          border-bottom-color: #00a870;
+          border-bottom-color: #D97706;
         }
       }
 
@@ -1897,8 +1897,8 @@ async function createNewSession(value: string): Promise<void> {
     transition: all 0.12s ease;
 
     &:hover:not(:disabled) {
-      color: #10b981;
-      background: #f6f8f7;
+      color: #F59E0B;
+      background: #ecece8;
     }
 
     &:disabled {
@@ -1971,8 +1971,8 @@ async function createNewSession(value: string): Promise<void> {
   padding: 0;
 
   &:hover:not(:disabled) {
-    background: #e6f7ec;
-    color: #07c05f;
+    background: #FDE68A;
+    color: #D97706;
     box-shadow: none;
   }
 
@@ -2012,9 +2012,9 @@ async function createNewSession(value: string): Promise<void> {
     transition: all 0.2s ease;
 
     &:hover {
-      border-color: #07c05f;
-      color: #059669;
-      background: #ecfdf5;
+      border-color: #D97706;
+      color: #B45309;
+      background: #FEF3C7;
     }
   }
 
@@ -2236,13 +2236,13 @@ async function createNewSession(value: string): Promise<void> {
 
   .card-analyze-loading {
     display: block;
-    color: #07c05f;
+    color: #D97706;
     font-size: 15px;
     margin-top: 2px;
   }
 
   .card-analyze-txt {
-    color: #07c05f;
+    color: #D97706;
     font-family: "PingFang SC";
     font-size: 12px;
     margin-left: 9px;
@@ -2340,7 +2340,7 @@ async function createNewSession(value: string): Promise<void> {
 }
 
 .knowledge-card:hover {
-  border: 2px solid #07c05f;
+  border: 2px solid #D97706;
 }
 
 .url-import-form {

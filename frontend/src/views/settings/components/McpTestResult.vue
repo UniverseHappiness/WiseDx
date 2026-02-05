@@ -192,11 +192,11 @@ const handleClose = () => {
 
     .status-success {
       :deep(.t-icon) {
-        color: #00a870;
+        color: #D97706;
       }
 
       .status-text {
-        color: #00a870;
+        color: #D97706;
       }
     }
 
@@ -255,12 +255,12 @@ const handleClose = () => {
 
         &:hover {
           border-color: var(--td-brand-color);
-          box-shadow: 0 2px 8px rgba(7, 192, 95, 0.1);
+          box-shadow: 0 2px 8px rgba(217, 119, 6, 0.1);
         }
 
         &.tool-card-expanded {
           border-color: var(--td-brand-color);
-          box-shadow: 0 2px 12px rgba(7, 192, 95, 0.15);
+          box-shadow: 0 2px 12px rgba(217, 119, 6, 0.15);
         }
 
         .tool-card-header {
@@ -385,7 +385,7 @@ const handleClose = () => {
 
         &:hover {
           border-color: var(--td-brand-color);
-          box-shadow: 0 2px 8px rgba(7, 192, 95, 0.1);
+          box-shadow: 0 2px 8px rgba(217, 119, 6, 0.1);
         }
 
         .resource-header {

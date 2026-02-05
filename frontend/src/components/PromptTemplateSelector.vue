@@ -148,8 +148,8 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.95);
   
   &:hover {
-    color: #07c05f;
-    border-color: #07c05f;
+    color: #D97706;
+    border-color: #D97706;
     background: #fff;
   }
   
@@ -244,7 +244,7 @@ onMounted(() => {
   
   &.web-tag {
     background: #f0faf5;
-    color: #07c05f;
+    color: #D97706;
   }
 }
 

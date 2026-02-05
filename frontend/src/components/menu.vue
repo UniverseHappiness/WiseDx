@@ -1375,15 +1375,15 @@ const handleCreateAgent = () => {
         cursor: pointer;
 
         &:hover {
-            background: #f0fdf6;
-            border-color: #10b981;
+            background: #FFFBEB;
+            border-color: #F59E0B;
 
             .kb-action-icon {
-                color: #059669;
+                color: #B45309;
             }
 
             .kb-action-title {
-                color: #10b981;
+                color: #F59E0B;
             }
         }
 
@@ -1396,7 +1396,7 @@ const handleCreateAgent = () => {
         width: 28px;
         height: 28px;
         border-radius: 5px;
-        background: #f0fdf6;
+        background: #FFFBEB;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1405,12 +1405,12 @@ const handleCreateAgent = () => {
     }
 
     .kb-action-icon {
-        color: #10b981;
+        color: #F59E0B;
         transition: color 0.08s ease;
     }
 
     .kb-action-item:hover .kb-action-icon-wrapper {
-        background: #d1fae5;
+        background: #FDE68A;
     }
 
     .kb-action-content {
@@ -1436,7 +1436,7 @@ const handleCreateAgent = () => {
 
     .kb-action-count {
         font-size: 12px;
-        color: #10b981;
+        color: #F59E0B;
         font-weight: 600;
         margin-left: 4px;
         flex-shrink: 0;
@@ -1464,7 +1464,7 @@ const handleCreateAgent = () => {
 
     .upload-file-wrap:hover {
         background-color: #dbede4;
-        color: #07C05F;
+        color: #D97706;
 
     }
 
@@ -1475,20 +1475,20 @@ const handleCreateAgent = () => {
     }
 
     .active-upload {
-        color: #07C05F;
+        color: #D97706;
     }
 
     .menu_item_active {
         border-radius: 4px;
-        background: #07c05f1a !important;
+        background: #D977061a !important;
 
         .menu_icon,
         .menu_title {
-            color: #07c05f !important;
+            color: #D97706 !important;
         }
 
         .menu-create-hint {
-            color: #07c05f !important;
+            color: #D97706 !important;
             opacity: 1;
         }
     }
@@ -1621,7 +1621,7 @@ const handleCreateAgent = () => {
         .menu-more {
             display: inline-block;
             font-weight: bold;
-            color: #07C05F;
+            color: #D97706;
         }
 
         .sub_title {
@@ -1649,12 +1649,12 @@ const handleCreateAgent = () => {
     }
 
     .submenu_item_active {
-        background: #07c05f1a !important;
-        color: #07c05f !important;
+        background: #D977061a !important;
+        color: #D97706 !important;
         border-radius: 3px;
 
         .menu-more {
-            color: #07c05f !important;
+            color: #D97706 !important;
         }
 
         .menu-more-wrap {
@@ -1684,15 +1684,15 @@ const handleCreateAgent = () => {
     }
     
     &:hover {
-        color: #07c05f;
+        color: #D97706;
     }
     
     &.active {
-        color: #07c05f;
+        color: #D97706;
     }
     
     &.active:hover {
-        color: #05a04f;
+        color: #B45309;
     }
     
     svg {
@@ -1728,8 +1728,8 @@ const handleCreateAgent = () => {
     }
     
     &.active {
-        background-color: #07c05f1a;
-        color: #07c05f;
+        background-color: #D977061a;
+        color: #D97706;
         font-weight: 500;
     }
     
@@ -1753,7 +1753,7 @@ const handleCreateAgent = () => {
     margin-left: auto;
     margin-right: 8px;
     font-size: 16px;
-    color: #07c05f;
+    color: #D97706;
     opacity: 0.7;
     transition: opacity 0.2s ease;
     flex-shrink: 0;
@@ -1799,7 +1799,7 @@ const handleCreateAgent = () => {
 
             &:hover {
                 background: #f5f7fa !important;
-                color: #07c05f !important;
+                color: #D97706 !important;
             }
 
             .t-dropdown__item-text {

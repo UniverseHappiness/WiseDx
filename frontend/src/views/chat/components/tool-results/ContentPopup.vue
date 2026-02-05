@@ -52,7 +52,7 @@ const processedContent = computed(() => {
   flex-direction: column;
   max-height: 400px;
   max-width: 500px;
-  border: 1px solid #07C05F;
+  border: 1px solid #D97706;
   border-radius: 4px;
   word-wrap: break-word;
   word-break: break-word;

@@ -806,8 +806,8 @@ watch(
   }
 
   &.active {
-    background: #07c05f1a;
-    color: #07c05f;
+    background: #D977061a;
+    color: #D97706;
     font-weight: 500;
   }
 }
@@ -945,18 +945,18 @@ watch(
     // color: #00000099;
 
     &:hover:not(.t-is-disabled) {
-      border-color: #07c05f;
-      color: #07c05f;
+      border-color: #D97706;
+      color: #D97706;
     }
 
     &.t-is-checked {
-      background: #07c05f;
-      border-color: #07c05f;
+      background: #D97706;
+      border-color: #D97706;
       color: #fff;
 
       &:hover:not(.t-is-disabled) {
-        background: #05a04f;
-        border-color: #05a04f;
+        background: #B45309;
+        border-color: #B45309;
         color: #fff;
       }
     }

@@ -74,11 +74,11 @@ const props = defineProps({
     
     /* KB - Document (Greenish tint) */
     &.kb-tag {
-        background: rgba(16, 185, 129, 0.08);
-        color: #059669;
+        background: rgba(245, 158, 11, 0.08);
+        color: #B45309;
         
         .tag_icon {
-            color: #10b981;
+            color: #F59E0B;
         }
     }
 
@@ -127,7 +127,7 @@ const props = defineProps({
     gap: 4px;
     flex: 1 0 0;
     border-radius: 4px;
-    background: #8CE97F;
+    background: #FCD34D;
     margin-left: auto;
     color: #000000e6;
     font-size: 16px;

@@ -2578,8 +2578,8 @@ const handleSave = async () => {
   }
 
   &.active {
-    background: #07c05f1a;
-    color: #07c05f;
+    background: #D977061a;
+    color: #D97706;
     font-weight: 500;
   }
 }
@@ -2758,7 +2758,7 @@ const handleSave = async () => {
   background: #f0faf5;
   border-radius: 6px;
   border: 1px solid #d4f0e2;
-  color: #07c05f;
+  color: #D97706;
   font-size: 13px;
   line-height: 1.5;
 }
@@ -2825,18 +2825,18 @@ const handleSave = async () => {
     border-color: #d9d9d9;
 
     &:hover:not(.t-is-disabled) {
-      border-color: #07c05f;
-      color: #07c05f;
+      border-color: #D97706;
+      color: #D97706;
     }
 
     &.t-is-checked {
-      background: #07c05f;
-      border-color: #07c05f;
+      background: #D97706;
+      border-color: #D97706;
       color: #fff;
 
       &:hover:not(.t-is-disabled) {
-        background: #05a04f;
-        border-color: #05a04f;
+        background: #B45309;
+        border-color: #B45309;
         color: #fff;
       }
     }
@@ -2876,7 +2876,7 @@ const handleSave = async () => {
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: #07c05f;
+    border-color: #D97706;
     background: #f0faf5;
   }
 
@@ -2925,14 +2925,14 @@ const handleSave = async () => {
 :deep(.t-checkbox) {
   &.t-is-checked {
     .t-checkbox__input {
-      border-color: #07c05f;
-      background-color: #07c05f;
+      border-color: #D97706;
+      background-color: #D97706;
     }
   }
   
   &:hover:not(.t-is-disabled) {
     .t-checkbox__input {
-      border-color: #07c05f;
+      border-color: #D97706;
     }
   }
 }
@@ -2940,10 +2940,10 @@ const handleSave = async () => {
 // Switch 样式
 :deep(.t-switch) {
   &.t-is-checked {
-    background-color: #07c05f;
+    background-color: #D97706;
     
     &:hover:not(.t-is-disabled) {
-      background-color: #05a04f;
+      background-color: #B45309;
     }
   }
 }
@@ -2951,22 +2951,22 @@ const handleSave = async () => {
 // Slider 样式
 :deep(.t-slider) {
   .t-slider__track {
-    background-color: #07c05f;
+    background-color: #D97706;
   }
   
   .t-slider__button {
-    border-color: #07c05f;
+    border-color: #D97706;
   }
 }
 
 // Button 主题样式
 :deep(.t-button--theme-primary) {
-  background-color: #07c05f;
-  border-color: #07c05f;
+  background-color: #D97706;
+  border-color: #D97706;
   
   &:hover:not(.t-is-disabled) {
-    background-color: #05a04f;
-    border-color: #05a04f;
+    background-color: #B45309;
+    border-color: #B45309;
   }
 }
 
@@ -2976,8 +2976,8 @@ const handleSave = async () => {
 :deep(.t-select) {
   &.t-is-focused,
   &:focus-within {
-    border-color: #07c05f;
-    box-shadow: 0 0 0 2px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.1);
   }
 }
 
@@ -3137,8 +3137,8 @@ const handleSave = async () => {
   flex-shrink: 0;
   
   &.normal {
-    background: linear-gradient(135deg, rgba(7, 192, 95, 0.15) 0%, rgba(7, 192, 95, 0.08) 100%);
-    color: #059669;
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(217, 119, 6, 0.08) 100%);
+    color: #B45309;
   }
   
   &.agent {
@@ -3197,7 +3197,7 @@ const handleSave = async () => {
   
   // Document KB - Greenish
   &.doc-icon {
-    color: #10b981;
+    color: #F59E0B;
   }
   
   // FAQ KB - Blueish

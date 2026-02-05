@@ -156,7 +156,7 @@ const formatMetadataValue = (value: unknown) => {
 
   .doc-index {
     font-weight: 600;
-    color: #07c05f;
+    color: #D97706;
   }
 
   .doc-title {
@@ -167,8 +167,8 @@ const formatMetadataValue = (value: unknown) => {
 
   .status-pill {
     font-size: 11px;
-    color: #07c05f;
-    border: 1px solid rgba(7, 192, 95, 0.3);
+    color: #D97706;
+    border: 1px solid rgba(217, 119, 6, 0.3);
     border-radius: 10px;
     padding: 2px 8px;
     line-height: 1.4;

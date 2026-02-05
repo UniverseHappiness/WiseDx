@@ -492,7 +492,7 @@ onMounted(async () => {
     }
 
     .model-link {
-      color: #07C05F;
+      color: #D97706;
       text-decoration: none;
       font-weight: 500;
       display: inline-flex;
@@ -501,7 +501,7 @@ onMounted(async () => {
       transition: all 0.2s ease;
 
       &:hover {
-        color: #05a04f;
+        color: #B45309;
         text-decoration: underline;
       }
 
@@ -543,7 +543,7 @@ onMounted(async () => {
   transition: all 0.2s;
 
   &:hover {
-    border-color: #07C05F;
+    border-color: #D97706;
     background: #ffffff;
   }
 }

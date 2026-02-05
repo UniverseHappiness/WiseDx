@@ -18,7 +18,7 @@ const { t } = useI18n()
     align-items: center;
 }
 .drag-txt {
-    color: #07c05f;
+    color: #D97706;
     font-family: "PingFang SC";
     font-size: 24px;
     font-weight: 600;

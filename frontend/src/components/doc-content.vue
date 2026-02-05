@@ -726,7 +726,7 @@ const handleDetailsScroll = () => {
   margin-left: 18px;
   display: flex;
   overflow: hidden;
-  color: #07c05f;
+  color: #D97706;
 
   .download_box {
     width: 16px;
@@ -740,21 +740,21 @@ const handleDetailsScroll = () => {
 // URL链接区域
 .url_link_box {
   border-radius: 4px;
-  border: 1px solid #d0e8dc;
-  background: #f0fdf4;
+  border: 1px solid #FDE68A;
+  background: #FFFBEB;
   padding: 8px 12px;
   
   .url_link {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #059669;
+    color: #B45309;
     text-decoration: none;
     transition: all 0.2s ease;
     
     &:hover {
-      color: #07c05f;
-      background: #e6f7ed;
+      color: #D97706;
+      background: #FDE68A;
       border-radius: 3px;
       padding: 4px 6px;
       margin: -4px -6px;
@@ -773,7 +773,7 @@ const handleDetailsScroll = () => {
     .jump-icon {
       transition: transform 0.2s ease;
       flex-shrink: 0;
-      color: #059669;
+      color: #B45309;
     }
   }
 }
@@ -782,7 +782,7 @@ const handleDetailsScroll = () => {
 .manual_title_box {
   border-radius: 4px;
   border: 1px solid #dcdcdc;
-  background: #f0fdf4;
+  background: #FFFBEB;
   padding: 8px 12px;
   
   .manual_title {
@@ -821,9 +821,9 @@ const handleDetailsScroll = () => {
   }
 
   .chunk-count {
-    color: #07c05f;
+    color: #D97706;
     font-size: 12px;
-    background: #07c05f14;
+    background: #D9770614;
     padding: 4px 8px;
     border-radius: 12px;
   }
@@ -878,12 +878,12 @@ const handleDetailsScroll = () => {
   }
   
   &.chunk-odd {
-    background: #07c05f0d;
+    background: #D977060d;
   }
   
   &:hover {
-    border-color: #07c05f;
-    box-shadow: 0 2px 8px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.1);
   }
 }
 
@@ -926,14 +926,14 @@ const handleDetailsScroll = () => {
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  color: #059669;
+  color: #B45309;
   font-size: 12px;
   font-weight: 500;
   padding: 4px 0;
   transition: color 0.2s ease;
   
   &:hover {
-    color: #07c05f;
+    color: #D97706;
   }
 }
 
@@ -948,7 +948,7 @@ const handleDetailsScroll = () => {
   gap: 8px;
   padding: 6px 8px;
   margin-bottom: 4px;
-  background: #f0fdf4;
+  background: #FFFBEB;
   border-radius: 4px;
   font-size: 13px;
   color: #1d2129;
@@ -956,7 +956,7 @@ const handleDetailsScroll = () => {
   transition: background-color 0.2s ease;
   
   &:hover {
-    background: #e6f7ed;
+    background: #FDE68A;
     
     .delete-question-btn {
       opacity: 1;
@@ -964,7 +964,7 @@ const handleDetailsScroll = () => {
   }
   
   .question-icon {
-    color: #059669;
+    color: #B45309;
     flex-shrink: 0;
     margin-top: 2px;
   }

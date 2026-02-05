@@ -3123,8 +3123,8 @@ watch(() => entries.value.map(e => ({
     width: 100%;
 
     &:hover {
-      background: #f6f8f7;
-      color: #10b981;
+      background: #ecece8;
+      color: #F59E0B;
     }
 
     .t-dropdown__item-icon {
@@ -3241,13 +3241,13 @@ watch(() => entries.value.map(e => ({
         justify-content: center;
         font-size: 18px;
         font-weight: 600;
-        color: #00a870;
+        color: #D97706;
         line-height: 1;
         transition: background 0.2s ease, color 0.2s ease;
 
         &:hover {
           background: #f3f5f7;
-          color: #05a04f;
+          color: #B45309;
         }
       }
 
@@ -3267,7 +3267,7 @@ watch(() => entries.value.map(e => ({
 
         &:hover {
           background: #f3f5f7;
-          color: #00a870;
+          color: #D97706;
         }
       }
     }
@@ -3368,17 +3368,17 @@ watch(() => entries.value.map(e => ({
       }
 
       &.active {
-        background: #e6f7ec;
-        color: #00a870;
+        background: #FDE68A;
+        color: #D97706;
         font-weight: 500;
 
         .faq-tag-left .t-icon {
-          color: #00a870;
+          color: #D97706;
         }
 
         .faq-tag-count {
-          background: #b8f0d3;
-          color: #00a870;
+          background: #FDE68A;
+          color: #D97706;
           font-weight: 600;
         }
 
@@ -3427,12 +3427,12 @@ watch(() => entries.value.map(e => ({
         }
 
         :deep(.tag-action-btn.confirm) {
-          background: #eefcf5;
-          color: #059669;
+          background: #FEF3C7;
+          color: #B45309;
 
           &:hover {
-            background: #d9f7e9;
-            color: #047857;
+            background: #FBBF24;
+            color: #B45309;
           }
         }
 
@@ -3482,7 +3482,7 @@ watch(() => entries.value.map(e => ({
         :deep(.t-input.t-is-focused),
         :deep(.t-input__wrap:hover),
         :deep(.t-input__wrap.t-is-focused) {
-          border-bottom-color: #00a870;
+          border-bottom-color: #D97706;
         }
       }
 
@@ -3548,7 +3548,7 @@ watch(() => entries.value.map(e => ({
     &:focus,
     &.t-is-focused {
       background-color: #fff;
-      border-color: #00a870;
+      border-color: #D97706;
     }
   }
 }
@@ -3644,11 +3644,11 @@ watch(() => entries.value.map(e => ({
 
       &.icon-loading {
         animation: rotate 1s linear infinite;
-        color: #00a870;
+        color: #D97706;
       }
 
       &.icon-success {
-        color: #00a870;
+        color: #D97706;
       }
 
       &.icon-error {
@@ -3749,7 +3749,7 @@ watch(() => entries.value.map(e => ({
       gap: 8px;
 
       .result-icon {
-        color: #07C05F;
+        color: #D97706;
         flex-shrink: 0;
       }
 
@@ -3817,7 +3817,7 @@ watch(() => entries.value.map(e => ({
       }
 
       &.success .stat-value {
-        color: #07C05F;
+        color: #D97706;
       }
 
       &.failed .stat-value {
@@ -3888,8 +3888,8 @@ watch(() => entries.value.map(e => ({
     transition: all 0.12s ease;
 
     &:hover:not(:disabled) {
-      color: #10b981;
-      background: #f6f8f7;
+      color: #F59E0B;
+      background: #ecece8;
     }
 
     &:disabled {
@@ -3970,8 +3970,8 @@ watch(() => entries.value.map(e => ({
   padding: 0;
 
   &:hover:not(:disabled) {
-    background: #e6f7ec;
-    color: #07c05f;
+    background: #FDE68A;
+    color: #D97706;
   }
 
   &:disabled {
@@ -4018,14 +4018,14 @@ watch(() => entries.value.map(e => ({
   // 注意：top 和 left 的 transition 由 JS 动态控制，避免与布局动画冲突
 
   &:hover {
-    border-color: #07C05F;
-    box-shadow: 0 2px 8px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.1);
   }
 
   &.selected {
-    border-color: #07C05F;
+    border-color: #D97706;
     background: #F0FDF4;
-    box-shadow: 0 2px 8px rgba(7, 192, 95, 0.15);
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.15);
   }
 }
 
@@ -4124,7 +4124,7 @@ watch(() => entries.value.map(e => ({
     }
 
     &.success {
-      color: #10B981;
+      color: #F59E0B;
     }
   }
 }
@@ -4153,7 +4153,7 @@ watch(() => entries.value.map(e => ({
     }
 
     &.success {
-      color: #10B981;
+      color: #F59E0B;
     }
   }
 
@@ -4186,8 +4186,8 @@ watch(() => entries.value.map(e => ({
     transition: all 0.2s ease;
 
     &:hover {
-      border-color: #07c05f;
-      color: #059669;
+      border-color: #D97706;
+      color: #B45309;
       background: #ecfdf5;
     }
   }
@@ -4325,7 +4325,7 @@ watch(() => entries.value.map(e => ({
       content: '';
       width: 3px;
       height: 12px;
-      background: #07C05F;
+      background: #D97706;
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -4361,7 +4361,7 @@ watch(() => entries.value.map(e => ({
   }
 
   &.answers .faq-section-label::before {
-    background: #07C05F;
+    background: #D97706;
   }
 
   &.similar .faq-section-label::before {
@@ -4604,7 +4604,7 @@ watch(() => entries.value.map(e => ({
     transition: background 0.2s;
 
     &:hover {
-      background: #07C05F;
+      background: #D97706;
     }
   }
 }
@@ -4654,8 +4654,8 @@ watch(() => entries.value.map(e => ({
   white-space: nowrap;
 
   &:hover {
-    border-color: #07C05F;
-    color: #07C05F;
+    border-color: #D97706;
+    color: #D97706;
     background: #f0fdf4;
   }
 
@@ -4702,19 +4702,19 @@ watch(() => entries.value.map(e => ({
     transition: all 0.2s ease;
 
     &:hover:not(.t-is-disabled) {
-      border-color: #07c05f;
-      color: #07c05f;
+      border-color: #D97706;
+      color: #D97706;
     }
 
     &.t-is-checked {
-      background: #07c05f;
-      border-color: #07c05f;
+      background: #D97706;
+      border-color: #D97706;
       color: #fff;
       font-weight: 500;
 
       &:hover:not(.t-is-disabled) {
-        background: #05a04f;
-        border-color: #05a04f;
+        background: #B45309;
+        border-color: #B45309;
         color: #fff;
       }
     }
@@ -4751,12 +4751,12 @@ watch(() => entries.value.map(e => ({
   justify-content: center;
 
   &:hover {
-    border-color: #07C05F;
+    border-color: #D97706;
     background: #f0fdf4;
   }
 
   &.has-file {
-    border-color: #07C05F;
+    border-color: #D97706;
     background: #f0fdf4;
     border-style: solid;
   }
@@ -4772,7 +4772,7 @@ watch(() => entries.value.map(e => ({
 }
 
 .upload-icon {
-  color: #07C05F;
+  color: #D97706;
   transition: transform 0.2s ease;
 }
 
@@ -4803,7 +4803,7 @@ watch(() => entries.value.map(e => ({
   font-family: "PingFang SC";
   font-size: 14px;
   font-weight: 500;
-  color: #07C05F;
+  color: #D97706;
   word-break: break-all;
 }
 
@@ -4835,7 +4835,7 @@ watch(() => entries.value.map(e => ({
 }
 
 .preview-icon {
-  color: #07C05F;
+  color: #D97706;
   flex-shrink: 0;
 }
 
@@ -4864,8 +4864,8 @@ watch(() => entries.value.map(e => ({
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: #07C05F;
-    box-shadow: 0 2px 4px rgba(7, 192, 95, 0.08);
+    border-color: #D97706;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.08);
   }
 }
 
@@ -4876,7 +4876,7 @@ watch(() => entries.value.map(e => ({
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #07C05F 0%, #05a04f 100%);
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
   color: #ffffff;
   border-radius: 4px;
   font-family: "PingFang SC";
@@ -4963,7 +4963,7 @@ watch(() => entries.value.map(e => ({
     transition: background 0.2s;
 
     &:hover {
-      background: #07C05F;
+      background: #D97706;
     }
   }
 
@@ -5016,8 +5016,8 @@ watch(() => entries.value.map(e => ({
   }
 
   :deep(.add-item-btn) {
-    background: #07C05F !important;
-    border: 1px solid #07C05F !important;
+    background: #D97706 !important;
+    border: 1px solid #D97706 !important;
     border-radius: 8px !important;
     color: #ffffff !important;
     display: flex;
@@ -5025,10 +5025,10 @@ watch(() => entries.value.map(e => ({
     justify-content: center;
 
     &:hover:not(:disabled) {
-      background: #05a04f !important;
-      border-color: #05a04f !important;
+      background: #B45309 !important;
+      border-color: #B45309 !important;
       transform: scale(1.05);
-      box-shadow: 0 2px 8px rgba(7, 192, 95, 0.3);
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
     }
 
     &:active:not(:disabled) {
@@ -5096,8 +5096,8 @@ watch(() => entries.value.map(e => ({
 
   &:hover {
     background: #fafafa;
-    border-color: #07C05F;
-    box-shadow: 0 2px 8px rgba(7, 192, 95, 0.12);
+    border-color: #D97706;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
     transform: translateY(-1px);
   }
 
@@ -5242,7 +5242,7 @@ watch(() => entries.value.map(e => ({
       top: 20px;
       width: 3px;
       height: calc(100% - 40px);
-      background: #07C05F;
+      background: #D97706;
       border-radius: 0 2px 2px 0;
     }
 
@@ -5396,12 +5396,12 @@ watch(() => entries.value.map(e => ({
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: #07C05F;
+    border-color: #D97706;
   }
 
   &:focus-within {
-    border-color: #07C05F;
-    box-shadow: 0 0 0 3px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
   }
 
   .t-input__inner {
@@ -5441,12 +5441,12 @@ watch(() => entries.value.map(e => ({
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: #07C05F;
+    border-color: #D97706;
   }
 
   &:focus-within {
-    border-color: #07C05F;
-    box-shadow: 0 0 0 3px rgba(7, 192, 95, 0.1);
+    border-color: #D97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
   }
 
   .t-textarea__inner {
@@ -5474,12 +5474,12 @@ watch(() => entries.value.map(e => ({
 }
 
 :deep(.t-button--theme-primary) {
-  background-color: #07c05f;
-  border-color: #07c05f;
+  background-color: #D97706;
+  border-color: #D97706;
   
   &:hover {
-    background-color: #05a04f;
-    border-color: #05a04f;
+    background-color: #B45309;
+    border-color: #B45309;
   }
 }
 
@@ -5511,9 +5511,9 @@ watch(() => entries.value.map(e => ({
 
 // Tag 样式优化
 .answer-tag {
-  background: #07c05f1a;
-  color: #07c05f;
-  border-color: #07c05f33;
+  background: #D977061a;
+  color: #D97706;
+  border-color: #D9770633;
 }
 
 .question-tag {
@@ -5650,7 +5650,7 @@ watch(() => entries.value.map(e => ({
   }
 
   .t-slider__track {
-    background: #07C05F;
+    background: #D97706;
     height: 4px;
     border-radius: 2px;
   }
@@ -5658,13 +5658,13 @@ watch(() => entries.value.map(e => ({
   .t-slider__button {
     width: 16px;
     height: 16px;
-    border: 2px solid #07C05F;
+    border: 2px solid #D97706;
     background: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     &:hover {
-      border-color: #05a04f;
-      box-shadow: 0 2px 8px rgba(7, 192, 95, 0.2);
+      border-color: #B45309;
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
     }
   }
 }
@@ -5692,7 +5692,7 @@ watch(() => entries.value.map(e => ({
 
   &:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(7, 192, 95, 0.3);
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
   }
 
   &:active:not(:disabled) {
@@ -5725,7 +5725,7 @@ watch(() => entries.value.map(e => ({
   justify-content: flex-start;
 
   .t-icon {
-    color: #07C05F;
+    color: #D97706;
   }
 }
 
@@ -5763,8 +5763,8 @@ watch(() => entries.value.map(e => ({
   position: relative;
 
   &:hover {
-    border-color: #07C05F;
-    box-shadow: 0 2px 8px rgba(7, 192, 95, 0.12);
+    border-color: #D97706;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
   }
 }
 
@@ -5824,7 +5824,7 @@ watch(() => entries.value.map(e => ({
 
   .result-index {
     flex-shrink: 0;
-    color: #07C05F;
+    color: #D97706;
     font-weight: 600;
   }
 }
@@ -5868,7 +5868,7 @@ watch(() => entries.value.map(e => ({
   cursor: pointer;
 
   &:hover {
-    color: #07C05F;
+    color: #D97706;
   }
 }
 

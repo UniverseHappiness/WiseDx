@@ -357,7 +357,7 @@ onMounted(() => {
   border-radius: 4px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--td-brand-color, #07c05f);
+  color: var(--td-brand-color, #D97706);
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -371,7 +371,7 @@ onMounted(() => {
   }
   
   &:hover {
-    color: var(--td-brand-color-hover, #05a04f);
+    color: var(--td-brand-color-hover, #B45309);
     background: var(--td-bg-color-secondarycontainer, #f3f3f3);
   }
 }
@@ -419,10 +419,10 @@ onMounted(() => {
   }
   
   &.selected {
-    background: var(--td-brand-color-light, #eefdf5);
+    background: var(--td-brand-color-light, #FEF3C7);
     
     .agent-option-name {
-      color: #10b981;
+      color: #F59E0B;
       font-weight: 600;
     }
   }
@@ -459,8 +459,8 @@ onMounted(() => {
   flex-shrink: 0;
   
   &.normal {
-    background: rgba(7, 192, 95, 0.1);
-    color: #059669;
+    background: rgba(217, 119, 6, 0.1);
+    color: #B45309;
   }
   
   &.agent {
@@ -484,7 +484,7 @@ onMounted(() => {
 .check-icon {
   width: 14px;
   height: 14px;
-  color: #10b981;
+  color: #F59E0B;
   flex-shrink: 0;
   margin-left: 6px;
 }
@@ -533,7 +533,7 @@ onMounted(() => {
 
 .agent-tooltip-selected {
   font-size: 10px;
-  color: #10b981;
+  color: #F59E0B;
   font-weight: 500;
 }
 

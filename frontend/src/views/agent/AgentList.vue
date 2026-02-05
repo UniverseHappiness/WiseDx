@@ -397,8 +397,8 @@ defineExpose({
   height: 160px;
 
   &:hover {
-    border-color: #07c05f;
-    box-shadow: 0 4px 12px rgba(7, 192, 95, 0.12);
+    border-color: #D97706;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
   }
 
   // 普通模式样式
@@ -407,16 +407,16 @@ defineExpose({
     border-color: #e8f5ed;
 
     &:hover {
-      border-color: #07c05f;
-      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+      border-color: #D97706;
+      background: linear-gradient(135deg, #ffffff 0%, #FFFBEB 100%);
     }
 
     .card-decoration {
-      color: rgba(7, 192, 95, 0.35);
+      color: rgba(217, 119, 6, 0.35);
     }
 
     &:hover .card-decoration {
-      color: rgba(7, 192, 95, 0.5);
+      color: rgba(217, 119, 6, 0.5);
     }
   }
 
@@ -522,8 +522,8 @@ defineExpose({
   flex-shrink: 0;
   
   &.normal {
-    background: linear-gradient(135deg, rgba(7, 192, 95, 0.15) 0%, rgba(7, 192, 95, 0.08) 100%);
-    color: #059669;
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(217, 119, 6, 0.08) 100%);
+    color: #B45309;
   }
   
   &.agent {
@@ -546,7 +546,7 @@ defineExpose({
 
   &:hover {
     background: rgba(0, 0, 0, 0.06);
-    color: #07c05f;
+    color: #D97706;
   }
 }
 
@@ -633,11 +633,11 @@ defineExpose({
   transition: background 0.2s ease;
 
   &.mode-normal {
-    background: rgba(7, 192, 95, 0.08);
-    color: #059669;
+    background: rgba(217, 119, 6, 0.08);
+    color: #B45309;
 
     &:hover {
-      background: rgba(7, 192, 95, 0.12);
+      background: rgba(217, 119, 6, 0.12);
     }
   }
 
@@ -660,11 +660,11 @@ defineExpose({
   }
 
   &.knowledge {
-    background: rgba(7, 192, 95, 0.08);
-    color: #059669;
+    background: rgba(217, 119, 6, 0.08);
+    color: #B45309;
 
     &:hover {
-      background: rgba(7, 192, 95, 0.12);
+      background: rgba(217, 119, 6, 0.12);
     }
   }
 
