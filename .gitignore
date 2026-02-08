@@ -40,4 +40,6 @@ data/files/
 .DS_Store
 /scripts/scale_dev_jobs.sh
 server
-frontend/.vite
+frontend/.vitemain
+*.exe
+*.bin
