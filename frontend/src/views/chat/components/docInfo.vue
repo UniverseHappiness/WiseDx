@@ -28,7 +28,12 @@
                     <t-popup overlayClassName="refer-to-layer" placement="bottom-left" width="400" :showArrow="false"
                         trigger="click">
                         <template #content>
-                            <ContentPopup :content="safeProcessContent(item.content)" :is-html="true" />
+                            <ContentPopup 
+                                :content="safeProcessContent(item.content)" 
+                                :is-html="true" 
+                                :chunk-id="item.id"
+                                :knowledge-id="item.knowledge_id"
+                            />
                         </template>
                         <span class="doc">
                             {{ session.knowledge_references.length < 2 ? item.knowledge_title : `${index +

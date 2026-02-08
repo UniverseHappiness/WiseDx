@@ -25,6 +25,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -94,7 +95,24 @@ func main() {
 
 	// Set log format with request ID
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds | log.Lshortfile)
-	log.SetOutput(os.Stdout)
+
+	// 配置日志输出到文件
+	var writers []io.Writer
+	writers = append(writers, os.Stdout) // 保持stdout输出
+
+	// 检查是否需要输出到文件
+	if logFile := os.Getenv("LOG_FILE"); logFile != "" {
+		file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+		if err == nil {
+			writers = append(writers, file)
+			log.Printf("日志将同时输出到文件: %s", logFile)
+		} else {
+			log.Printf("警告: 无法打开日志文件 %s: %v", logFile, err)
+		}
+	}
+
+	// 设置多重写入器
+	log.SetOutput(io.MultiWriter(writers...))
 
 	// Set Gin mode
 	if os.Getenv("GIN_MODE") == "release" {

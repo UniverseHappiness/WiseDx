@@ -207,3 +207,17 @@ type StopData struct {
 	MessageID string `json:"message_id"`
 	Reason    string `json:"reason,omitempty"` // Optional reason for stopping
 }
+
+// QuickReplyOption represents a single quick reply option
+type QuickReplyOption struct {
+	Label string `json:"label"` // Display text, e.g., "A. 男"
+	Value string `json:"value"` // Value to send when selected, e.g., "男"
+}
+
+// QuickReplyData represents quick reply options data for interactive selection
+type QuickReplyData struct {
+	Question    string             `json:"question"`     // Question or prompt text
+	Options     []QuickReplyOption `json:"options"`      // List of options
+	MultiSelect bool               `json:"multi_select"` // Whether multiple selection is allowed
+	SessionID   string             `json:"session_id,omitempty"`
+}

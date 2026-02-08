@@ -6,22 +6,37 @@
         <template v-else>{{ content }}</template>
       </div>
     </div>
-    <div v-if="hasInfo" class="info-section">
-      <div v-if="chunkId" class="info-field">
-        <span class="field-label">{{ $t('chat.chunkIdLabel') }}</span>
-        <span class="field-value"><code>{{ chunkId }}</code></span>
+    <div class="popup-footer">
+      <div v-if="hasInfo" class="info-section">
+        <div v-if="chunkId" class="info-field">
+          <span class="field-label">{{ $t('chat.chunkIdLabel') }}</span>
+          <span class="field-value"><code>{{ chunkId }}</code></span>
+        </div>
+        <div v-if="knowledgeId" class="info-field">
+          <span class="field-label">{{ $t('chat.documentIdLabel') }}</span>
+          <span class="field-value"><code>{{ knowledgeId }}</code></span>
+        </div>
       </div>
-      <div v-if="knowledgeId" class="info-field">
-        <span class="field-label">{{ $t('chat.documentIdLabel') }}</span>
-        <span class="field-value"><code>{{ knowledgeId }}</code></span>
-      </div>
+      <button 
+        v-if="chunkId" 
+        class="view-detail-btn" 
+        @click="handleViewDetail"
+        :disabled="isNavigating"
+      >
+        <t-icon name="jump" size="12px" />
+        {{ isNavigating ? $t('common.loading') : ($t('chat.viewChunkDetail') || '查看详情') }}
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { sanitizeHTML } from '@/utils/security';
+import { getChunkByIdOnly } from '@/api/knowledge-base';
+import { MessagePlugin } from 'tdesign-vue-next';
 
 interface Props {
   content?: string;
@@ -31,6 +46,10 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const router = useRouter();
+const { t } = useI18n();
+
+const isNavigating = ref(false);
 
 const hasInfo = computed(() => {
   return !!(props.chunkId || props.knowledgeId);
@@ -44,6 +63,37 @@ const processedContent = computed(() => {
   }
   return props.content;
 });
+
+// 跳转到分块详情
+const handleViewDetail = async () => {
+  if (!props.chunkId || isNavigating.value) return;
+  
+  isNavigating.value = true;
+  try {
+    // 通过 API 获取 knowledge_base_id
+    const response = await getChunkByIdOnly(props.chunkId);
+    const kbId = response.data?.knowledge_base_id;
+    
+    if (!kbId) {
+      MessagePlugin.warning(t('chat.noKnowledgeBaseId') || '无法获取知识库ID');
+      return;
+    }
+    
+    const query: Record<string, string> = {};
+    if (props.chunkId) query.chunk = props.chunkId;
+    if (props.knowledgeId) query.knowledge = props.knowledgeId;
+    
+    router.push({
+      path: `/platform/knowledge-bases/${kbId}`,
+      query
+    });
+  } catch (error) {
+    console.error('Failed to get chunk info:', error);
+    MessagePlugin.error(t('common.operationFailed') || '操作失败');
+  } finally {
+    isNavigating.value = false;
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -87,11 +137,19 @@ const processedContent = computed(() => {
     }
   }
   
-  .info-section {
+  .popup-footer {
     flex-shrink: 0;
     padding: 8px 12px;
     border-top: 1px solid #e7e7e7;
     background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .info-section {
+    flex: 1;
   }
   
   .info-field {
@@ -99,6 +157,10 @@ const processedContent = computed(() => {
     gap: 8px;
     margin-bottom: 4px;
     font-size: 11px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
     
     .field-label {
       color: #8b8b8b;
@@ -117,6 +179,33 @@ const processedContent = computed(() => {
         padding: 1px 4px;
         border-radius: 2px;
       }
+    }
+  }
+  
+  .view-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #D97706;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    
+    &:hover:not(:disabled) {
+      background: #FEF3C7;
+      border-color: #D97706;
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
 }

@@ -486,7 +486,64 @@ onMounted(() => {
   window.addEventListener('knowledgeFileUploaded', handleFileUploaded as EventListener);
   // 监听URL导入对话框打开事件
   window.addEventListener('openURLImportDialog', handleOpenURLImportDialog as EventListener);
+  
+  // 处理 URL 参数：跳转到指定的知识条目和分块
+  handleChunkNavigation();
 });
+
+// 处理从 URL 参数跳转到指定分块的逻辑
+const handleChunkNavigation = async () => {
+  const knowledgeId = route.query.knowledge as string;
+  const chunkId = route.query.chunk as string;
+  
+  if (!knowledgeId && !chunkId) return;
+  
+  // 等待知识库文件列表加载完成
+  const waitForCardList = () => {
+    return new Promise<void>((resolve) => {
+      const checkList = () => {
+        if (cardList.value.length > 0 || total.value === 0) {
+          resolve();
+        } else {
+          setTimeout(checkList, 100);
+        }
+      };
+      // 最多等待3秒
+      const timeout = setTimeout(() => resolve(), 3000);
+      checkList();
+    });
+  };
+  
+  await waitForCardList();
+  
+  // 查找对应的知识条目
+  let targetItem: KnowledgeCard | undefined;
+  if (knowledgeId) {
+    targetItem = cardList.value.find((item: KnowledgeCard) => item.id === knowledgeId);
+  }
+  
+  if (targetItem) {
+    // 打开知识条目详情，并传递 chunkId 用于定位
+    openCardDetailsWithChunk(targetItem, chunkId);
+  } else if (chunkId) {
+    // 如果没有找到知识条目，但有 chunkId，显示提示
+    MessagePlugin.info(t('knowledgeBase.chunkNotFound') || '未找到对应的文档，请刷新页面重试');
+  }
+  
+  // 清除 URL 中的查询参数
+  if (knowledgeId || chunkId) {
+    router.replace({ query: {} });
+  }
+};
+
+// 打开知识条目详情并定位到指定分块
+const pendingChunkId = ref<string | null>(null);
+
+const openCardDetailsWithChunk = (item: KnowledgeCard, chunkId?: string) => {
+  pendingChunkId.value = chunkId || null;
+  isCardDetails.value = true;
+  getCardDetails(item);
+};
 
 onUnmounted(() => {
   window.removeEventListener('knowledgeFileUploaded', handleFileUploaded as EventListener);
@@ -1303,7 +1360,14 @@ async function createNewSession(value: string): Promise<void> {
             </div>
           </t-dialog>
           
-          <DocContent :visible="isCardDetails" :details="details" @closeDoc="closeDoc" @getDoc="getDoc"></DocContent>
+          <DocContent 
+            :visible="isCardDetails" 
+            :details="details" 
+            :highlight-chunk-id="pendingChunkId"
+            @closeDoc="closeDoc" 
+            @getDoc="getDoc"
+            @chunk-highlighted="pendingChunkId = null"
+          ></DocContent>
         </div>
       </div>
     </div>

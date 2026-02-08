@@ -3,10 +3,13 @@ package logger
 import (
 	"context"
 	"fmt"
+	"io"
+	"os"
 	"path"
 	"runtime"
 	"sort"
 	"strings"
+	"sync"
 
 	"github.com/Tencent/WeKnora/internal/types"
 	"github.com/sirupsen/logrus"
@@ -36,6 +39,13 @@ const (
 	colorGray   = "\033[90m"
 	colorBold   = "\033[1m"
 	colorReset  = "\033[0m"
+)
+
+// 全局日志文件句柄和锁
+var (
+	globalLogFile   *os.File
+	globalLogWriter io.Writer
+	logMutex        sync.Mutex
 )
 
 type CustomFormatter struct {
@@ -129,6 +139,37 @@ func init() {
 	// 设置日志格式而不修改全局时区
 	logrus.SetFormatter(&CustomFormatter{ForceColor: true})
 	logrus.SetReportCaller(false)
+
+	// 检查是否需要输出到文件
+	initGlobalLogFile()
+}
+
+// 初始化全局日志文件
+func initGlobalLogFile() {
+	logFile := os.Getenv("LOG_FILE")
+	if logFile == "" {
+		return
+	}
+
+	// 创建日志目录（如果不存在）
+	if err := os.MkdirAll(path.Dir(logFile), 0755); err != nil {
+		fmt.Printf("警告: 无法创建日志目录 %s: %v\n", path.Dir(logFile), err)
+		return
+	}
+
+	// 打开日志文件
+	file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Printf("警告: 无法打开日志文件 %s: %v\n", logFile, err)
+		return
+	}
+
+	logMutex.Lock()
+	defer logMutex.Unlock()
+	globalLogFile = file
+	globalLogWriter = io.MultiWriter(os.Stdout, file)
+
+	fmt.Printf("日志将同时输出到文件: %s\n", logFile)
 }
 
 // GetLogger 获取日志实例
@@ -141,6 +182,16 @@ func GetLogger(c context.Context) *logrus.Entry {
 	// 设置默认日志级别
 	newLogger.SetLevel(logrus.DebugLevel)
 	// 启用调用者信息
+
+	// 如果有全局日志文件，设置输出
+	logMutex.Lock()
+	if globalLogWriter != nil {
+		newLogger.SetOutput(globalLogWriter)
+	} else {
+		newLogger.SetOutput(os.Stdout)
+	}
+	logMutex.Unlock()
+
 	return logrus.NewEntry(newLogger)
 }
 

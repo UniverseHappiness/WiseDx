@@ -19,7 +19,13 @@
                 </span>
             </div>
             <docInfo :session="session"></docInfo>
-            <AgentStreamDisplay :session="session" :user-query="userQuery" v-if="session.isAgentMode"></AgentStreamDisplay>
+            <AgentStreamDisplay 
+                :session="session" 
+                :user-query="userQuery" 
+                :agent-id="session.agent_id"
+                @quick-reply-select="handleQuickReplySelect"
+                v-if="session.isAgentMode"
+            ></AgentStreamDisplay>
             <deepThink :deepSession="session" v-if="session.showThink && !session.isAgentMode"></deepThink>
         </div>
         <!-- 非 Agent 模式下才显示传统的 markdown 渲染 -->
@@ -62,9 +68,15 @@ marked.use({
     headerIds: false,
     breaks: true,  // 全局启用单个换行支持
 });
-const emit = defineEmits(['scroll-bottom'])
+const emit = defineEmits(['scroll-bottom', 'quick-reply-select'])
 const { t } = useI18n()
 const uiStore = useUIStore();
+
+// Handle quick reply selection - emit to parent
+const handleQuickReplySelect = (value) => {
+    console.log('[BotMsg] Quick reply selected:', value);
+    emit('quick-reply-select', value);
+};
 const renderer = new marked.Renderer();
 let parentMd = ref()
 let reviewUrl = ref('')

@@ -222,6 +222,10 @@ func (s *agentService) registerTools(
 
 	// Filter out knowledge base tools if no knowledge bases or knowledge IDs are configured
 	hasKnowledge := len(config.KnowledgeBases) > 0 || len(config.KnowledgeIDs) > 0
+
+	// Check if config has explicit AllowedTools (custom agent configuration)
+	hasExplicitAllowedTools := len(config.AllowedTools) > 0
+
 	if !hasKnowledge {
 		filteredTools := make([]string, 0)
 		kbTools := map[string]bool{
@@ -236,7 +240,8 @@ func (s *agentService) registerTools(
 		}
 
 		// If no knowledge and no web search, also disable todo_write (not useful for simple chat)
-		if !config.WebSearchEnabled {
+		// BUT only if AllowedTools is not explicitly set (i.e., using default tools)
+		if !config.WebSearchEnabled && !hasExplicitAllowedTools {
 			kbTools[tools.ToolTodoWrite] = true
 		}
 
@@ -308,6 +313,10 @@ func (s *agentService) registerTools(
 		case tools.ToolDataSchema:
 			toolToRegister = tools.NewDataSchemaTool(s.knowledgeService, s.chunkService.GetRepository())
 			logger.Infof(ctx, "Registered data_schema tool")
+
+		case tools.ToolShowOptions:
+			toolToRegister = tools.NewShowOptionsTool()
+			logger.Infof(ctx, "Registered show_options tool")
 
 		default:
 			logger.Warnf(ctx, "Unknown tool: %s", toolName)

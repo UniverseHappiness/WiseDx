@@ -3,11 +3,12 @@
 import { marked } from "marked";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
-import { onMounted, ref, nextTick, onUnmounted, onUpdated, watch } from "vue";
+import { onMounted, ref, nextTick, onUnmounted, onUpdated, watch, computed } from "vue";
 import { downKnowledgeDetails, deleteGeneratedQuestion } from "@/api/knowledge-base/index";
 import { MessagePlugin, DialogPlugin } from "tdesign-vue-next";
 import { sanitizeHTML, safeMarkdownToHTML, createSafeImage, isValidImageURL } from '@/utils/security';
 import { useI18n } from 'vue-i18n';
+import PdfPreview from './pdf-preview.vue';
 
 const { t } = useI18n();
 
@@ -23,10 +24,54 @@ let doc = null;
 let down = ref()
 let mdContentWrap = ref()
 let url = ref('')
-// 视图模式：chunks / original / merged
-const viewMode = ref<'chunks' | 'original' | 'merged'>('merged');
+// 视图模式：chunks / original / merged / pdf
+const viewMode = ref<'chunks' | 'original' | 'merged' | 'pdf'>('merged');
 const originalContent = ref<string>('');
 const loadingOriginal = ref(false);
+
+// PDF 预览相关
+const pdfPreviewVisible = ref(false);
+const pdfBlobUrl = ref<string>('');
+const loadingPdf = ref(false);
+
+// 判断是否为 PDF 文件
+const isPdfFile = (fileType?: string): boolean => {
+  if (!fileType) return false;
+  return fileType.toLowerCase() === 'pdf';
+};
+
+// 加载 PDF 预览
+const loadPdfPreview = async () => {
+  if (!props.details.id || !props.details.type || props.details.type !== 'file') return;
+  const fileType = props.details.file_type?.toLowerCase();
+  if (!isPdfFile(fileType)) {
+    MessagePlugin.warning(t('pdfPreview.notPdfFile') || '该文件不是 PDF 文件');
+    return;
+  }
+  loadingPdf.value = true;
+  try {
+    const blob = await downKnowledgeDetails(props.details.id);
+    if (pdfBlobUrl.value) URL.revokeObjectURL(pdfBlobUrl.value);
+    pdfBlobUrl.value = URL.createObjectURL(blob);
+    pdfPreviewVisible.value = true;
+  } catch (error: any) {
+    console.error('Failed to load PDF:', error);
+    MessagePlugin.error(error?.message || t('pdfPreview.loadError') || '加载 PDF 失败');
+  } finally {
+    loadingPdf.value = false;
+  }
+};
+
+const closePdfPreview = () => {
+  pdfPreviewVisible.value = false;
+};
+
+// 计算总字符数
+const totalCharsComputed = computed(() => {
+  if (!props.details.md || props.details.md.length === 0) return 0;
+  const lastChunk = props.details.md[props.details.md.length - 1];
+  return lastChunk?.end_at || 0;
+});
 
 // 合并后的文档内容
 const mergedContent = ref<string>('');
@@ -157,8 +202,11 @@ renderer.code = function (code, infostring) {
     </div>
   `;
 };
-const props = defineProps(["visible", "details", "knowledgeType", "sourceInfo"]);
-const emit = defineEmits(["closeDoc", "getDoc", "questionDeleted"]);
+const props = defineProps(["visible", "details", "knowledgeType", "sourceInfo", "highlightChunkId"]);
+const emit = defineEmits(["closeDoc", "getDoc", "questionDeleted", "chunkHighlighted"]);
+
+// 高亮的分块 ID
+const highlightedChunkId = ref<string | null>(null);
 
 // 监听 chunks 变化，自动更新合并内容
 watch(() => props.details?.md, (newChunks) => {
@@ -168,6 +216,39 @@ watch(() => props.details?.md, (newChunks) => {
     mergedContent.value = '';
   }
 }, { immediate: true, deep: true });
+
+// 监听 highlightChunkId，当有值时切换到分块视图并滚动到对应位置
+watch(
+  [() => props.highlightChunkId, () => props.details?.md],
+  ([chunkId, chunks]) => {
+    if (!chunkId || !chunks || chunks.length === 0) return;
+    
+    // 切换到分块视图
+    viewMode.value = 'chunks';
+    highlightedChunkId.value = chunkId;
+    
+    // 等待 DOM 更新后滚动到对应分块
+    nextTick(() => {
+      // 查找对应的分块元素
+      const chunkIndex = chunks.findIndex((item: any) => item.id === chunkId);
+      if (chunkIndex !== -1) {
+        const chunkElement = document.querySelector(`[data-chunk-id="${chunkId}"]`);
+        if (chunkElement) {
+          chunkElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // 添加高亮效果
+          chunkElement.classList.add('chunk-highlighted');
+          // 3秒后移除高亮
+          setTimeout(() => {
+            chunkElement.classList.remove('chunk-highlighted');
+            highlightedChunkId.value = null;
+            emit('chunkHighlighted');
+          }, 3000);
+        }
+      }
+    });
+  },
+  { immediate: true }
+);
 
 const isTextFile = (fileType?: string): boolean => {
   if (!fileType) return false;
@@ -545,7 +626,18 @@ const handleDetailsScroll = () => {
               >
                 {{ $t('knowledgeBase.viewChunks') || '分块' }}
               </t-button>
-
+              <!-- PDF 预览按钮 -->
+              <t-button 
+                v-if="details.type === 'file' && isPdfFile(details.file_type)"
+                size="small" 
+                variant="outline"
+                :loading="loadingPdf"
+                @click="loadPdfPreview"
+                class="view-mode-btn pdf-btn"
+              >
+                <template #icon><t-icon name="file-pdf" size="14px" /></template>
+                {{ $t('pdfPreview.preview') || 'PDF预览' }}
+              </t-button>
             </div>
           </div>
         </div>
@@ -564,7 +656,8 @@ const handleDetailsScroll = () => {
           <div class="chunk-item" 
             v-for="(item, index) in details.md" 
             :key="index"
-            :class="getChunkClass(index)"
+            :data-chunk-id="item.id"
+            :class="[getChunkClass(index), { 'chunk-highlighted': highlightedChunkId === item.id }]"
           >
             <div class="chunk-header">
               <span class="chunk-index">{{ $t('knowledgeBase.segment') || '片段' }} {{ index + 1 }}</span>
@@ -620,6 +713,29 @@ const handleDetailsScroll = () => {
         <t-button theme="default" @click="handleClose">{{ $t('common.cancel') }}</t-button>
       </template>
     </t-drawer>
+    
+    <!-- PDF 预览弹窗 -->
+    <t-dialog
+      v-model:visible="pdfPreviewVisible"
+      :header="details.title || 'PDF 预览'"
+      :footer="false"
+      width="90vw"
+      top="3vh"
+      :close-on-overlay-click="false"
+      :close-btn="true"
+      @close="closePdfPreview"
+      class="pdf-preview-dialog"
+    >
+      <div class="pdf-preview-content">
+        <PdfPreview
+          v-if="pdfBlobUrl"
+          :pdf-source="pdfBlobUrl"
+          :chunks="details.md || []"
+          :total-chars="totalCharsComputed"
+          @close="closePdfPreview"
+        />
+      </div>
+    </t-dialog>
   </div>
 </template>
 <style scoped lang="less">
@@ -885,6 +1001,24 @@ const handleDetailsScroll = () => {
     border-color: #D97706;
     box-shadow: 0 2px 8px rgba(217, 119, 6, 0.1);
   }
+  
+  // 高亮状态（从引用跳转时）
+  &.chunk-highlighted {
+    border-color: #D97706;
+    background: #FEF3C7 !important;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2), 0 4px 12px rgba(217, 119, 6, 0.15);
+    animation: chunkHighlightPulse 1.5s ease-in-out 2;
+  }
+}
+
+// 高亮脉冲动画
+@keyframes chunkHighlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2), 0 4px 12px rgba(217, 119, 6, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(217, 119, 6, 0.3), 0 4px 16px rgba(217, 119, 6, 0.25);
+  }
 }
 
 .chunk-header {
@@ -998,5 +1132,30 @@ const handleDetailsScroll = () => {
   padding: 4px;
   gap: 4px;
   margin-top: 12px;
+}
+
+// PDF 预览按钮
+.pdf-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+</style>
+
+<!-- PDF 预览弹窗样式 -->
+<style lang="less">
+.pdf-preview-dialog {
+  .t-dialog {
+    max-width: 95vw;
+  }
+  .t-dialog__body {
+    padding: 0 !important;
+    height: 85vh;
+    overflow: hidden;
+  }
+  .pdf-preview-content {
+    height: 100%;
+    overflow: hidden;
+  }
 }
 </style>

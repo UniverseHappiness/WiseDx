@@ -97,16 +97,22 @@ func (s *customAgentService) GetAgentByID(ctx context.Context, id string) (*type
 
 	// Check if it's a built-in agent using the registry
 	if types.IsBuiltinAgentID(id) {
-		// Try to get from database first (for customized config)
-		agent, err := s.repo.GetAgentByID(ctx, id, tenantID)
+		// Get the default built-in agent from registry (always has latest SystemPrompt)
+		defaultAgent := types.GetBuiltinAgent(id, tenantID)
+		if defaultAgent == nil {
+			return nil, ErrAgentNotFound
+		}
+
+		// Try to get customized config from database
+		dbAgent, err := s.repo.GetAgentByID(ctx, id, tenantID)
 		if err == nil {
-			// Found in database, return with customized config
-			return agent, nil
+			// Merge: use code's SystemPrompt + user's customized config
+			mergedAgent := s.mergeBuiltinAgentConfig(defaultAgent, dbAgent)
+			return mergedAgent, nil
 		}
-		// Not in database, return default built-in agent from registry
-		if builtinAgent := types.GetBuiltinAgent(id, tenantID); builtinAgent != nil {
-			return builtinAgent, nil
-		}
+
+		// Not in database, return default built-in agent
+		return defaultAgent, nil
 	}
 
 	// Query from database
@@ -122,6 +128,105 @@ func (s *customAgentService) GetAgentByID(ctx context.Context, id string) (*type
 	}
 
 	return agent, nil
+}
+
+// mergeBuiltinAgentConfig merges the default built-in agent with user's customized config.
+// SystemPrompt always uses the code version (latest), other configs use user's customized values.
+func (s *customAgentService) mergeBuiltinAgentConfig(defaultAgent, dbAgent *types.CustomAgent) *types.CustomAgent {
+	// Start with default agent as base
+	merged := &types.CustomAgent{
+		ID:          defaultAgent.ID,
+		Name:        defaultAgent.Name,
+		Description: defaultAgent.Description,
+		Avatar:      defaultAgent.Avatar,
+		IsBuiltin:   true,
+		TenantID:    defaultAgent.TenantID,
+		CreatedAt:   dbAgent.CreatedAt,
+		UpdatedAt:   dbAgent.UpdatedAt,
+	}
+
+	// Use code's SystemPrompt (always latest)
+	merged.Config.SystemPrompt = defaultAgent.Config.SystemPrompt
+	merged.Config.AgentMode = defaultAgent.Config.AgentMode
+	merged.Config.AllowedTools = defaultAgent.Config.AllowedTools
+	merged.Config.SupportedFileTypes = defaultAgent.Config.SupportedFileTypes
+
+	// Use user's customized config for other fields (if set)
+	if dbAgent.Config.ModelID != "" {
+		merged.Config.ModelID = dbAgent.Config.ModelID
+	} else {
+		merged.Config.ModelID = defaultAgent.Config.ModelID
+	}
+
+	// Temperature: use user's value if explicitly set (check if different from 0)
+	if dbAgent.Config.Temperature != 0 {
+		merged.Config.Temperature = dbAgent.Config.Temperature
+	} else {
+		merged.Config.Temperature = defaultAgent.Config.Temperature
+	}
+
+	// Other configurable fields from user
+	if dbAgent.Config.MaxCompletionTokens > 0 {
+		merged.Config.MaxCompletionTokens = dbAgent.Config.MaxCompletionTokens
+	} else {
+		merged.Config.MaxCompletionTokens = defaultAgent.Config.MaxCompletionTokens
+	}
+
+	if dbAgent.Config.MaxIterations > 0 {
+		merged.Config.MaxIterations = dbAgent.Config.MaxIterations
+	} else {
+		merged.Config.MaxIterations = defaultAgent.Config.MaxIterations
+	}
+
+	// Use user's retrieval config or defaults
+	if dbAgent.Config.EmbeddingTopK > 0 {
+		merged.Config.EmbeddingTopK = dbAgent.Config.EmbeddingTopK
+	} else {
+		merged.Config.EmbeddingTopK = defaultAgent.Config.EmbeddingTopK
+	}
+
+	if dbAgent.Config.KeywordThreshold > 0 {
+		merged.Config.KeywordThreshold = dbAgent.Config.KeywordThreshold
+	} else {
+		merged.Config.KeywordThreshold = defaultAgent.Config.KeywordThreshold
+	}
+
+	if dbAgent.Config.VectorThreshold > 0 {
+		merged.Config.VectorThreshold = dbAgent.Config.VectorThreshold
+	} else {
+		merged.Config.VectorThreshold = defaultAgent.Config.VectorThreshold
+	}
+
+	if dbAgent.Config.RerankTopK > 0 {
+		merged.Config.RerankTopK = dbAgent.Config.RerankTopK
+	} else {
+		merged.Config.RerankTopK = defaultAgent.Config.RerankTopK
+	}
+
+	if dbAgent.Config.RerankThreshold > 0 {
+		merged.Config.RerankThreshold = dbAgent.Config.RerankThreshold
+	} else {
+		merged.Config.RerankThreshold = defaultAgent.Config.RerankThreshold
+	}
+
+	// Boolean flags - use user's value if they have a database record
+	merged.Config.WebSearchEnabled = dbAgent.Config.WebSearchEnabled
+	merged.Config.WebSearchMaxResults = dbAgent.Config.WebSearchMaxResults
+	merged.Config.ReflectionEnabled = dbAgent.Config.ReflectionEnabled
+	merged.Config.MultiTurnEnabled = dbAgent.Config.MultiTurnEnabled
+	merged.Config.HistoryTurns = dbAgent.Config.HistoryTurns
+	merged.Config.KBSelectionMode = dbAgent.Config.KBSelectionMode
+	merged.Config.RetrieveKBOnlyWhenMentioned = dbAgent.Config.RetrieveKBOnlyWhenMentioned
+
+	// Set defaults if needed
+	if merged.Config.KBSelectionMode == "" {
+		merged.Config.KBSelectionMode = defaultAgent.Config.KBSelectionMode
+	}
+	if merged.Config.HistoryTurns == 0 {
+		merged.Config.HistoryTurns = defaultAgent.Config.HistoryTurns
+	}
+
+	return merged
 }
 
 // ListAgents lists all agents for the current tenant (including built-in agents)
@@ -154,19 +259,23 @@ func (s *customAgentService) ListAgents(ctx context.Context) ([]*types.CustomAge
 
 	// Add built-in agents in order
 	for _, builtinID := range builtinIDs {
+		defaultAgent := types.GetBuiltinAgent(builtinID, tenantID)
+		if defaultAgent == nil {
+			continue
+		}
+
 		if builtinInDB[builtinID] {
-			// Use customized config from database
-			for _, agent := range allAgents {
-				if agent.ID == builtinID {
-					result = append(result, agent)
+			// Merge code's SystemPrompt with user's customized config
+			for _, dbAgent := range allAgents {
+				if dbAgent.ID == builtinID {
+					merged := s.mergeBuiltinAgentConfig(defaultAgent, dbAgent)
+					result = append(result, merged)
 					break
 				}
 			}
 		} else {
 			// Use default built-in agent
-			if agent := types.GetBuiltinAgent(builtinID, tenantID); agent != nil {
-				result = append(result, agent)
-			}
+			result = append(result, defaultAgent)
 		}
 	}
 

@@ -201,6 +201,7 @@ export default {
     noMatch: "未找到匹配的知识库",
     noKnowledge: "暂无可用知识库",
     loadingFailed: "加载知识库失败",
+    chunkNotFound: "未找到对应的文档，请刷新页面重试",
   },
   chat: {
     title: "对话",
@@ -299,6 +300,8 @@ export default {
     rawOutputLabel: "原始输出",
     selectKnowledgeBaseWarning: "请至少选择一个知识库",
     processError: "处理出错",
+    viewChunkDetail: "查看详情",
+    noKnowledgeBaseId: "无法获取知识库ID",
   },
   settings: {
     title: "设置",
@@ -738,6 +741,18 @@ export default {
     webSearchFound: "找到 <strong>{count}</strong> 个网络搜索结果",
     argumentsLabel: "参数",
     toolFallback: "工具",
+    consultationProgress: "问诊进度",
+    currentStage: "当前阶段",
+    exportReport: "导出报告",
+    exportMarkdown: "导出 Markdown",
+    exportJSON: "导出 JSON",
+    copyReport: "复制报告",
+    patientInfo: "患者信息",
+    basicInfo: "基本信息",
+    chiefComplaint: "主诉",
+    presentIllness: "现病史",
+    pastHistory: "既往史",
+    allergyHistory: "过敏史",
     title: "智能体",
     subtitle: "配置和管理您的智能体，自定义对话行为和能力",
     createAgent: "创建智能体",
@@ -929,6 +944,10 @@ export default {
       documentAssistant: {
         name: "文档助手",
         description: "专注于文档检索和内容整理，能够快速定位文档、提取关键信息并生成摘要",
+      },
+      medicalConsultant: {
+        name: "智能问诊助手",
+        description: "专业医疗问诊智能体，支持从问候到总结的全流程结构化病史采集，包括主诉、现病史、既往史和过敏史",
       },
     },
   },
@@ -1406,7 +1425,7 @@ export default {
     },
   },
   createChat: {
-    title: "基于知识库内容问答 - AI 问答",
+    title: "慧诊 RAG 智能检索系统",
     newSessionTitle: "新会话",
     messages: {
       selectKnowledgeBase: "请先选择知识库",
@@ -2265,9 +2284,21 @@ export default {
         desc: "简短的无法回答提示",
       },
       model: {
-        name: "模型兜底提示",
+        name: "模型兗底提示",
         desc: "引导模型基于通用知识回答的提示词",
       },
     },
+  },
+  // PDF 预览组件文案
+  pdfPreview: {
+    preview: "PDF预览",
+    loading: "加载中...",
+    loadError: "加载 PDF 失败",
+    notPdfFile: "该文件不是 PDF 文件",
+    chunkList: "分块列表",
+    segment: "片段",
+    chars: "字符",
+    estimatedPage: "约第",
+    page: "页",
   },
 };

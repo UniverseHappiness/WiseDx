@@ -143,15 +143,16 @@ type TodoWriteTool struct {
 
 // TodoWriteInput defines the input parameters for todo_write tool
 type TodoWriteInput struct {
-	Task  string     `json:"task" jsonschema:"The complex task or question you need to create a plan for"`
-	Steps []PlanStep `json:"steps" jsonschema:"Array of research plan steps with status tracking"`
+	Task          string            `json:"task" jsonschema:"The complex task or question you need to create a plan for"`
+	Steps         []PlanStep        `json:"steps" jsonschema:"Array of research plan steps with status tracking"`
+	CollectedData map[string]string `json:"collected_data" jsonschema:"Key-value pairs of collected information (e.g. name, age, symptoms)"`
 }
 
 // PlanStep represents a single step in the research plan
 type PlanStep struct {
-	ID          string `json:"id" jsonschema:"Unique identifier for this step (e.g., 'step1', 'step2')"`
-	Description string `json:"description" jsonschema:"Clear description of what to investigate or accomplish in this step"`
-	Status      string `json:"status" jsonschema:"Current status: pending (not started), in_progress (executing), completed (finished)"`
+	ID          string `json:"id" jsonschema:"Unique identifier for this step"`
+	Description string `json:"description" jsonschema:"Clear description of what to accomplish in this step"`
+	Status      string `json:"status" jsonschema:"Status: pending, in_progress, or completed"`
 }
 
 // NewTodoWriteTool creates a new todo_write tool instance
@@ -180,21 +181,24 @@ func (t *TodoWriteTool) Execute(ctx context.Context, args json.RawMessage) (*typ
 	planSteps := input.Steps
 
 	// Generate formatted output
-	output := generatePlanOutput(input.Task, planSteps)
+	output := generatePlanOutput(input.Task, planSteps, input.CollectedData)
 
 	// Prepare structured data for response
 	stepsJSON, _ := json.Marshal(planSteps)
+	collectedDataJSON, _ := json.Marshal(input.CollectedData)
 
 	return &types.ToolResult{
 		Success: true,
 		Output:  output,
 		Data: map[string]interface{}{
-			"task":         input.Task,
-			"steps":        planSteps,
-			"steps_json":   string(stepsJSON),
-			"total_steps":  len(planSteps),
-			"plan_created": true,
-			"display_type": "plan",
+			"task":                input.Task,
+			"steps":               planSteps,
+			"steps_json":          string(stepsJSON),
+			"total_steps":         len(planSteps),
+			"plan_created":        true,
+			"display_type":        "plan",
+			"collected_data":      input.CollectedData,
+			"collected_data_json": string(collectedDataJSON),
 		},
 	}, nil
 }
@@ -226,9 +230,18 @@ func getStringArrayField(m map[string]interface{}, key string) []string {
 }
 
 // generatePlanOutput generates a formatted plan output
-func generatePlanOutput(task string, steps []PlanStep) string {
-	output := "计划已创建\n\n"
+func generatePlanOutput(task string, steps []PlanStep, collectedData map[string]string) string {
+	output := "计划已更新\n\n"
 	output += fmt.Sprintf("**任务**: %s\n\n", task)
+
+	// Show collected data if any
+	if len(collectedData) > 0 {
+		output += "**已收集信息**:\n"
+		for key, value := range collectedData {
+			output += fmt.Sprintf("- %s: %s\n", key, value)
+		}
+		output += "\n"
+	}
 
 	if len(steps) == 0 {
 		output += "注意：未提供具体步骤。建议创建3-7个检索任务以系统化研究。\n\n"

@@ -416,8 +416,20 @@ func (e *AgentEngine) executeLoop(
 					},
 				})
 
+				// Check if tool requires user input (e.g., show_options)
+				// If so, stop agent loop and wait for user to respond
+				if result != nil && result.Data != nil {
+					if requiresInput, ok := result.Data["requires_user_input"].(bool); ok && requiresInput {
+						logger.Infof(ctx, "[Agent] Tool %s requires user input, stopping agent loop", tc.Function.Name)
+						state.IsComplete = true
+						state.FinalAnswer = "" // No final answer, waiting for user selection
+						break                  // Exit tool calls loop
+					}
+				}
+
 				// Optional: Reflection after each tool call (streaming)
-				if e.config.ReflectionEnabled && result != nil {
+				// Only do reflection if agent is not stopping
+				if e.config.ReflectionEnabled && result != nil && !state.IsComplete {
 					reflection, err := e.streamReflectionToEventBus(
 						ctx, tc.ID, tc.Function.Name, result.Output,
 						state.CurrentRound, sessionID,
@@ -434,6 +446,20 @@ func (e *AgentEngine) executeLoop(
 					}
 				}
 			}
+		}
+
+		// Check if we need to stop due to requires_user_input
+		if state.IsComplete {
+			// Still need to save this step before breaking
+			state.RoundSteps = append(state.RoundSteps, step)
+			// IMPORTANT: Save tool results to context before breaking
+			// This ensures thinking/todo_write results are persisted for next request
+			messages = e.appendToolResults(ctx, messages, step)
+			logger.Info(ctx, "[Agent] Agent completed (waiting for user input), breaking main loop")
+
+			// CRITICAL: Ensure no further processing occurs
+			// This prevents automatic continuation without user input
+			return state, nil
 		}
 
 		state.RoundSteps = append(state.RoundSteps, step)
@@ -519,10 +545,11 @@ func (e *AgentEngine) appendToolResults(
 	step types.AgentStep,
 ) []chat.Message {
 	// Add assistant message with tool calls (if any)
-	if step.Thought != "" || len(step.ToolCalls) > 0 {
+	// Always save assistant message if there are tool calls, even if no thinking content
+	if len(step.ToolCalls) > 0 {
 		assistantMsg := chat.Message{
 			Role:    "assistant",
-			Content: step.Thought,
+			Content: step.Thought, // This can be empty, that's fine
 		}
 
 		// Add tool calls to assistant message (following OpenAI format)
@@ -560,6 +587,13 @@ func (e *AgentEngine) appendToolResults(
 		resultContent := toolCall.Result.Output
 		if !toolCall.Result.Success {
 			resultContent = fmt.Sprintf("Error: %s", toolCall.Result.Error)
+		}
+
+		// Skip context persistence for show_options tool
+		// Options are only for frontend display, not needed in LLM context
+		if toolCall.Name == "show_options" {
+			logger.Debugf(ctx, "[Agent] Skipping context persistence for show_options tool result")
+			continue
 		}
 
 		toolMsg := chat.Message{

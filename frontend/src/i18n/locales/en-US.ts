@@ -197,7 +197,8 @@ export default {
     allFileTypes: 'All Types',
     noMatch: 'No matching knowledge base found',
     noKnowledge: 'No knowledge bases available',
-    loadingFailed: 'Failed to load knowledge bases'
+    loadingFailed: 'Failed to load knowledge bases',
+    chunkNotFound: 'Document not found, please refresh and try again'
   },
 
   agent: {
@@ -208,6 +209,18 @@ export default {
     webSearchFound: 'Found <strong>{count}</strong> web search result(s)',
     argumentsLabel: 'Arguments',
     toolFallback: 'Tool',
+    consultationProgress: 'Consultation Progress',
+    currentStage: 'Current Stage',
+    exportReport: 'Export Report',
+    exportMarkdown: 'Export Markdown',
+    exportJSON: 'Export JSON',
+    copyReport: 'Copy Report',
+    patientInfo: 'Patient Info',
+    basicInfo: 'Basic Info',
+    chiefComplaint: 'Chief Complaint',
+    presentIllness: 'Present Illness',
+    pastHistory: 'Past History',
+    allergyHistory: 'Allergy History',
     title: 'Agents',
     subtitle: 'Configure and manage your agents to customize conversation behavior and capabilities',
     createAgent: 'Create Agent',
@@ -399,6 +412,10 @@ export default {
       documentAssistant: {
         name: 'Document Assistant',
         description: 'Focused on document retrieval and content organization, capable of quickly locating documents, extracting key information and generating summaries',
+      },
+      medicalConsultant: {
+        name: 'Medical Consultation Assistant',
+        description: 'Professional medical consultation agent supporting structured medical history collection from greeting to summary, including chief complaint, present illness, past history and allergy history',
       },
     },
   },
@@ -1410,7 +1427,9 @@ export default {
     enterDescription: 'Enter description',
     rawOutputLabel: 'Raw output',
     selectKnowledgeBaseWarning: 'Please select at least one knowledge base',
-    processError: 'Processing error'
+    processError: 'Processing error',
+    viewChunkDetail: 'View Detail',
+    noKnowledgeBaseId: 'Cannot get knowledge base ID'
   },
   tenant: {
     title: 'Tenant Information',
@@ -2264,5 +2283,17 @@ export default {
         desc: 'Prompt to guide model to answer with general knowledge',
       },
     },
+  },
+  // PDF Preview
+  pdfPreview: {
+    preview: 'PDF Preview',
+    loading: 'Loading...',
+    loadError: 'Failed to load PDF',
+    notPdfFile: 'This file is not a PDF',
+    chunkList: 'Chunk List',
+    segment: 'Segment',
+    chars: 'chars',
+    estimatedPage: 'Page ~',
+    page: '',
   },
 }

@@ -207,6 +207,36 @@ func (h *AgentStreamHandler) handleToolResult(ctx context.Context, evt event.Eve
 		logger.GetLogger(h.ctx).Error("Append tool result event to stream failed", "error", err)
 	}
 
+	// Check if this tool wants to emit a quick_reply event
+	if data.Data != nil {
+		if emitQuickReply, ok := data.Data["emit_quick_reply"].(bool); ok && emitQuickReply {
+			// Emit quick_reply event for frontend to show selection options
+			quickReplyData := map[string]interface{}{
+				"tool_call_id": data.ToolCallID,
+			}
+			if question, ok := data.Data["question"]; ok {
+				quickReplyData["question"] = question
+			}
+			if options, ok := data.Data["options"]; ok {
+				quickReplyData["options"] = options
+			}
+			if multiSelect, ok := data.Data["multi_select"]; ok {
+				quickReplyData["multi_select"] = multiSelect
+			}
+
+			if err := h.streamManager.AppendEvent(h.ctx, h.sessionID, h.assistantMessageID, interfaces.StreamEvent{
+				ID:        evt.ID + "-quick-reply",
+				Type:      types.ResponseTypeQuickReply,
+				Content:   "",
+				Done:      false,
+				Timestamp: time.Now(),
+				Data:      quickReplyData,
+			}); err != nil {
+				logger.GetLogger(h.ctx).Error("Append quick_reply event to stream failed", "error", err)
+			}
+		}
+	}
+
 	return nil
 }
 

@@ -60,6 +60,8 @@ const (
 	ResponseTypeAgentQuery ResponseType = "agent_query"
 	// Complete response type (agent complete)
 	ResponseTypeComplete ResponseType = "complete"
+	// Quick reply response type (for interactive selection options)
+	ResponseTypeQuickReply ResponseType = "quick_reply"
 )
 
 // StreamResponse stream response

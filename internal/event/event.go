@@ -54,6 +54,9 @@ const (
 	EventAgentReferences  EventType = "references"   // 知识引用
 	EventAgentFinalAnswer EventType = "final_answer" // 最终答案
 
+	// Quick reply events (for interactive options)
+	EventQuickReply EventType = "quick_reply" // 快速回复选项
+
 	// Error events
 	EventError EventType = "error" // 错误事件
 

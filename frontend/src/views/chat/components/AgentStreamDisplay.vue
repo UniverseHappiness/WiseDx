@@ -1,6 +1,14 @@
 <template>
   <div ref="rootElement" class="agent-stream-display">
     
+    <!-- Consultation Progress Bar (for medical consultant agent) -->
+    <ConsultationProgress
+      v-if="shouldShowConsultationProgress"
+      :steps="latestPlanSteps"
+      :visible="true"
+      :agent-id="agentId"
+    />
+    
     <!-- Collapsed intermediate steps -->
     <div v-if="shouldShowCollapsedSteps" class="intermediate-steps-collapsed">
       <div class="intermediate-steps-header" @click="toggleIntermediateSteps">
@@ -164,6 +172,16 @@
           </div>
         </div>
       </div>
+      
+        <!-- Quick Reply Options Event -->
+        <div v-else-if="event.type === 'quick_reply'" class="quick-reply-event">
+          <QuickReplyOptions
+            :question="event.question"
+            :options="event.options"
+            :multi-select="event.multi_select"
+            @select="handleQuickReplySelect"
+          />
+        </div>
       </div>
     </template>
     
@@ -204,7 +222,17 @@
           <div v-if="floatPopup.loading" class="tip-loading">{{ $t('common.loading') }}</div>
           <div v-else-if="floatPopup.error" class="tip-error">{{ floatPopup.error }}</div>
           <div v-else class="tip-content" v-html="floatPopup.content"></div>
-          <div v-if="floatPopup.chunkId" class="tip-meta">{{ $t('chat.chunkIdLabel') }} {{ floatPopup.chunkId }}</div>
+          <div class="tip-footer">
+            <span v-if="floatPopup.chunkId" class="tip-meta">{{ $t('chat.chunkIdLabel') }} {{ floatPopup.chunkId?.substring(0, 12) }}...</span>
+            <button 
+              v-if="floatPopup.kbId && floatPopup.chunkId" 
+              class="tip-view-btn" 
+              @click="handleViewChunkDetail"
+            >
+              <t-icon name="jump" size="12px" />
+              {{ $t('chat.viewChunkDetail') || '查看详情' }}
+            </button>
+          </div>
         </template>
       </div>
     </div>
@@ -220,6 +248,8 @@ import { useRouter } from 'vue-router';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import ToolResultRenderer from './ToolResultRenderer.vue';
+import QuickReplyOptions from './QuickReplyOptions.vue';
+import ConsultationProgress from './ConsultationProgress.vue';
 import picturePreview from '@/components/picture-preview.vue';
 import { getChunkByIdOnly } from '@/api/knowledge-base';
 import { MessagePlugin } from 'tdesign-vue-next';
@@ -283,6 +313,8 @@ const floatPopup = ref<{
   error?: string;
   content?: string;
   chunkId?: string;
+  kbId?: string;
+  knowledgeId?: string;
   knowledgeTitle?: string;
 }>({
   visible: false,
@@ -296,6 +328,8 @@ const floatPopup = ref<{
   error: undefined,
   content: '',
   chunkId: undefined,
+  kbId: undefined,
+  knowledgeId: undefined,
 });
 let floatCloseTimer: number | null = null;
 
@@ -331,6 +365,35 @@ const openFloatForEl = (el: HTMLElement, widthAdjust = 120) => {
   cancelFloatClose();
 };
 
+// Handle click on "View Detail" button in float popup
+const handleViewChunkDetail = () => {
+  const kbId = floatPopup.value.kbId;
+  const chunkId = floatPopup.value.chunkId;
+  const knowledgeId = floatPopup.value.knowledgeId;
+  
+  if (!kbId) {
+    MessagePlugin.warning(t('chat.noKnowledgeBaseId') || '无法获取知识库ID');
+    return;
+  }
+  
+  // Close the popup
+  floatPopup.value.visible = false;
+  
+  // Navigate to knowledge base detail page with chunk parameter
+  const query: Record<string, string> = {};
+  if (chunkId) {
+    query.chunk = chunkId;
+  }
+  if (knowledgeId) {
+    query.knowledge = knowledgeId;
+  }
+  
+  router.push({
+    path: `/platform/knowledge-bases/${kbId}`,
+    query
+  });
+};
+
 // Import icons
 import agentIcon from '@/assets/img/agent.svg';
 import thinkingIcon from '@/assets/img/Frame3718.svg';
@@ -348,7 +411,19 @@ interface SessionData {
 const props = defineProps<{
   session: SessionData;
   userQuery?: string;
+  agentId?: string;
 }>();
+
+const emit = defineEmits<{
+  (e: 'quick-reply-select', value: string): void;
+  (e: 'export-report', format: 'markdown' | 'json'): void;
+}>();
+
+// Handle quick reply option selection
+const handleQuickReplySelect = (value: string) => {
+  console.log('[QuickReply] Selected:', value);
+  emit('quick-reply-select', value);
+};
 
 // Configure marked for security
 marked.use({
@@ -358,6 +433,49 @@ marked.use({
 
 // Event stream
 const eventStream = computed(() => props.session?.agentEventStream || []);
+
+// Get the latest plan steps from todo_write events (for consultation progress)
+const latestPlanSteps = computed(() => {
+  const stream = eventStream.value;
+  if (!stream || stream.length === 0) return [];
+  
+  // Find all todo_write tool_call events and get the last one
+  const todoWriteEvents = stream.filter(
+    (e: any) => e.type === 'tool_call' && e.tool_name === 'todo_write' && e.tool_data?.steps
+  );
+  
+  if (todoWriteEvents.length === 0) return [];
+  
+  const lastTodoWrite = todoWriteEvents[todoWriteEvents.length - 1];
+  return lastTodoWrite.tool_data.steps || [];
+});
+
+// Check if should show consultation progress (only for medical consultant agent)
+const shouldShowConsultationProgress = computed(() => {
+  return props.agentId === 'builtin-medical-consultant' && latestPlanSteps.value.length > 0;
+});
+
+// Get the latest collected data from todo_write events (for patient info sidebar)
+const latestCollectedData = computed(() => {
+  const stream = eventStream.value;
+  if (!stream || stream.length === 0) return {};
+  
+  // Find all todo_write tool_call events and get the last one with collected_data
+  const todoWriteEvents = stream.filter(
+    (e: any) => e.type === 'tool_call' && e.tool_name === 'todo_write' && e.tool_data?.collected_data
+  );
+  
+  if (todoWriteEvents.length === 0) return {};
+  
+  const lastTodoWrite = todoWriteEvents[todoWriteEvents.length - 1];
+  return lastTodoWrite.tool_data.collected_data || {};
+});
+
+// Expose collected data to parent component
+defineExpose({
+  latestCollectedData,
+  latestPlanSteps,
+});
 
 // Check if should show timeline (only show when there are tool calls or thinking events)
 const shouldShowTimeline = computed(() => {
@@ -417,9 +535,12 @@ const isLastThinking = (eventId: string): boolean => {
   return eventId === lastThinkingEventId.value;
 };
 
-// Check if conversation is done (based on answer event with done=true or stop event)
+// Check if conversation is done (based on answer event with done=true or stop event or quick_reply event)
 const isConversationDone = computed(() => {
   const stream = eventStream.value;
+  console.log('[Collapse] isConversationDone computing, stream length:', stream?.length || 0);
+  console.log('[Collapse] Stream event types:', stream?.map(e => e.type) || []);
+  
   if (!stream || stream.length === 0) {
     console.log('[Collapse] No stream or empty stream');
     return false;
@@ -429,6 +550,14 @@ const isConversationDone = computed(() => {
   const stopEvent = stream.find((e: any) => e.type === 'stop');
   if (stopEvent) {
     console.log('[Collapse] Found stop event, conversation done');
+    return true;
+  }
+  
+  // Check for quick_reply event (waiting for user selection - conversation is paused)
+  const quickReplyEvent = stream.find((e: any) => e.type === 'quick_reply');
+  if (quickReplyEvent) {
+    console.log('[Collapse] Found quick_reply event, conversation done (waiting for user input)');
+    console.log('[Collapse] quick_reply event details:', quickReplyEvent);
     return true;
   }
   
@@ -667,11 +796,15 @@ const displayEvents = computed(() => {
     return result;
   }
   
+  // Always include quick_reply events regardless of collapse state
+  const quickReplyEvents = result.filter((e: any) => e.type === 'quick_reply');
+  
   if (final.type === 'answer') {
-    // Filter to show only answer events
+    // Filter to show only answer events + quick_reply events
     const filtered = result.filter((e: any) => e.type === 'answer');
-    console.log('[Collapse] displayEvents: showing answer only', filtered.length);
-    return filtered;
+    const combined = [...filtered, ...quickReplyEvents];
+    console.log('[Collapse] displayEvents: showing answer + quick_reply', combined.length);
+    return combined;
   } else if (final.type === 'thinking') {
     // Show the last thinking as final content
     const thinkingFiltered = result.filter((e: any) => 
@@ -681,13 +814,14 @@ const displayEvents = computed(() => {
     // If answer is done but empty, also include answer event for toolbar
     if (final.showAnswerToolbar) {
       const answerEvents = result.filter((e: any) => e.type === 'answer' && e.done === true);
-      const combined = [...thinkingFiltered, ...answerEvents];
-      console.log('[Collapse] displayEvents: showing last thinking + answer toolbar', combined.length);
+      const combined = [...thinkingFiltered, ...answerEvents, ...quickReplyEvents];
+      console.log('[Collapse] displayEvents: showing last thinking + answer toolbar + quick_reply', combined.length);
       return combined;
     }
     
-    console.log('[Collapse] displayEvents: showing last thinking only', thinkingFiltered.length);
-    return thinkingFiltered;
+    const combined = [...thinkingFiltered, ...quickReplyEvents];
+    console.log('[Collapse] displayEvents: showing last thinking + quick_reply', combined.length);
+    return combined;
   }
   
   console.log('[Collapse] displayEvents: fallback, showing all', result.length);
@@ -772,6 +906,8 @@ type KbTooltipState = {
   loading: boolean;
   error?: string;
   html?: string;
+  kbId?: string;
+  knowledgeId?: string;
 };
 
 const kbChunkDetails = ref<Record<string, KbTooltipState>>({});
@@ -806,6 +942,12 @@ const syncFloatPopupFromCache = (chunkId: string, state: KbTooltipState) => {
   floatPopup.value.loading = state.loading;
   floatPopup.value.error = state.error;
   floatPopup.value.content = state.html || '';
+  if (state.kbId) {
+    floatPopup.value.kbId = state.kbId;
+  }
+  if (state.knowledgeId) {
+    floatPopup.value.knowledgeId = state.knowledgeId;
+  }
 };
 
 const setKbCacheState = (chunkId: string, state: KbTooltipState) => {
@@ -834,9 +976,11 @@ const loadChunkDetails = async (chunkId: string) => {
   try {
     const response = await getChunkByIdOnly(chunkId);
     const content = response.data?.content;
+    const kbId = response.data?.knowledge_base_id;
+    const knowledgeId = response.data?.knowledge_id;
     if (content) {
       const html = buildKbTooltipContent(content);
-      setKbCacheState(chunkId, { loading: false, html });
+      setKbCacheState(chunkId, { loading: false, html, kbId, knowledgeId });
       return;
     }
 
@@ -881,6 +1025,7 @@ const onHover = (e: Event) => {
   if (kbEl) {
     const chunkId = kbEl.getAttribute('data-chunk-id') || '';
     const knowledgeTitle = kbEl.getAttribute('data-doc') || '';
+    const kbIdFromEl = kbEl.getAttribute('data-kb-id') || '';
     if (!chunkId) return;
     if (kbHoverTimer) window.clearTimeout(kbHoverTimer);
     kbHoverTimer = window.setTimeout(() => {
@@ -888,6 +1033,7 @@ const onHover = (e: Event) => {
       floatPopup.value.type = 'kb';
       floatPopup.value.chunkId = chunkId;
       floatPopup.value.knowledgeTitle = knowledgeTitle;
+      floatPopup.value.kbId = kbIdFromEl || undefined;
       const cacheEntry = kbChunkDetails.value[chunkId];
       if (cacheEntry) {
         syncFloatPopupFromCache(chunkId, cacheEntry);
@@ -2877,6 +3023,47 @@ const handleAddToKnowledge = (answerEvent: any) => {
   max-height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.kb-float-popup .tip-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+  gap: 8px;
+}
+
+.kb-float-popup .tip-footer .tip-meta {
+  margin-top: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kb-float-popup .tip-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #D97706;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.kb-float-popup .tip-view-btn:hover {
+  background: #FDE68A;
+  border-color: #FCD34D;
+  color: #92400E;
 }
 
 /* KB citation styles - same green theme as web citations */

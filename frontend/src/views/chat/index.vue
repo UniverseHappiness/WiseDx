@@ -1,34 +1,55 @@
 <template>
-    <div class="chat">
-        <div ref="scrollContainer" class="chat_scroll_box" @scroll="handleScroll">
-            <div class="msg_list">
-                <div v-for="(session, id) in messagesList" :key='id'>
-                    <div v-if="session.role == 'user'">
-                        <usermsg :content="session.content" :mentioned_items="session.mentioned_items"></usermsg>
+    <div class="chat-container" :class="{ 'sidebar-open': showPatientSidebar && hasCollectedData }">
+        <div class="chat">
+            <div ref="scrollContainer" class="chat_scroll_box" @scroll="handleScroll">
+                <div class="msg_list">
+                    <div v-for="(session, id) in messagesList" :key='id'>
+                        <div v-if="session.role == 'user'">
+                            <usermsg :content="session.content" :mentioned_items="session.mentioned_items"></usermsg>
+                        </div>
+                        <div v-if="session.role == 'assistant'">
+                            <botmsg :content="session.content" :session="session" :user-query="getUserQuery(id)" @scroll-bottom="scrollToBottom"
+                                :isFirstEnter="isFirstEnter" @quick-reply-select="handleQuickReplySelectFromBot"></botmsg>
+                        </div>
                     </div>
-                    <div v-if="session.role == 'assistant'">
-                        <botmsg :content="session.content" :session="session" :user-query="getUserQuery(id)" @scroll-bottom="scrollToBottom"
-                            :isFirstEnter="isFirstEnter"></botmsg>
-                    </div>
-                </div>
-                <div v-if="loading"
-                    style="height: 41px;display: flex;align-items: center;padding-left: 4px;">
-                    <div class="loading-typing">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div v-if="loading"
+                        style="height: 41px;display: flex;align-items: center;padding-left: 4px;">
+                        <div class="loading-typing">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div style="min-height: 115px; margin: 16px auto 4px;width: 100%;max-width: 800px;">
+                <InputField 
+                    @send-msg="(query, modelId, mentionedItems) => sendMsg(query, modelId, mentionedItems)" 
+                    @stop-generation="handleStopGeneration"
+                    :isReplying="isReplying" 
+                    :sessionId="session_id"
+                    :assistantMessageId="currentAssistantMessageId"
+                ></InputField>
+            </div>
         </div>
-        <div style="min-height: 115px; margin: 16px auto 4px;width: 100%;max-width: 800px;">
-            <InputField 
-                @send-msg="(query, modelId, mentionedItems) => sendMsg(query, modelId, mentionedItems)" 
-                @stop-generation="handleStopGeneration"
-                :isReplying="isReplying" 
-                :sessionId="session_id"
-                :assistantMessageId="currentAssistantMessageId"
-            ></InputField>
+        
+        <!-- Patient Info Sidebar -->
+        <PatientInfoSidebar
+            v-if="isMedicalAgent"
+            :collected-data="aggregatedCollectedData"
+            :visible="showPatientSidebar && hasCollectedData"
+            @close="showPatientSidebar = false"
+        />
+        
+        <!-- Sidebar Toggle Button -->
+        <div 
+            v-if="isMedicalAgent && hasCollectedData" 
+            class="sidebar-toggle"
+            :class="{ 'sidebar-open': showPatientSidebar }"
+            @click="showPatientSidebar = !showPatientSidebar"
+        >
+            <t-icon :name="showPatientSidebar ? 'chevron-right' : 'chevron-left'" />
+            <span v-if="!showPatientSidebar">{{ $t('agent.patientInfo') }}</span>
         </div>
     </div>
     <KnowledgeBaseEditorModal 
@@ -42,11 +63,12 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia';
-import { ref, onMounted, onUnmounted, nextTick, watch, reactive, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick, watch, reactive, onBeforeUnmount, computed } from 'vue';
 import { useRoute, useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
 import InputField from '../../components/Input-field.vue';
 import botmsg from './components/botmsg.vue';
 import usermsg from './components/usermsg.vue';
+import PatientInfoSidebar from './components/PatientInfoSidebar.vue';
 import { getMessageList, generateSessionsTitle, getSession } from "@/api/chat/index";
 import { useStream } from '../../api/chat/streame'
 import { useMenuStore } from '@/stores/menu';
@@ -83,6 +105,43 @@ const handleKBEditorSuccess = (kbId) => {
     navigateToKnowledgeBaseList(kbId)
 }
 
+// Patient Info Sidebar state
+const showPatientSidebar = ref(true);
+
+// Check if current session is medical consultant agent
+const isMedicalAgent = computed(() => {
+    return sessionData.value?.agent_id === 'builtin-medical-consultant';
+});
+
+// Aggregate collected_data from all messages
+const aggregatedCollectedData = computed(() => {
+    const result = {};
+    
+    for (const msg of messagesList) {
+        if (msg.role === 'assistant' && msg.agentEventStream) {
+            // Find all todo_write events with collected_data
+            const todoWriteEvents = msg.agentEventStream.filter(
+                e => e.type === 'tool_call' && e.tool_name === 'todo_write' && e.tool_data?.collected_data
+            );
+            
+            // Merge collected_data from each event
+            for (const event of todoWriteEvents) {
+                const data = event.tool_data.collected_data;
+                if (data && typeof data === 'object') {
+                    Object.assign(result, data);
+                }
+            }
+        }
+    }
+    
+    return result;
+});
+
+// Check if there is any collected data
+const hasCollectedData = computed(() => {
+    return Object.keys(aggregatedCollectedData.value).length > 0;
+});
+
 const getUserQuery = (index) => {
     if (index <= 0) {
         return '';
@@ -92,6 +151,13 @@ const getUserQuery = (index) => {
         return previous.content || '';
     }
     return '';
+};
+
+// Handle quick reply selection from bot message
+const handleQuickReplySelectFromBot = (value) => {
+    console.log('[Chat] Quick reply selected:', value);
+    // Send the selected value as a user message
+    sendMsg(value);
 };
 watch([() => route.params], (newvalue) => {
     isFirstEnter.value = true;
@@ -193,6 +259,18 @@ const reconstructEventStreamFromSteps = (agentSteps, messageContent, isCompleted
                     display_type: toolCall.result?.data?.display_type,
                     tool_data: toolCall.result?.data,
                 });
+                
+                // If this is a show_options tool, also add a quick_reply event
+                if (toolCall.name === 'show_options' && toolCall.result?.data?.emit_quick_reply) {
+                    events.push({
+                        type: 'quick_reply',
+                        event_id: `${toolCall.id}-quick-reply`,
+                        question: toolCall.result.data.question || '',
+                        options: toolCall.result.data.options || [],
+                        multi_select: toolCall.result.data.multi_select || false,
+                        timestamp: Date.now()
+                    });
+                }
             });
         }
     });
@@ -533,6 +611,15 @@ onChunk((data) => {
 })
 // 处理 Agent 流式数据 (Cursor-style UI)
 const handleAgentChunk = (data) => {
+    console.log('[Agent Chunk] Processing event:', {
+        response_type: data.response_type,
+        id: data.id,
+        done: data.done,
+        has_data: !!data.data,
+        data_keys: data.data ? Object.keys(data.data) : [],
+        agent_event_stream_length: messagesList.findLast((item) => item.request_id === data.id || item.id === data.id)?.agentEventStream?.length || 0
+    });
+    
     let message = messagesList.findLast((item) => item.request_id === data.id || item.id === data.id);
     
     if (!message) {
@@ -839,6 +926,32 @@ const handleAgentChunk = (data) => {
             isReplying.value = false;
             fullContent.value = '';
             break;
+            
+        case 'quick_reply':
+            // 快速回复选项事件 - 用于问诊等交互场景
+            console.log('[Agent] Quick reply event received:', data.data);
+            console.log('[Agent] Current message agentEventStream length before:', message.agentEventStream?.length || 0);
+            if (!message.agentEventStream) message.agentEventStream = [];
+            
+            // Add quick_reply event to stream
+            const quickReplyEvent = {
+                type: 'quick_reply',
+                event_id: data.data?.tool_call_id || `quick-reply-${Date.now()}`,
+                question: data.data?.question || '',
+                options: data.data?.options || [],
+                multi_select: data.data?.multi_select || false,
+                timestamp: Date.now()
+            };
+            message.agentEventStream.push(quickReplyEvent);
+            console.log('[Agent] Added quick_reply event to stream, new length:', message.agentEventStream.length);
+            console.log('[Agent] quick_reply event details:', quickReplyEvent);
+            
+            // Mark conversation as done - waiting for user selection
+            console.log('[Agent] Setting loading=false and isReplying=false');
+            loading.value = false;
+            isReplying.value = false;
+            console.log('[Agent] Loading state after:', { loading: loading.value, isReplying: isReplying.value });
+            break;
     }
     
     scrollToBottom();
@@ -915,6 +1028,19 @@ onBeforeRouteUpdate((to, from, next) => {
 })
 </script>
 <style lang="less" scoped>
+.chat-container {
+    display: flex;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    
+    &.sidebar-open {
+        .chat {
+            max-width: calc(100vw - 260px - 280px);
+        }
+    }
+}
+
 .chat {
     font-size: 20px;
     padding: 20px;
@@ -1022,6 +1148,37 @@ onBeforeRouteUpdate((to, from, next) => {
     }
     30% {
         transform: translateY(-8px);
+    }
+}
+
+.sidebar-toggle {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--td-brand-color);
+    color: white;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 13px;
+    transition: all 0.2s;
+    
+    &:hover {
+        background: var(--td-brand-color-hover);
+    }
+    
+    &.sidebar-open {
+        right: 280px;
+        padding: 8px;
+    }
+    
+    :deep(.t-icon) {
+        font-size: 16px;
     }
 }
 </style>

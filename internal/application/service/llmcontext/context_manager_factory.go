@@ -29,9 +29,12 @@ func NewContextManagerFromConfig(
 ) interfaces.ContextManager {
 	// Use default values if config is nil
 	if contextCfg == nil {
-		logger.Info(context.TODO(), "ContextManager config not found, using default memory-based context manager")
+		logger.Info(context.TODO(), "ContextManager config not found, using default config with provided storage")
 		strategy := NewSlidingWindowStrategy(DefaultRecentMessageCount)
-		storage := NewMemoryStorage()
+		// Use provided storage if available, otherwise fallback to memory
+		if storage == nil {
+			storage = NewMemoryStorage()
+		}
 		return NewContextManager(storage, strategy, DefaultMaxTokens)
 	}
 

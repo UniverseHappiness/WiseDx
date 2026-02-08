@@ -92,6 +92,21 @@ func (rs *redisStorage) Load(ctx context.Context, sessionID string) ([]chat.Mess
 		logger.Errorf(ctx, "[RedisStorage][Session-%s] Failed to unmarshal messages: %v", sessionID, err)
 		return nil, fmt.Errorf("failed to unmarshal messages: %w", err)
 	}
+	
+	// Data validation and cleaning: ensure content is always string
+	for i := range messages {
+		if messages[i].Content == "" {
+			// This is normal - empty string
+			continue
+		}
+		// If content somehow became non-string type, reset to empty string
+		// This handles cases where JSON was corrupted or stored incorrectly
+		if messages[i].Content == "{}" || messages[i].Content == "null" {
+			logger.Warnf(ctx, "[RedisStorage][Session-%s] Fixing corrupted content in message[%d]: %s -> \"\"", 
+				sessionID, i, messages[i].Content)
+			messages[i].Content = ""
+		}
+	}
 
 	logger.Debugf(ctx, "[RedisStorage][Session-%s] Loaded %d messages from Redis", sessionID, len(messages))
 	return messages, nil
