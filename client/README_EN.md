@@ -23,7 +23,7 @@ The client includes the following main functional modules:
 ```go
 import (
     "context"
-    "github.com/UniverseHappiness/WiseDx/internal/client"
+    "github.com/UniverseHappiness/WiseDx/client"
     "time"
 )
 
