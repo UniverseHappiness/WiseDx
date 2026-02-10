@@ -3,7 +3,7 @@ package interfaces
 import (
 	"context"
 
-	"github.com/Tencent/WeKnora/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
 )
 
 // ContextManager manages LLM context for sessions

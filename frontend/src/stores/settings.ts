@@ -60,7 +60,7 @@ interface OllamaConfig {
 
 // 默认设置
 const defaultSettings: Settings = {
-  endpoint: import.meta.env.VITE_IS_DOCKER ? "" : "http://localhost:8080",
+  endpoint: "",
   apiKey: "",
   knowledgeBaseId: "",
   isAgentEnabled: false,

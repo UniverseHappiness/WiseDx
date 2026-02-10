@@ -10,7 +10,7 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 
-	"github.com/Tencent/WeKnora/internal/tracing"
+	"github.com/UniverseHappiness/WiseDx/internal/tracing"
 )
 
 // Custom ResponseWriter to capture response content

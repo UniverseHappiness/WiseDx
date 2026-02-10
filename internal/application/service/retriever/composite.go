@@ -8,12 +8,12 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/Tencent/WeKnora/internal/common"
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/embedding"
-	"github.com/Tencent/WeKnora/internal/tracing"
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/common"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/embedding"
+	"github.com/UniverseHappiness/WiseDx/internal/tracing"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 	"go.opentelemetry.io/otel/attribute"
 )
 

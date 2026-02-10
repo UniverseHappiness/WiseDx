@@ -7,8 +7,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // messageRepository implements the message repository interface

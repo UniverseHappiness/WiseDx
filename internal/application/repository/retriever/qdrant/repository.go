@@ -9,9 +9,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 	"github.com/google/uuid"
 	"github.com/qdrant/go-client/qdrant"
 )

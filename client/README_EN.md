@@ -23,7 +23,7 @@ The client includes the following main functional modules:
 ```go
 import (
     "context"
-    "github.com/Tencent/WeKnora/internal/client"
+    "github.com/UniverseHappiness/WiseDx/internal/client"
     "time"
 )
 

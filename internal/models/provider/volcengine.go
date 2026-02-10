@@ -3,7 +3,7 @@ package provider
 import (
 	"fmt"
 
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 const (

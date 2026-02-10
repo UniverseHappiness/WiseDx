@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 	"github.com/ollama/ollama/api"
 )
 

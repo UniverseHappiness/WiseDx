@@ -10,12 +10,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/common"
-	"github.com/Tencent/WeKnora/internal/config"
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/chat"
-	"github.com/Tencent/WeKnora/internal/models/utils"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/common"
+	"github.com/UniverseHappiness/WiseDx/internal/config"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/models/utils"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 	"github.com/google/uuid"
 	"golang.org/x/sync/errgroup"
 )

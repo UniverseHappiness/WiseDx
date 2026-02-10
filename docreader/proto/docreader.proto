@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package docreader;
 
-option go_package = "github.com/Tencent/WeKnora/internal/docreader/proto";
+option go_package = "github.com/UniverseHappiness/WiseDx/internal/docreader/proto";
 
 // 文档读取服务
 service DocReader {

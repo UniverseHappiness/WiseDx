@@ -3,7 +3,7 @@ package chatpipline
 import (
 	"context"
 
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // Plugin defines the interface for chat pipeline plugins

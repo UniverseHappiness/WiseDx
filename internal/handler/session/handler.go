@@ -3,12 +3,12 @@ package session
 import (
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/config"
-	"github.com/Tencent/WeKnora/internal/errors"
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
-	secutils "github.com/Tencent/WeKnora/internal/utils"
+	"github.com/UniverseHappiness/WiseDx/internal/config"
+	"github.com/UniverseHappiness/WiseDx/internal/errors"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
+	secutils "github.com/UniverseHappiness/WiseDx/internal/utils"
 	"github.com/gin-gonic/gin"
 )
 

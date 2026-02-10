@@ -1,3 +1,3 @@
-module github.com/Tencent/WeKnora/client
+module github.com/UniverseHappiness/WiseDx/client
 
 go 1.24.2

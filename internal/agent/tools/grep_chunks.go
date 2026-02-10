@@ -8,9 +8,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/searchutil"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/searchutil"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 	"gorm.io/gorm"
 )
 

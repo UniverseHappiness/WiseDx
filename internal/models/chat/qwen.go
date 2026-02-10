@@ -1,7 +1,7 @@
 package chat
 
 import (
-	"github.com/Tencent/WeKnora/internal/models/provider"
+	"github.com/UniverseHappiness/WiseDx/internal/models/provider"
 	"github.com/sashabaranov/go-openai"
 )
 

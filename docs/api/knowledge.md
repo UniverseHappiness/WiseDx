@@ -76,7 +76,7 @@ curl --location 'http://localhost:8080/api/v1/knowledge-bases/kb-00000001/knowle
 --header 'X-API-Key: sk-vQHV2NZI_LK5W7wHQvH3yGYExX8YnhaHwZipUYbiZKCYJbBQ' \
 --header 'Content-Type: application/json' \
 --data '{
-    "url":"https://github.com/Tencent/WeKnora",
+    "url":"https://github.com/UniverseHappiness/WiseDx",
     "enable_multimodel":true
 }'
 ```
@@ -92,7 +92,7 @@ curl --location 'http://localhost:8080/api/v1/knowledge-bases/kb-00000001/knowle
         "type": "url",
         "title": "",
         "description": "",
-        "source": "https://github.com/Tencent/WeKnora",
+        "source": "https://github.com/UniverseHappiness/WiseDx",
         "parse_status": "processing",
         "enable_status": "disabled",
         "embedding_model_id": "dff7bc94-7885-4dd1-bfd5-bd96e4df2fc3",
@@ -140,7 +140,7 @@ curl --location 'http://localhost:8080/api/v1/knowledge-bases/kb-00000001/knowle
             "type": "url",
             "title": "",
             "description": "",
-            "source": "https://github.com/Tencent/WeKnora",
+            "source": "https://github.com/UniverseHappiness/WiseDx",
             "parse_status": "pending",
             "enable_status": "disabled",
             "embedding_model_id": "dff7bc94-7885-4dd1-bfd5-bd96e4df2fc3",
@@ -231,7 +231,7 @@ curl --location 'http://localhost:8080/api/v1/knowledge/batch?ids=9c8af585-ae15-
             "type": "url",
             "title": "",
             "description": "",
-            "source": "https://github.com/Tencent/WeKnora",
+            "source": "https://github.com/UniverseHappiness/WiseDx",
             "parse_status": "pending",
             "enable_status": "disabled",
             "embedding_model_id": "dff7bc94-7885-4dd1-bfd5-bd96e4df2fc3",

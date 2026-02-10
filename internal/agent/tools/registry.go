@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Tencent/WeKnora/internal/common"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/common"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // ToolRegistry manages the registration and retrieval of tools

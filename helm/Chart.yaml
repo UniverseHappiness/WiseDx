@@ -7,10 +7,10 @@ type: application
 version: 0.1.0
 appVersion: "v0.2.6"
 kubeVersion: ">=1.25.0-0"
-home: https://github.com/Tencent/WeKnora
-icon: https://raw.githubusercontent.com/Tencent/WeKnora/main/docs/images/logo.png
+home: https://github.com/UniverseHappiness/WiseDx
+icon: https://raw.githubusercontent.com/UniverseHappiness/WiseDx/main/docs/images/logo.png
 sources:
-  - https://github.com/Tencent/WeKnora
+  - https://github.com/UniverseHappiness/WiseDx
 keywords:
   - ai
   - rag
@@ -21,6 +21,6 @@ keywords:
   - chatbot
 maintainers:
   - name: WeKnora Community
-    url: https://github.com/Tencent/WeKnora
+    url: https://github.com/UniverseHappiness/WiseDx
 annotations:
   artifacthub.io/license: MIT

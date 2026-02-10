@@ -123,7 +123,7 @@ bus.On(event.EventError, func(ctx context.Context, e event.Event) error {
 在应用启动时（如 `main.go` 或 `container.go`）：
 
 ```go
-import "github.com/Tencent/WeKnora/internal/event"
+import "github.com/UniverseHappiness/WiseDx/internal/event"
 
 func Initialize() {
     // 获取全局事件总线

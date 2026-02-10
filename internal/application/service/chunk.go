@@ -7,10 +7,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Tencent/WeKnora/internal/application/service/retriever"
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/application/service/retriever"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // chunkService implements the ChunkService interface

@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 // OpenAIReranker implements a reranking system based on OpenAI models

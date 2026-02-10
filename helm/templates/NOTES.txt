@@ -124,9 +124,9 @@ Access Neo4j Browser:
   DOCUMENTATION
 --------------------------------------------------------------------------------
 
-  GitHub:  https://github.com/Tencent/WeKnora
-  API Docs: https://github.com/Tencent/WeKnora/blob/main/docs/API.md
-  FAQ:     https://github.com/Tencent/WeKnora/blob/main/docs/QA.md
+  GitHub:  https://github.com/UniverseHappiness/WiseDx
+  API Docs: https://github.com/UniverseHappiness/WiseDx/blob/main/docs/API.md
+  FAQ:     https://github.com/UniverseHappiness/WiseDx/blob/main/docs/QA.md
 
 --------------------------------------------------------------------------------
   TROUBLESHOOTING

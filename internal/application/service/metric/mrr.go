@@ -1,7 +1,7 @@
 package metric
 
 import (
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // MRRMetric calculates Mean Reciprocal Rank for retrieval evaluation

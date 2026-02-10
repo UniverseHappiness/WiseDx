@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 const (

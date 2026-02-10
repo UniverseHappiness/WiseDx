@@ -12,7 +12,7 @@ const docTemplate = `{
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "WeKnora Github",
-            "url": "https://github.com/Tencent/WeKnora"
+            "url": "https://github.com/UniverseHappiness/WiseDx"
         },
         "version": "{{.Version}}"
     },
@@ -67,7 +67,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -93,7 +93,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.LoginRequest"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.LoginRequest"
                         }
                     }
                 ],
@@ -101,13 +101,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.LoginResponse"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.LoginResponse"
                         }
                     },
                     "401": {
                         "description": "认证失败",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -142,7 +142,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -177,7 +177,7 @@ const docTemplate = `{
                     "401": {
                         "description": "未授权",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -223,7 +223,7 @@ const docTemplate = `{
                     "401": {
                         "description": "令牌无效",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -249,7 +249,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.RegisterRequest"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RegisterRequest"
                         }
                     }
                 ],
@@ -257,19 +257,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.RegisterResponse"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RegisterResponse"
                         }
                     },
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "403": {
                         "description": "注册功能已禁用",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -304,7 +304,7 @@ const docTemplate = `{
                     "401": {
                         "description": "令牌无效",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -351,13 +351,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "分块不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -418,13 +418,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "分块不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -485,7 +485,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -530,7 +530,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -593,13 +593,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "分块不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -651,13 +651,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "分块不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -704,7 +704,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -751,7 +751,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -798,7 +798,7 @@ const docTemplate = `{
                     "404": {
                         "description": "任务不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -847,7 +847,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -920,7 +920,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -976,7 +976,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1023,7 +1023,7 @@ const docTemplate = `{
                     "404": {
                         "description": "知识库不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1077,13 +1077,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "知识库不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1132,7 +1132,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1181,7 +1181,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1230,7 +1230,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1310,7 +1310,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1389,7 +1389,7 @@ const docTemplate = `{
                     "404": {
                         "description": "任务不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1427,7 +1427,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1484,7 +1484,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1538,7 +1538,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1600,7 +1600,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1632,7 +1632,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.KnowledgeBase"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBase"
                         }
                     }
                 ],
@@ -1647,7 +1647,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1696,7 +1696,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1743,7 +1743,7 @@ const docTemplate = `{
                     "404": {
                         "description": "任务不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1790,13 +1790,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "知识库不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1850,7 +1850,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1895,7 +1895,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -1978,7 +1978,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2017,7 +2017,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQBatchUpsertPayload"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQBatchUpsertPayload"
                         }
                     }
                 ],
@@ -2032,7 +2032,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2094,7 +2094,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2140,7 +2140,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2181,7 +2181,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsBatchUpdate"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsBatchUpdate"
                         }
                     }
                 ],
@@ -2196,7 +2196,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2252,7 +2252,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2306,13 +2306,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "条目不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2358,7 +2358,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryPayload"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload"
                         }
                     }
                 ],
@@ -2373,7 +2373,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2414,7 +2414,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryPayload"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload"
                         }
                     }
                 ],
@@ -2429,7 +2429,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2470,7 +2470,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQSearchRequest"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQSearchRequest"
                         }
                     }
                 ],
@@ -2485,7 +2485,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2526,7 +2526,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.SearchParams"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SearchParams"
                         }
                     }
                 ],
@@ -2541,7 +2541,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2618,7 +2618,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2690,7 +2690,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "409": {
@@ -2738,7 +2738,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ManualKnowledgePayload"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ManualKnowledgePayload"
                         }
                     }
                 ],
@@ -2753,7 +2753,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2820,7 +2820,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "409": {
@@ -2892,7 +2892,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -2957,7 +2957,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3020,7 +3020,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3084,7 +3084,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3135,7 +3135,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3203,7 +3203,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3244,7 +3244,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ManualKnowledgePayload"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ManualKnowledgePayload"
                         }
                     }
                 ],
@@ -3259,7 +3259,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3317,7 +3317,7 @@ const docTemplate = `{
                     "400": {
                         "description": "Invalid request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3366,7 +3366,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3413,13 +3413,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "知识不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3458,7 +3458,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Knowledge"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Knowledge"
                         }
                     }
                 ],
@@ -3473,7 +3473,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3518,7 +3518,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3564,7 +3564,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3602,7 +3602,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3634,7 +3634,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPService"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPService"
                         }
                     }
                 ],
@@ -3649,7 +3649,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3696,7 +3696,7 @@ const docTemplate = `{
                     "404": {
                         "description": "服务不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3750,7 +3750,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3795,7 +3795,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3842,7 +3842,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3889,7 +3889,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3936,7 +3936,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -3996,7 +3996,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4050,7 +4050,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4088,7 +4088,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4135,7 +4135,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4182,7 +4182,7 @@ const docTemplate = `{
                     "404": {
                         "description": "模型不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4236,7 +4236,7 @@ const docTemplate = `{
                     "404": {
                         "description": "模型不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4281,7 +4281,7 @@ const docTemplate = `{
                     "404": {
                         "description": "模型不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4333,7 +4333,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4380,7 +4380,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4429,7 +4429,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4476,7 +4476,7 @@ const docTemplate = `{
                     "404": {
                         "description": "会话不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4515,7 +4515,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Session"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Session"
                         }
                     }
                 ],
@@ -4530,7 +4530,7 @@ const docTemplate = `{
                     "404": {
                         "description": "会话不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4575,7 +4575,7 @@ const docTemplate = `{
                     "404": {
                         "description": "会话不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4631,7 +4631,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4685,7 +4685,7 @@ const docTemplate = `{
                     "404": {
                         "description": "会话或消息不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4741,7 +4741,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4797,7 +4797,7 @@ const docTemplate = `{
                     "404": {
                         "description": "会话或消息不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4853,7 +4853,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4911,7 +4911,7 @@ const docTemplate = `{
                     "500": {
                         "description": "服务器错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4940,7 +4940,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant"
                         }
                     }
                 ],
@@ -4955,7 +4955,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -4990,7 +4990,7 @@ const docTemplate = `{
                     "403": {
                         "description": "权限不足",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5028,7 +5028,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5066,7 +5066,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5104,7 +5104,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5151,7 +5151,7 @@ const docTemplate = `{
                     "400": {
                         "description": "不支持的键",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5205,7 +5205,7 @@ const docTemplate = `{
                     "400": {
                         "description": "不支持的键",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5271,7 +5271,7 @@ const docTemplate = `{
                     "403": {
                         "description": "权限不足",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5318,13 +5318,13 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     },
                     "404": {
                         "description": "租户不存在",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5360,7 +5360,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant"
                         }
                     }
                 ],
@@ -5375,7 +5375,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5417,7 +5417,7 @@ const docTemplate = `{
                     "400": {
                         "description": "请求参数错误",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError"
                         }
                     }
                 }
@@ -5457,11 +5457,11 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_Tencent_WeKnora_internal_errors.AppError": {
+        "github_com_UniverseHappiness_WiseDx_internal_errors.AppError": {
             "type": "object",
             "properties": {
                 "code": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_errors.ErrorCode"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.ErrorCode"
                 },
                 "details": {},
                 "message": {
@@ -5469,7 +5469,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_errors.ErrorCode": {
+        "github_com_UniverseHappiness_WiseDx_internal_errors.ErrorCode": {
             "type": "integer",
             "enum": [
                 1000,
@@ -5516,7 +5516,7 @@ const docTemplate = `{
                 "ErrAgentInvalidTemperature"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.AgentConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.AgentConfig": {
             "type": "object",
             "properties": {
                 "allowed_tools": {
@@ -5574,7 +5574,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.AgentStep": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.AgentStep": {
             "type": "object",
             "properties": {
                 "iteration": {
@@ -5593,12 +5593,12 @@ const docTemplate = `{
                     "description": "Tools called in this step (Act phase)",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ToolCall"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ToolCall"
                     }
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.AnswerStrategy": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.AnswerStrategy": {
             "type": "string",
             "enum": [
                 "all",
@@ -5609,7 +5609,7 @@ const docTemplate = `{
                 "AnswerStrategyRandom"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.ChunkingConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ChunkingConfig": {
             "type": "object",
             "properties": {
                 "chunk_overlap": {
@@ -5633,7 +5633,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ContextCompressionStrategy": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ContextCompressionStrategy": {
             "type": "string",
             "enum": [
                 "sliding_window",
@@ -5644,14 +5644,14 @@ const docTemplate = `{
                 "ContextCompressionSmart"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.ContextConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ContextConfig": {
             "type": "object",
             "properties": {
                 "compression_strategy": {
                     "description": "Compression strategy: \"sliding_window\" or \"smart\"",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ContextCompressionStrategy"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ContextCompressionStrategy"
                         }
                     ]
                 },
@@ -5669,7 +5669,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ConversationConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ConversationConfig": {
             "type": "object",
             "properties": {
                 "context_template": {
@@ -5745,7 +5745,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.EmbeddingParameters": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.EmbeddingParameters": {
             "type": "object",
             "properties": {
                 "dimension": {
@@ -5756,7 +5756,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ExtractConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ExtractConfig": {
             "type": "object",
             "properties": {
                 "enabled": {
@@ -5765,13 +5765,13 @@ const docTemplate = `{
                 "nodes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.GraphNode"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphNode"
                     }
                 },
                 "relations": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.GraphRelation"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphRelation"
                     }
                 },
                 "tags": {
@@ -5785,7 +5785,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQBatchUpsertPayload": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQBatchUpsertPayload": {
             "type": "object",
             "required": [
                 "entries"
@@ -5794,7 +5794,7 @@ const docTemplate = `{
                 "entries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryPayload"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload"
                     }
                 },
                 "knowledge_id": {
@@ -5809,37 +5809,37 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQConfig": {
             "type": "object",
             "properties": {
                 "index_mode": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQIndexMode"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQIndexMode"
                 },
                 "question_index_mode": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQQuestionIndexMode"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQQuestionIndexMode"
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsBatchUpdate": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsBatchUpdate": {
             "type": "object",
             "properties": {
                 "by_id": {
                     "description": "ByID 按条目ID更新，key为条目ID",
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsUpdate"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsUpdate"
                     }
                 },
                 "by_tag": {
                     "description": "ByTag 按Tag批量更新，key为TagID（空字符串表示未分类）",
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsUpdate"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsUpdate"
                     }
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsUpdate": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsUpdate": {
             "type": "object",
             "properties": {
                 "is_enabled": {
@@ -5853,7 +5853,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQEntryPayload": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload": {
             "type": "object",
             "required": [
                 "answers",
@@ -5861,7 +5861,7 @@ const docTemplate = `{
             ],
             "properties": {
                 "answer_strategy": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.AnswerStrategy"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.AnswerStrategy"
                 },
                 "answers": {
                     "type": "array",
@@ -5898,7 +5898,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQIndexMode": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQIndexMode": {
             "type": "string",
             "enum": [
                 "question_only",
@@ -5909,7 +5909,7 @@ const docTemplate = `{
                 "FAQIndexModeQuestionAnswer"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQQuestionIndexMode": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQQuestionIndexMode": {
             "type": "string",
             "enum": [
                 "combined",
@@ -5920,7 +5920,7 @@ const docTemplate = `{
                 "FAQQuestionIndexModeSeparate"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.FAQSearchRequest": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FAQSearchRequest": {
             "type": "object",
             "required": [
                 "query_text"
@@ -5937,7 +5937,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.FallbackStrategy": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.FallbackStrategy": {
             "type": "string",
             "enum": [
                 "fixed",
@@ -5956,7 +5956,7 @@ const docTemplate = `{
                 "FallbackStrategyModel"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.GraphNode": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.GraphNode": {
             "type": "object",
             "properties": {
                 "attributes": {
@@ -5976,7 +5976,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.GraphRelation": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.GraphRelation": {
             "type": "object",
             "properties": {
                 "node1": {
@@ -5990,7 +5990,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ImageProcessingConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ImageProcessingConfig": {
             "type": "object",
             "properties": {
                 "model_id": {
@@ -5999,7 +5999,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.Knowledge": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.Knowledge": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -6111,7 +6111,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.KnowledgeBase": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBase": {
             "type": "object",
             "properties": {
                 "chunk_count": {
@@ -6122,7 +6122,7 @@ const docTemplate = `{
                     "description": "Chunking configuration",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ChunkingConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ChunkingConfig"
                         }
                     ]
                 },
@@ -6130,7 +6130,7 @@ const docTemplate = `{
                     "description": "Storage config",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.StorageConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.StorageConfig"
                         }
                     ]
                 },
@@ -6158,7 +6158,7 @@ const docTemplate = `{
                     "description": "Extract config",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ExtractConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ExtractConfig"
                         }
                     ]
                 },
@@ -6166,7 +6166,7 @@ const docTemplate = `{
                     "description": "FAQConfig stores FAQ specific configuration such as indexing strategy",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQConfig"
                         }
                     ]
                 },
@@ -6178,7 +6178,7 @@ const docTemplate = `{
                     "description": "Image processing configuration",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ImageProcessingConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ImageProcessingConfig"
                         }
                     ]
                 },
@@ -6206,7 +6206,7 @@ const docTemplate = `{
                     "description": "QuestionGenerationConfig stores question generation configuration for document knowledge bases",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.QuestionGenerationConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.QuestionGenerationConfig"
                         }
                     ]
                 },
@@ -6230,20 +6230,20 @@ const docTemplate = `{
                     "description": "VLM config",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.VLMConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.VLMConfig"
                         }
                     ]
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.KnowledgeBaseConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBaseConfig": {
             "type": "object",
             "properties": {
                 "chunking_config": {
                     "description": "Chunking configuration",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ChunkingConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ChunkingConfig"
                         }
                     ]
                 },
@@ -6251,7 +6251,7 @@ const docTemplate = `{
                     "description": "FAQ configuration (only for FAQ type knowledge bases)",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FAQConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQConfig"
                         }
                     ]
                 },
@@ -6259,13 +6259,13 @@ const docTemplate = `{
                     "description": "Image processing configuration",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ImageProcessingConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ImageProcessingConfig"
                         }
                     ]
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.LoginRequest": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.LoginRequest": {
             "type": "object",
             "required": [
                 "email",
@@ -6281,7 +6281,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.LoginResponse": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.LoginResponse": {
             "type": "object",
             "properties": {
                 "message": {
@@ -6294,17 +6294,17 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "tenant": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant"
                 },
                 "token": {
                     "type": "string"
                 },
                 "user": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.User"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.User"
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPAdvancedConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPAdvancedConfig": {
             "type": "object",
             "properties": {
                 "retry_count": {
@@ -6321,7 +6321,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPAuthConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPAuthConfig": {
             "type": "object",
             "properties": {
                 "api_key": {
@@ -6338,26 +6338,26 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPEnvVars": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPEnvVars": {
             "type": "object",
             "additionalProperties": {
                 "type": "string"
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPHeaders": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPHeaders": {
             "type": "object",
             "additionalProperties": {
                 "type": "string"
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPService": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPService": {
             "type": "object",
             "properties": {
                 "advanced_config": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPAdvancedConfig"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPAdvancedConfig"
                 },
                 "auth_config": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPAuthConfig"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPAuthConfig"
                 },
                 "created_at": {
                     "type": "string"
@@ -6375,12 +6375,12 @@ const docTemplate = `{
                     "description": "Environment variables for stdio",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPEnvVars"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPEnvVars"
                         }
                     ]
                 },
                 "headers": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPHeaders"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPHeaders"
                 },
                 "id": {
                     "type": "string"
@@ -6392,7 +6392,7 @@ const docTemplate = `{
                     "description": "Required for stdio transport",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPStdioConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPStdioConfig"
                         }
                     ]
                 },
@@ -6400,7 +6400,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "transport_type": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MCPTransportType"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPTransportType"
                 },
                 "updated_at": {
                     "type": "string"
@@ -6411,7 +6411,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPStdioConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPStdioConfig": {
             "type": "object",
             "properties": {
                 "args": {
@@ -6427,7 +6427,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MCPTransportType": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MCPTransportType": {
             "type": "string",
             "enum": [
                 "sse",
@@ -6450,7 +6450,7 @@ const docTemplate = `{
                 "MCPTransportStdio"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.ManualKnowledgePayload": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ManualKnowledgePayload": {
             "type": "object",
             "properties": {
                 "content": {
@@ -6464,7 +6464,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.MatchType": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MatchType": {
             "type": "integer",
             "enum": [
                 0,
@@ -6506,7 +6506,7 @@ const docTemplate = `{
                 "MatchTypeDirectLoad"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.MentionedItem": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.MentionedItem": {
             "type": "object",
             "properties": {
                 "id": {
@@ -6525,14 +6525,14 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.Message": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.Message": {
             "type": "object",
             "properties": {
                 "agent_steps": {
                     "description": "Agent execution steps (only for assistant messages generated by agent)\nThis contains the detailed reasoning process and tool calls made by the agent\nStored for user history display, but NOT included in LLM context to avoid redundancy",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.AgentStep"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.AgentStep"
                     }
                 },
                 "content": {
@@ -6563,14 +6563,14 @@ const docTemplate = `{
                     "description": "References to knowledge chunks used in the response",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.SearchResult"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SearchResult"
                     }
                 },
                 "mentioned_items": {
                     "description": "Mentioned knowledge bases and files (for user messages)\nStores the @mentioned items when user sends a message",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MentionedItem"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MentionedItem"
                     }
                 },
                 "request_id": {
@@ -6591,7 +6591,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ModelParameters": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ModelParameters": {
             "type": "object",
             "properties": {
                 "api_key": {
@@ -6601,7 +6601,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "embedding_parameters": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.EmbeddingParameters"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.EmbeddingParameters"
                 },
                 "interface_type": {
                     "type": "string"
@@ -6612,7 +6612,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ModelSource": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ModelSource": {
             "type": "string",
             "enum": [
                 "local",
@@ -6635,7 +6635,7 @@ const docTemplate = `{
                 "ModelSourceAliyun"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.ModelType": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ModelType": {
             "type": "string",
             "enum": [
                 "Embedding",
@@ -6662,7 +6662,7 @@ const docTemplate = `{
                 "ModelTypeVLLM"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.QuestionGenerationConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.QuestionGenerationConfig": {
             "type": "object",
             "properties": {
                 "enabled": {
@@ -6674,7 +6674,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.RegisterRequest": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.RegisterRequest": {
             "type": "object",
             "required": [
                 "email",
@@ -6696,7 +6696,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.RegisterResponse": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.RegisterResponse": {
             "type": "object",
             "properties": {
                 "message": {
@@ -6706,21 +6706,21 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "tenant": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant"
                 },
                 "user": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.User"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.User"
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.RetrieverEngineParams": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineParams": {
             "type": "object",
             "properties": {
                 "retriever_engine_type": {
                     "description": "Retriever engine type",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverEngineType"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineType"
                         }
                     ]
                 },
@@ -6728,13 +6728,13 @@ const docTemplate = `{
                     "description": "Retriever type",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverType"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverType"
                         }
                     ]
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.RetrieverEngineType": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineType": {
             "type": "string",
             "enum": [
                 "postgres",
@@ -6751,18 +6751,18 @@ const docTemplate = `{
                 "QdrantRetrieverEngineType"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.RetrieverEngines": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngines": {
             "type": "object",
             "properties": {
                 "engines": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverEngineParams"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineParams"
                     }
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.RetrieverType": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.RetrieverType": {
             "type": "string",
             "enum": [
                 "keywords",
@@ -6785,7 +6785,7 @@ const docTemplate = `{
                 "WebSearchRetrieverType"
             ]
         },
-        "github_com_Tencent_WeKnora_internal_types.SearchParams": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.SearchParams": {
             "type": "object",
             "properties": {
                 "disable_keywords_match": {
@@ -6814,7 +6814,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.SearchResult": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.SearchResult": {
             "type": "object",
             "properties": {
                 "chunk_index": {
@@ -6868,7 +6868,7 @@ const docTemplate = `{
                     "description": "Match type",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.MatchType"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MatchType"
                         }
                     ]
                 },
@@ -6904,14 +6904,14 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.Session": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.Session": {
             "type": "object",
             "properties": {
                 "agent_config": {
                     "description": "Agent 配置（会话级别，仅存储enabled和knowledge_bases）",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.SessionAgentConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SessionAgentConfig"
                         }
                     ]
                 },
@@ -6919,7 +6919,7 @@ const docTemplate = `{
                     "description": "上下文管理配置（可选）",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ContextConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ContextConfig"
                         }
                     ]
                 },
@@ -6949,7 +6949,7 @@ const docTemplate = `{
                     "description": "兜底策略",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FallbackStrategy"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FallbackStrategy"
                         }
                     ]
                 },
@@ -6989,7 +6989,7 @@ const docTemplate = `{
                     "description": "总结模型参数",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.SummaryConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SummaryConfig"
                         }
                     ]
                 },
@@ -7010,7 +7010,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.SessionAgentConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.SessionAgentConfig": {
             "type": "object",
             "properties": {
                 "agent_mode_enabled": {
@@ -7037,7 +7037,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.StorageConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.StorageConfig": {
             "type": "object",
             "properties": {
                 "app_id": {
@@ -7070,7 +7070,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.SummaryConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.SummaryConfig": {
             "type": "object",
             "properties": {
                 "context_template": {
@@ -7123,14 +7123,14 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.Tenant": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.Tenant": {
             "type": "object",
             "properties": {
                 "agent_config": {
                     "description": "Global Agent configuration for this tenant (default for all sessions)",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.AgentConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.AgentConfig"
                         }
                     ]
                 },
@@ -7146,7 +7146,7 @@ const docTemplate = `{
                     "description": "Global Context configuration for this tenant (default for all sessions)",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ContextConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ContextConfig"
                         }
                     ]
                 },
@@ -7154,7 +7154,7 @@ const docTemplate = `{
                     "description": "Global Conversation configuration for this tenant (default for normal mode sessions)",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ConversationConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ConversationConfig"
                         }
                     ]
                 },
@@ -7186,7 +7186,7 @@ const docTemplate = `{
                     "description": "Retriever engines",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverEngines"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngines"
                         }
                     ]
                 },
@@ -7210,13 +7210,13 @@ const docTemplate = `{
                     "description": "Global WebSearch configuration for this tenant",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.WebSearchConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.WebSearchConfig"
                         }
                     ]
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ToolCall": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ToolCall": {
             "type": "object",
             "properties": {
                 "args": {
@@ -7244,13 +7244,13 @@ const docTemplate = `{
                     "description": "Execution result (contains Output)",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ToolResult"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ToolResult"
                         }
                     ]
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.ToolResult": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.ToolResult": {
             "type": "object",
             "properties": {
                 "data": {
@@ -7272,7 +7272,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.User": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.User": {
             "type": "object",
             "properties": {
                 "avatar": {
@@ -7311,7 +7311,7 @@ const docTemplate = `{
                     "description": "Association relationship, not stored in the database",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant"
                         }
                     ]
                 },
@@ -7329,7 +7329,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.VLMConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.VLMConfig": {
             "type": "object",
             "properties": {
                 "api_key": {
@@ -7356,7 +7356,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Tencent_WeKnora_internal_types.WebSearchConfig": {
+        "github_com_UniverseHappiness_WiseDx_internal_types.WebSearchConfig": {
             "type": "object",
             "properties": {
                 "api_key": {
@@ -7446,13 +7446,13 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "parameters": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ModelParameters"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelParameters"
                 },
                 "source": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ModelSource"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelSource"
                 },
                 "type": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ModelType"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelType"
                 }
             }
         },
@@ -7611,13 +7611,13 @@ const docTemplate = `{
                         "nodes": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.GraphNode"
+                                "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphNode"
                             }
                         },
                         "relations": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.GraphRelation"
+                                "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphRelation"
                             }
                         },
                         "tags": {
@@ -7644,7 +7644,7 @@ const docTemplate = `{
                     }
                 },
                 "vlm_config": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.VLMConfig"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.VLMConfig"
                 }
             }
         },
@@ -7741,7 +7741,7 @@ const docTemplate = `{
             ],
             "properties": {
                 "config": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.KnowledgeBaseConfig"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBaseConfig"
                 },
                 "description": {
                     "type": "string"
@@ -7761,13 +7761,13 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "parameters": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ModelParameters"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelParameters"
                 },
                 "source": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ModelSource"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelSource"
                 },
                 "type": {
-                    "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.ModelType"
+                    "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelType"
                 }
             }
         },
@@ -7823,7 +7823,7 @@ const docTemplate = `{
                     "description": "Agent configuration (optional, session-level config only: enabled and knowledge_bases)",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.SessionAgentConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SessionAgentConfig"
                         }
                     ]
                 },
@@ -7851,7 +7851,7 @@ const docTemplate = `{
                     "description": "Messages to use as context for title generation",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.Message"
+                        "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Message"
                     }
                 }
             }
@@ -7924,7 +7924,7 @@ const docTemplate = `{
                     "description": "Strategy to use when no relevant knowledge is found",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.FallbackStrategy"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FallbackStrategy"
                         }
                     ]
                 },
@@ -7960,7 +7960,7 @@ const docTemplate = `{
                     "description": "Parameters for the summary model",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/github_com_Tencent_WeKnora_internal_types.SummaryConfig"
+                            "$ref": "#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SummaryConfig"
                         }
                     ]
                 },

@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/Tencent/WeKnora/blob/main/LICENSE">
+    <a href="https://github.com/UniverseHappiness/WiseDx/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-MIT-ffffff?labelColor=d4eaf7&color=2e6cc4" alt="License">
     </a>
     <a href="./CHANGELOG.md">
@@ -70,8 +70,8 @@
 
 ```bash
 # 克隆代码仓库
-git clone https://github.com/Tencent/WeKnora.git
-cd WeKnora
+git clone https://github.com/UniverseHappiness/WiseDx.git
+cd WiseDx
 
 # 配置环境变量
 cp .env.example .env
@@ -84,7 +84,7 @@ cp .env.example .env
 
 ## 🙏 致谢
 
-**WiseDx** 的核心架构与技术实现深度参考并采用了 [**WeKnora**](https://github.com/Tencent/WeKnora) 开源框架。
+**WiseDx** 的核心架构与技术实现深度参考并采用了 [**WeKnora**](https://github.com/UniverseHappiness/WiseDx) 开源框架。
 
 WeKnora 是由腾讯微信对话开放平台团队开发的优秀 RAG 框架，其模块化的设计、强大的 Agent 能力以及对多种向量数据库的支持，为 WiseDx 在医学领域的垂直化落地提供了坚实的技术支撑。在此对 WeKnora 团队及全体贡献者的开源精神表示诚挚感谢。
 

@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 // ZhipuReranker implements a reranking system based on Zhipu AI models

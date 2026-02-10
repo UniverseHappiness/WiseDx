@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 // JinaEmbedder implements text vectorization functionality using Jina AI API

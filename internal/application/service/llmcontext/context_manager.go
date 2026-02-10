@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/chat"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // contextManager implements the ContextManager interface

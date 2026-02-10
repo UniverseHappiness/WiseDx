@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 // JinaReranker implements a reranking system using Jina AI API

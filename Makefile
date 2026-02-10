@@ -224,7 +224,7 @@ build-prod:
 	COMMIT_ID=$${COMMIT_ID:-unknown}; \
 	BUILD_TIME=$${BUILD_TIME:-unknown}; \
 	GO_VERSION=$${GO_VERSION:-unknown}; \
-	LDFLAGS="-X 'github.com/Tencent/WeKnora/internal/handler.Version=$$VERSION' -X 'github.com/Tencent/WeKnora/internal/handler.CommitID=$$COMMIT_ID' -X 'github.com/Tencent/WeKnora/internal/handler.BuildTime=$$BUILD_TIME' -X 'github.com/Tencent/WeKnora/internal/handler.GoVersion=$$GO_VERSION'"; \
+	LDFLAGS="-X 'github.com/UniverseHappiness/WiseDx/internal/handler.Version=$$VERSION' -X 'github.com/UniverseHappiness/WiseDx/internal/handler.CommitID=$$COMMIT_ID' -X 'github.com/UniverseHappiness/WiseDx/internal/handler.BuildTime=$$BUILD_TIME' -X 'github.com/UniverseHappiness/WiseDx/internal/handler.GoVersion=$$GO_VERSION'"; \
 	go build -ldflags="-w -s $$LDFLAGS" -o $(BINARY_NAME) $(MAIN_PATH)
 
 download_spatial:

@@ -9,8 +9,8 @@ import (
 	"google.golang.org/api/customsearch/v1"
 	"google.golang.org/api/option"
 
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // GoogleProvider implements web search using Google Custom Search Engine API

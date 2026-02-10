@@ -3,10 +3,10 @@ package interfaces
 import (
 	"context"
 
-	"github.com/Tencent/WeKnora/internal/models/chat"
-	"github.com/Tencent/WeKnora/internal/models/embedding"
-	"github.com/Tencent/WeKnora/internal/models/rerank"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/models/embedding"
+	"github.com/UniverseHappiness/WiseDx/internal/models/rerank"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // ModelService defines the model service interface

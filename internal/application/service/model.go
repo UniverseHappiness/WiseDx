@@ -4,13 +4,13 @@ import (
 	"context"
 	"errors"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/chat"
-	"github.com/Tencent/WeKnora/internal/models/embedding"
-	"github.com/Tencent/WeKnora/internal/models/rerank"
-	"github.com/Tencent/WeKnora/internal/models/utils/ollama"
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/models/embedding"
+	"github.com/UniverseHappiness/WiseDx/internal/models/rerank"
+	"github.com/UniverseHappiness/WiseDx/internal/models/utils/ollama"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // ErrModelNotFound is returned when a model cannot be found in the repository

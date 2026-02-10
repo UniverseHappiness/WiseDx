@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Tencent/WeKnora/internal/errors"
+	"github.com/UniverseHappiness/WiseDx/internal/errors"
 )
 
 // ErrorHandler 是一个处理应用错误的中间件

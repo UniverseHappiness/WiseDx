@@ -170,7 +170,7 @@ const loadInfo = async () => {
 }
 
 const openApiDoc = () => {
-  window.open('https://github.com/Tencent/WeKnora/blob/main/docs/API.md', '_blank')
+  window.open('https://github.com/UniverseHappiness/WiseDx/blob/main/docs/API.md', '_blank')
 }
 
 const copyApiKey = async () => {
