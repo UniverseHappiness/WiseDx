@@ -1,13 +1,13 @@
-# WeKnora Helm Chart
+# WiseDx Helm Chart
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/weknora)](https://artifacthub.io/packages/helm/weknora/weknora)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Helm chart for deploying [WeKnora](https://github.com/UniverseHappiness/WiseDx) - an AI-powered Knowledge RAG Platform.
+Helm chart for deploying [WiseDx](https://github.com/UniverseHappiness/WiseDx) - an AI-powered Knowledge RAG Platform.
 
 ## Overview
 
-WeKnora is an intelligent knowledge base platform that combines:
+WiseDx is an intelligent knowledge base platform that combines:
 - Document parsing and understanding
 - Vector search with BM25 hybrid retrieval
 - LLM integration for conversational AI
