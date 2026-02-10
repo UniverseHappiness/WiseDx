@@ -1,6 +1,19 @@
 <template>
     <div class="chat-container" :class="{ 'sidebar-open': showPatientSidebar && hasCollectedData }">
         <div class="chat">
+            <div class="chat-header">
+                <div class="chat-header-left">
+                    <div class="chat-header-title" :title="currentSessionTitle">{{ currentSessionTitle }}</div>
+                </div>
+                <div class="chat-header-actions">
+                    <t-dropdown :options="exportOptions" trigger="click" placement="bottom-right" @click="handleExportSelect">
+                        <t-button variant="text" size="small" class="export-button">
+                            <t-icon name="download" />
+                            <span class="export-button-text">{{ t('chat.export') }}</span>
+                        </t-button>
+                    </t-dropdown>
+                </div>
+            </div>
             <div ref="scrollContainer" class="chat_scroll_box" @scroll="handleScroll">
                 <div class="msg_list">
                     <div v-for="(session, id) in messagesList" :key='id'>
@@ -75,6 +88,8 @@ import { useMenuStore } from '@/stores/menu';
 import { useSettingsStore } from '@/stores/settings';
 import { MessagePlugin } from 'tdesign-vue-next';
 import { useI18n } from 'vue-i18n';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import { useUIStore } from '@/stores/ui';
 import KnowledgeBaseEditorModal from '@/views/knowledge/KnowledgeBaseEditorModal.vue';
 import { useKnowledgeBaseCreationNavigation } from '@/hooks/useKnowledgeBaseCreationNavigation';
@@ -83,6 +98,12 @@ const useSettingsStoreInstance = useSettingsStore();
 const uiStore = useUIStore();
 const { navigateToKnowledgeBaseList } = useKnowledgeBaseCreationNavigation();
 const { t } = useI18n();
+
+marked.use({
+    mangle: false,
+    headerIds: false,
+    breaks: true
+});
 const { menuArr, isFirstSession, firstQuery, firstMentionedItems, firstModelId } = storeToRefs(usemenuStore);
 const { output, onChunk, isStreaming, isLoading, error, startStream, stopStream } = useStream();
 const route = useRoute();
@@ -100,6 +121,17 @@ const isFirstEnter = ref(true);
 const loading = ref(false);
 let fullContent = ref('')
 let userquery = ref('')
+
+const currentSessionTitle = computed(() => {
+    const chatMenu = menuArr.value?.[2];
+    const item = chatMenu?.children?.find((c) => c.id === session_id.value);
+    return item?.title || t('createChat.newSessionTitle');
+});
+
+const exportOptions = computed(() => [
+    { content: t('chat.exportMarkdown'), value: 'markdown' },
+    { content: t('chat.exportPDF'), value: 'pdf' }
+]);
 const scrollContainer = ref(null)
 const handleKBEditorSuccess = (kbId) => {
     navigateToKnowledgeBaseList(kbId)
@@ -151,6 +183,205 @@ const getUserQuery = (index) => {
         return previous.content || '';
     }
     return '';
+};
+
+const sanitizeFileName = (name) => {
+    return String(name || '')
+        .trim()
+        .replace(/[\\/:*?"<>|]/g, '_')
+        .replace(/\s+/g, ' ')
+        .slice(0, 80) || 'chat';
+};
+
+const downloadTextFile = (content, filename, mimeType) => {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+};
+
+const getAssistantExportContent = (msg) => {
+    if (msg?.isAgentMode && Array.isArray(msg.agentEventStream)) {
+        const answerEvent = [...msg.agentEventStream].reverse().find((e) => e?.type === 'answer');
+        const answer = answerEvent?.content;
+        if (typeof answer === 'string') return answer;
+    }
+    if (typeof msg?.content === 'string') return msg.content;
+    return '';
+};
+
+const formatMentionedItems = (mentionedItems) => {
+    if (!Array.isArray(mentionedItems) || mentionedItems.length === 0) return '';
+    return mentionedItems
+        .map((it) => {
+            const name = it?.name || it?.id || '';
+            return name ? `@${name}` : '';
+        })
+        .filter(Boolean)
+        .join(' ');
+};
+
+const formatKnowledgeReferences = (refs) => {
+    if (!Array.isArray(refs) || refs.length === 0) return [];
+    return refs.map((r) => {
+        const title = r?.title || r?.document_title || r?.file_name || r?.name || r?.url || r?.id || '';
+        const chunkId = r?.chunk_id || r?.chunkId;
+        const docId = r?.document_id || r?.documentId;
+        const metaParts = [
+            chunkId ? `${t('chat.chunkIdLabel')} ${String(chunkId).slice(0, 12)}...` : '',
+            docId ? `${t('chat.documentIdLabel')} ${String(docId).slice(0, 12)}...` : ''
+        ].filter(Boolean);
+        const meta = metaParts.length ? ` (${metaParts.join(', ')})` : '';
+        return `- ${title || t('chat.otherSource')}${meta}`;
+    });
+};
+
+const buildConversationMarkdown = () => {
+    if (!Array.isArray(messagesList) || messagesList.length === 0) return '';
+
+    const lines = [];
+    const title = currentSessionTitle.value || t('chat.title');
+    const now = new Date();
+
+    lines.push(`# ${title}`);
+    lines.push('');
+    lines.push(`- ${t('chat.exportSessionId')}: ${session_id.value}`);
+    lines.push(`- ${t('chat.exportGeneratedAt')}: ${now.toLocaleString()}`);
+    lines.push('');
+
+    for (const msg of messagesList) {
+        if (!msg) continue;
+
+        if (msg.role === 'user') {
+            lines.push(`## ${t('chat.exportRoleUser')}`);
+            lines.push('');
+            const mentions = formatMentionedItems(msg.mentioned_items);
+            if (mentions) {
+                lines.push(`> ${t('chat.exportMentions')}: ${mentions}`);
+                lines.push('');
+            }
+            lines.push(String(msg.content || '').trim());
+            lines.push('');
+            lines.push('---');
+            lines.push('');
+            continue;
+        }
+
+        if (msg.role === 'assistant') {
+            lines.push(`## ${t('chat.exportRoleAssistant')}`);
+            lines.push('');
+            const content = getAssistantExportContent(msg).trim();
+            lines.push(content || `_${t('chat.exportEmptyAssistant')}_`);
+            lines.push('');
+
+            const refLines = formatKnowledgeReferences(msg.knowledge_references);
+            if (refLines.length) {
+                lines.push(`### ${t('chat.reference')}`);
+                lines.push(...refLines);
+                lines.push('');
+            }
+
+            lines.push('---');
+            lines.push('');
+        }
+    }
+
+    return lines.join('\n');
+};
+
+const exportMarkdown = () => {
+    const md = buildConversationMarkdown();
+    if (!md) {
+        MessagePlugin.warning(t('chat.exportEmpty'));
+        return;
+    }
+
+    const base = sanitizeFileName(currentSessionTitle.value);
+    const filename = `${base || 'chat'}-${String(session_id.value).slice(0, 12)}.md`;
+
+    try {
+        downloadTextFile(md, filename, 'text/markdown;charset=utf-8');
+        MessagePlugin.success(t('chat.exportSuccess'));
+    } catch (e) {
+        console.error('[Export Markdown] failed:', e);
+        MessagePlugin.error(t('chat.exportFailed'));
+    }
+};
+
+const exportPDF = () => {
+    const md = buildConversationMarkdown();
+    if (!md) {
+        MessagePlugin.warning(t('chat.exportEmpty'));
+        return;
+    }
+
+    const base = sanitizeFileName(currentSessionTitle.value);
+    const title = `${base || 'chat'}-${String(session_id.value).slice(0, 12)}`;
+
+    // 采用浏览器打印为 PDF（更轻量、无需引入额外依赖）
+    const rawHtml = marked.parse(md);
+    const safeHtml = DOMPurify.sanitize(String(rawHtml || ''));
+
+    const win = window.open('', '_blank');
+    if (!win) {
+        MessagePlugin.error(t('chat.exportPopupBlocked'));
+        return;
+    }
+
+    win.document.open();
+    win.document.write(`<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${title}</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; padding: 24px; color: #111; }
+    h1 { font-size: 22px; margin: 0 0 16px; }
+    h2 { font-size: 18px; margin: 20px 0 10px; }
+    h3 { font-size: 16px; margin: 16px 0 8px; }
+    hr { border: none; border-top: 1px solid #eee; margin: 18px 0; }
+    pre { background: #f6f8fa; padding: 12px; overflow: auto; border-radius: 6px; }
+    code { font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
+    blockquote { margin: 12px 0; padding: 8px 12px; border-left: 3px solid #ddd; color: #555; background: #fafafa; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #eee; padding: 6px 8px; }
+    img { max-width: 100%; }
+    @media print { body { padding: 0; } }
+  </style>
+</head>
+<body>
+${safeHtml}
+</body>
+</html>`);
+    win.document.close();
+
+    // 给浏览器一点时间渲染
+    setTimeout(() => {
+        try {
+            win.focus();
+            win.print();
+            MessagePlugin.success(t('chat.exportPDFTip'));
+        } catch (e) {
+            console.error('[Export PDF] failed:', e);
+            MessagePlugin.error(t('chat.exportFailed'));
+        }
+    }, 300);
+};
+
+const handleExportSelect = (data) => {
+    const value = data?.value;
+    if (value === 'markdown') {
+        exportMarkdown();
+        return;
+    }
+    if (value === 'pdf') {
+        exportPDF();
+    }
 };
 
 // Handle quick reply selection from bot message
@@ -1060,6 +1291,36 @@ onBeforeRouteUpdate((to, from, next) => {
         .t-textarea__inner {
             width: 100% !important;
         }
+    }
+}
+
+.chat-header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 6px 0 12px;
+
+    .chat-header-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--td-text-color-primary);
+        max-width: 520px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .export-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .export-button-text {
+        font-size: 12px;
     }
 }
 
