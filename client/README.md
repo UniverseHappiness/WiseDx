@@ -23,7 +23,7 @@
 ```go
 import (
     "context"
-    "github.com/Tencent/WeKnora/internal/client"
+    "github.com/UniverseHappiness/WiseDx/client"
     "time"
 )
 

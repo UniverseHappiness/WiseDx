@@ -8,7 +8,7 @@
 // internal/container/container.go 或 main.go
 
 import (
-    "github.com/Tencent/WeKnora/internal/event"
+    "github.com/UniverseHappiness/WiseDx/internal/event"
 )
 
 func InitializeEventSystem() {
@@ -37,7 +37,7 @@ func InitializeEventSystem() {
 // internal/application/service/chat_pipline/search.go
 
 import (
-    "github.com/Tencent/WeKnora/internal/event"
+    "github.com/UniverseHappiness/WiseDx/internal/event"
     "time"
 )
 
@@ -251,7 +251,7 @@ package monitoring
 
 import (
     "context"
-    "github.com/Tencent/WeKnora/internal/event"
+    "github.com/UniverseHappiness/WiseDx/internal/event"
     "github.com/prometheus/client_golang/prometheus"
 )
 
@@ -310,8 +310,8 @@ package logging
 import (
     "context"
     "encoding/json"
-    "github.com/Tencent/WeKnora/internal/event"
-    "github.com/Tencent/WeKnora/internal/logger"
+    "github.com/UniverseHappiness/WiseDx/internal/event"
+    "github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 func SetupEventLogging() {

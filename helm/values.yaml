@@ -85,7 +85,7 @@ app:
     allowPrivilegeEscalation: false
 
   # -- Environment variables for the app container
-  # Ref: https://github.com/Tencent/WeKnora/blob/main/docker-compose.yml
+  # Ref: https://github.com/UniverseHappiness/WiseDx/blob/main/docker-compose.yml
   env:
     GIN_MODE: release
     # -- Retrieval driver: postgres, elasticsearch_v7, elasticsearch_v8, qdrant

@@ -7,10 +7,10 @@ import (
 	"math"
 	"strings"
 
-	"github.com/Tencent/WeKnora/internal/models/rerank"
-	"github.com/Tencent/WeKnora/internal/searchutil"
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/models/rerank"
+	"github.com/UniverseHappiness/WiseDx/internal/searchutil"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // PluginRerank implements reranking functionality for chat pipeline

@@ -15,7 +15,7 @@
             <p>内置模型对所有租户可见，敏感信息会被隐藏，且不可编辑或删除。</p>
             <p class="doc-link">
               <t-icon name="link" class="link-icon" />
-              <a href="https://github.com/Tencent/WeKnora/blob/main/docs/BUILTIN_MODELS.md" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/UniverseHappiness/WiseDx/blob/main/docs/BUILTIN_MODELS.md" target="_blank" rel="noopener noreferrer">
                 查看内置模型管理指南
               </a>
             </p>

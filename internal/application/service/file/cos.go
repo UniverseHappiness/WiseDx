@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 	"github.com/google/uuid"
 	"github.com/tencentyun/cos-go-sdk-v5"
 )

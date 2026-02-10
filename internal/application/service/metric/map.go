@@ -1,7 +1,7 @@
 package metric
 
 import (
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // MAPMetric calculates Mean Average Precision for retrieval evaluation

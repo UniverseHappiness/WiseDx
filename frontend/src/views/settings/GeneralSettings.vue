@@ -21,8 +21,6 @@
           >
             <t-option value="zh-CN" :label="$t('language.zhCN')">{{ $t('language.zhCN') }}</t-option>
             <t-option value="en-US" :label="$t('language.enUS')">{{ $t('language.enUS') }}</t-option>
-            <t-option value="ru-RU" :label="$t('language.ruRU')">{{ $t('language.ruRU') }}</t-option>
-            <t-option value="ko-KR" :label="$t('language.koKR')">{{ $t('language.koKR') }}</t-option>
           </t-select>
         </div>
       </div>
@@ -43,12 +41,16 @@ const localTheme = ref('light')
 
 // 初始化加载
 onMounted(() => {
-  // 从 localStorage 加载语言设置
-  const savedLocale = localStorage.getItem('locale')
+  // 从 localStorage 加载语言设置（仅保留中英文）
+  const savedLocaleRaw = localStorage.getItem('locale')
+  const supported = ['zh-CN', 'en-US']
+  const savedLocale = savedLocaleRaw && supported.includes(savedLocaleRaw) ? savedLocaleRaw : undefined
+
   if (savedLocale) {
     localLanguage.value = savedLocale
     locale.value = savedLocale
   } else {
+    // 若历史存了已移除语言，回退到当前 i18n locale（由 i18n/index.ts 兜底）
     localLanguage.value = locale.value
   }
 })

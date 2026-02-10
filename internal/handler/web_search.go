@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/application/service/web_search"
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/application/service/web_search"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 	"github.com/gin-gonic/gin"
 )
 

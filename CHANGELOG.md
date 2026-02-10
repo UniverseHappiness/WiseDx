@@ -555,18 +555,18 @@ All notable changes to this project will be documented in this file.
 - Docker Compose for quick startup and service orchestration.
 - MCP server support for integrating with MCP-compatible clients.
 
-[0.2.10]: https://github.com/Tencent/WeKnora/tree/v0.2.10
-[0.2.9]: https://github.com/Tencent/WeKnora/tree/v0.2.9
-[0.2.8]: https://github.com/Tencent/WeKnora/tree/v0.2.8
-[0.2.7]: https://github.com/Tencent/WeKnora/tree/v0.2.7
-[0.2.6]: https://github.com/Tencent/WeKnora/tree/v0.2.6
-[0.2.5]: https://github.com/Tencent/WeKnora/tree/v0.2.5
-[0.2.4]: https://github.com/Tencent/WeKnora/tree/v0.2.4
-[0.2.3]: https://github.com/Tencent/WeKnora/tree/v0.2.3
-[0.2.2]: https://github.com/Tencent/WeKnora/tree/v0.2.2
-[0.2.1]: https://github.com/Tencent/WeKnora/tree/v0.2.1
-[0.2.0]: https://github.com/Tencent/WeKnora/tree/v0.2.0
-[0.1.4]: https://github.com/Tencent/WeKnora/tree/v0.1.4
-[0.1.3]: https://github.com/Tencent/WeKnora/tree/v0.1.3
-[0.1.2]: https://github.com/Tencent/WeKnora/tree/v0.1.2
-[0.1.0]: https://github.com/Tencent/WeKnora/tree/v0.1.0
+[0.2.10]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.10
+[0.2.9]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.9
+[0.2.8]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.8
+[0.2.7]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.7
+[0.2.6]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.6
+[0.2.5]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.5
+[0.2.4]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.4
+[0.2.3]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.3
+[0.2.2]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.2
+[0.2.1]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.1
+[0.2.0]: https://github.com/UniverseHappiness/WiseDx/tree/v0.2.0
+[0.1.4]: https://github.com/UniverseHappiness/WiseDx/tree/v0.1.4
+[0.1.3]: https://github.com/UniverseHappiness/WiseDx/tree/v0.1.3
+[0.1.2]: https://github.com/UniverseHappiness/WiseDx/tree/v0.1.2
+[0.1.0]: https://github.com/UniverseHappiness/WiseDx/tree/v0.1.0

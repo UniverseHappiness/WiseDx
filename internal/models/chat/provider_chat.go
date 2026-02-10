@@ -3,8 +3,8 @@ package chat
 import (
 	"context"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/provider"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/provider"
 	"github.com/sashabaranov/go-openai"
 )
 

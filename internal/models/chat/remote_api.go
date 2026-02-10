@@ -8,9 +8,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/provider"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/provider"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 	"github.com/sashabaranov/go-openai"
 )
 

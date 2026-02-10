@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Tencent/WeKnora/internal/config"
+	"github.com/UniverseHappiness/WiseDx/internal/config"
 )
 
 func TestNewGoogleProvider(t *testing.T) {

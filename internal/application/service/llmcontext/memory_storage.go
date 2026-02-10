@@ -4,8 +4,8 @@ import (
 	"context"
 	"sync"
 
-	"github.com/Tencent/WeKnora/internal/logger"
-	"github.com/Tencent/WeKnora/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
 )
 
 // memoryStorage implements ContextStorage using in-memory storage

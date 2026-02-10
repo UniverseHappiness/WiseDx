@@ -7,7 +7,7 @@
 // @termsOfService  http://swagger.io/terms/
 //
 // @contact.name   WeKnora Github
-// @contact.url    https://github.com/Tencent/WeKnora
+// @contact.url    https://github.com/UniverseHappiness/WiseDx
 //
 // @BasePath  /api/v1
 //
@@ -37,11 +37,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"github.com/Tencent/WeKnora/internal/config"
-	"github.com/Tencent/WeKnora/internal/container"
-	"github.com/Tencent/WeKnora/internal/runtime"
-	"github.com/Tencent/WeKnora/internal/tracing"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/config"
+	"github.com/UniverseHappiness/WiseDx/internal/container"
+	"github.com/UniverseHappiness/WiseDx/internal/runtime"
+	"github.com/UniverseHappiness/WiseDx/internal/tracing"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // loadEnvironment 在 main 函数开始时加载环境变量

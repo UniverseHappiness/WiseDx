@@ -1,14 +1,14 @@
 basePath: /api/v1
 definitions:
-  github_com_Tencent_WeKnora_internal_errors.AppError:
+  github_com_UniverseHappiness_WiseDx_internal_errors.AppError:
     properties:
       code:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.ErrorCode'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.ErrorCode'
       details: {}
       message:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_errors.ErrorCode:
+  github_com_UniverseHappiness_WiseDx_internal_errors.ErrorCode:
     enum:
     - 1000
     - 1001
@@ -52,7 +52,7 @@ definitions:
     - ErrAgentMissingAllowedTools
     - ErrAgentInvalidMaxIterations
     - ErrAgentInvalidTemperature
-  github_com_Tencent_WeKnora_internal_types.AgentConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.AgentConfig:
     properties:
       allowed_tools:
         description: List of allowed tool names
@@ -94,7 +94,7 @@ definitions:
         description: 'Maximum number of web search results (default: 5)'
         type: integer
     type: object
-  github_com_Tencent_WeKnora_internal_types.AgentStep:
+  github_com_UniverseHappiness_WiseDx_internal_types.AgentStep:
     properties:
       iteration:
         description: Iteration number (0-indexed)
@@ -108,10 +108,10 @@ definitions:
       tool_calls:
         description: Tools called in this step (Act phase)
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ToolCall'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ToolCall'
         type: array
     type: object
-  github_com_Tencent_WeKnora_internal_types.AnswerStrategy:
+  github_com_UniverseHappiness_WiseDx_internal_types.AnswerStrategy:
     enum:
     - all
     - random
@@ -119,7 +119,7 @@ definitions:
     x-enum-varnames:
     - AnswerStrategyAll
     - AnswerStrategyRandom
-  github_com_Tencent_WeKnora_internal_types.ChunkingConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.ChunkingConfig:
     properties:
       chunk_overlap:
         description: Chunk overlap
@@ -137,7 +137,7 @@ definitions:
           type: string
         type: array
     type: object
-  github_com_Tencent_WeKnora_internal_types.ContextCompressionStrategy:
+  github_com_UniverseHappiness_WiseDx_internal_types.ContextCompressionStrategy:
     enum:
     - sliding_window
     - smart
@@ -145,11 +145,11 @@ definitions:
     x-enum-varnames:
     - ContextCompressionSlidingWindow
     - ContextCompressionSmart
-  github_com_Tencent_WeKnora_internal_types.ContextConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.ContextConfig:
     properties:
       compression_strategy:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ContextCompressionStrategy'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ContextCompressionStrategy'
         description: 'Compression strategy: "sliding_window" or "smart"'
       max_tokens:
         description: Maximum tokens allowed in LLM context
@@ -163,7 +163,7 @@ definitions:
         description: 'Summarize threshold: number of messages before summarization'
         type: integer
     type: object
-  github_com_Tencent_WeKnora_internal_types.ConversationConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.ConversationConfig:
     properties:
       context_template:
         description: ContextTemplate is the prompt template for summarizing retrieval
@@ -217,24 +217,24 @@ definitions:
       vector_threshold:
         type: number
     type: object
-  github_com_Tencent_WeKnora_internal_types.EmbeddingParameters:
+  github_com_UniverseHappiness_WiseDx_internal_types.EmbeddingParameters:
     properties:
       dimension:
         type: integer
       truncate_prompt_tokens:
         type: integer
     type: object
-  github_com_Tencent_WeKnora_internal_types.ExtractConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.ExtractConfig:
     properties:
       enabled:
         type: boolean
       nodes:
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.GraphNode'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphNode'
         type: array
       relations:
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.GraphRelation'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphRelation'
         type: array
       tags:
         items:
@@ -243,11 +243,11 @@ definitions:
       text:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.FAQBatchUpsertPayload:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQBatchUpsertPayload:
     properties:
       entries:
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryPayload'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload'
         type: array
       knowledge_id:
         type: string
@@ -259,27 +259,27 @@ definitions:
     required:
     - entries
     type: object
-  github_com_Tencent_WeKnora_internal_types.FAQConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQConfig:
     properties:
       index_mode:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQIndexMode'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQIndexMode'
       question_index_mode:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQQuestionIndexMode'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQQuestionIndexMode'
     type: object
-  github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsBatchUpdate:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsBatchUpdate:
     properties:
       by_id:
         additionalProperties:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsUpdate'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsUpdate'
         description: ByID 按条目ID更新，key为条目ID
         type: object
       by_tag:
         additionalProperties:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsUpdate'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsUpdate'
         description: ByTag 按Tag批量更新，key为TagID（空字符串表示未分类）
         type: object
     type: object
-  github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsUpdate:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsUpdate:
     properties:
       is_enabled:
         type: boolean
@@ -288,10 +288,10 @@ definitions:
       tag_id:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.FAQEntryPayload:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload:
     properties:
       answer_strategy:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.AnswerStrategy'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.AnswerStrategy'
       answers:
         items:
           type: string
@@ -318,7 +318,7 @@ definitions:
     - answers
     - standard_question
     type: object
-  github_com_Tencent_WeKnora_internal_types.FAQIndexMode:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQIndexMode:
     enum:
     - question_only
     - question_answer
@@ -326,7 +326,7 @@ definitions:
     x-enum-varnames:
     - FAQIndexModeQuestionOnly
     - FAQIndexModeQuestionAnswer
-  github_com_Tencent_WeKnora_internal_types.FAQQuestionIndexMode:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQQuestionIndexMode:
     enum:
     - combined
     - separate
@@ -334,7 +334,7 @@ definitions:
     x-enum-varnames:
     - FAQQuestionIndexModeCombined
     - FAQQuestionIndexModeSeparate
-  github_com_Tencent_WeKnora_internal_types.FAQSearchRequest:
+  github_com_UniverseHappiness_WiseDx_internal_types.FAQSearchRequest:
     properties:
       match_count:
         type: integer
@@ -345,7 +345,7 @@ definitions:
     required:
     - query_text
     type: object
-  github_com_Tencent_WeKnora_internal_types.FallbackStrategy:
+  github_com_UniverseHappiness_WiseDx_internal_types.FallbackStrategy:
     enum:
     - fixed
     - model
@@ -359,7 +359,7 @@ definitions:
     x-enum-varnames:
     - FallbackStrategyFixed
     - FallbackStrategyModel
-  github_com_Tencent_WeKnora_internal_types.GraphNode:
+  github_com_UniverseHappiness_WiseDx_internal_types.GraphNode:
     properties:
       attributes:
         items:
@@ -372,7 +372,7 @@ definitions:
       name:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.GraphRelation:
+  github_com_UniverseHappiness_WiseDx_internal_types.GraphRelation:
     properties:
       node1:
         type: string
@@ -381,13 +381,13 @@ definitions:
       type:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.ImageProcessingConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.ImageProcessingConfig:
     properties:
       model_id:
         description: Model ID
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.Knowledge:
+  github_com_UniverseHappiness_WiseDx_internal_types.Knowledge:
     properties:
       created_at:
         description: Creation time of the knowledge
@@ -468,18 +468,18 @@ definitions:
         description: Last updated time of the knowledge
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.KnowledgeBase:
+  github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBase:
     properties:
       chunk_count:
         description: Chunk count (not stored in database, calculated on query)
         type: integer
       chunking_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ChunkingConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ChunkingConfig'
         description: Chunking configuration
       cos_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.StorageConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.StorageConfig'
         description: Storage config
       created_at:
         description: Creation time of the knowledge base
@@ -496,11 +496,11 @@ definitions:
         type: string
       extract_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ExtractConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ExtractConfig'
         description: Extract config
       faq_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQConfig'
         description: FAQConfig stores FAQ specific configuration such as indexing
           strategy
       id:
@@ -508,7 +508,7 @@ definitions:
         type: string
       image_processing_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ImageProcessingConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ImageProcessingConfig'
         description: Image processing configuration
       is_processing:
         description: IsProcessing indicates if there is a processing import task (for
@@ -530,7 +530,7 @@ definitions:
         type: integer
       question_generation_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.QuestionGenerationConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.QuestionGenerationConfig'
         description: QuestionGenerationConfig stores question generation configuration
           for document knowledge bases
       summary_model_id:
@@ -547,25 +547,25 @@ definitions:
         type: string
       vlm_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.VLMConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.VLMConfig'
         description: VLM config
     type: object
-  github_com_Tencent_WeKnora_internal_types.KnowledgeBaseConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBaseConfig:
     properties:
       chunking_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ChunkingConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ChunkingConfig'
         description: Chunking configuration
       faq_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQConfig'
         description: FAQ configuration (only for FAQ type knowledge bases)
       image_processing_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ImageProcessingConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ImageProcessingConfig'
         description: Image processing configuration
     type: object
-  github_com_Tencent_WeKnora_internal_types.LoginRequest:
+  github_com_UniverseHappiness_WiseDx_internal_types.LoginRequest:
     properties:
       email:
         type: string
@@ -576,7 +576,7 @@ definitions:
     - email
     - password
     type: object
-  github_com_Tencent_WeKnora_internal_types.LoginResponse:
+  github_com_UniverseHappiness_WiseDx_internal_types.LoginResponse:
     properties:
       message:
         type: string
@@ -585,13 +585,13 @@ definitions:
       success:
         type: boolean
       tenant:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant'
       token:
         type: string
       user:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.User'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.User'
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPAdvancedConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPAdvancedConfig:
     properties:
       retry_count:
         description: 'Number of retries, default: 3'
@@ -603,7 +603,7 @@ definitions:
         description: 'Timeout in seconds, default: 30'
         type: integer
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPAuthConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPAuthConfig:
     properties:
       api_key:
         type: string
@@ -614,20 +614,20 @@ definitions:
       token:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPEnvVars:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPEnvVars:
     additionalProperties:
       type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPHeaders:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPHeaders:
     additionalProperties:
       type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPService:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPService:
     properties:
       advanced_config:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPAdvancedConfig'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPAdvancedConfig'
       auth_config:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPAuthConfig'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPAuthConfig'
       created_at:
         type: string
       deleted_at:
@@ -638,29 +638,29 @@ definitions:
         type: boolean
       env_vars:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPEnvVars'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPEnvVars'
         description: Environment variables for stdio
       headers:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPHeaders'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPHeaders'
       id:
         type: string
       name:
         type: string
       stdio_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPStdioConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPStdioConfig'
         description: Required for stdio transport
       tenant_id:
         type: integer
       transport_type:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPTransportType'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPTransportType'
       updated_at:
         type: string
       url:
         description: 'Optional: required for SSE/HTTP Streamable'
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPStdioConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPStdioConfig:
     properties:
       args:
         description: Command arguments array
@@ -671,7 +671,7 @@ definitions:
         description: 'Command: "uvx" or "npx"'
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.MCPTransportType:
+  github_com_UniverseHappiness_WiseDx_internal_types.MCPTransportType:
     enum:
     - sse
     - http-streamable
@@ -689,7 +689,7 @@ definitions:
     - MCPTransportSSE
     - MCPTransportHTTPStreamable
     - MCPTransportStdio
-  github_com_Tencent_WeKnora_internal_types.ManualKnowledgePayload:
+  github_com_UniverseHappiness_WiseDx_internal_types.ManualKnowledgePayload:
     properties:
       content:
         type: string
@@ -698,7 +698,7 @@ definitions:
       title:
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.MatchType:
+  github_com_UniverseHappiness_WiseDx_internal_types.MatchType:
     enum:
     - 0
     - 1
@@ -735,7 +735,7 @@ definitions:
     - MatchTypeGraph
     - MatchTypeWebSearch
     - MatchTypeDirectLoad
-  github_com_Tencent_WeKnora_internal_types.MentionedItem:
+  github_com_UniverseHappiness_WiseDx_internal_types.MentionedItem:
     properties:
       id:
         type: string
@@ -748,7 +748,7 @@ definitions:
         description: '"kb" for knowledge base, "file" for file'
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.Message:
+  github_com_UniverseHappiness_WiseDx_internal_types.Message:
     properties:
       agent_steps:
         description: |-
@@ -756,7 +756,7 @@ definitions:
           This contains the detailed reasoning process and tool calls made by the agent
           Stored for user history display, but NOT included in LLM context to avoid redundancy
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.AgentStep'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.AgentStep'
         type: array
       content:
         description: Message text content
@@ -777,14 +777,14 @@ definitions:
       knowledge_references:
         description: References to knowledge chunks used in the response
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.SearchResult'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SearchResult'
         type: array
       mentioned_items:
         description: |-
           Mentioned knowledge bases and files (for user messages)
           Stores the @mentioned items when user sends a message
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MentionedItem'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MentionedItem'
         type: array
       request_id:
         description: Request identifier for tracking API requests
@@ -799,21 +799,21 @@ definitions:
         description: Last update timestamp
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.ModelParameters:
+  github_com_UniverseHappiness_WiseDx_internal_types.ModelParameters:
     properties:
       api_key:
         type: string
       base_url:
         type: string
       embedding_parameters:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.EmbeddingParameters'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.EmbeddingParameters'
       interface_type:
         type: string
       parameter_size:
         description: Ollama model parameter size (e.g., "7B", "13B", "70B")
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.ModelSource:
+  github_com_UniverseHappiness_WiseDx_internal_types.ModelSource:
     enum:
     - local
     - remote
@@ -831,7 +831,7 @@ definitions:
     - ModelSourceLocal
     - ModelSourceRemote
     - ModelSourceAliyun
-  github_com_Tencent_WeKnora_internal_types.ModelType:
+  github_com_UniverseHappiness_WiseDx_internal_types.ModelType:
     enum:
     - Embedding
     - Rerank
@@ -853,7 +853,7 @@ definitions:
     - ModelTypeRerank
     - ModelTypeKnowledgeQA
     - ModelTypeVLLM
-  github_com_Tencent_WeKnora_internal_types.QuestionGenerationConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.QuestionGenerationConfig:
     properties:
       enabled:
         type: boolean
@@ -862,7 +862,7 @@ definitions:
           10)'
         type: integer
     type: object
-  github_com_Tencent_WeKnora_internal_types.RegisterRequest:
+  github_com_UniverseHappiness_WiseDx_internal_types.RegisterRequest:
     properties:
       email:
         type: string
@@ -878,29 +878,29 @@ definitions:
     - password
     - username
     type: object
-  github_com_Tencent_WeKnora_internal_types.RegisterResponse:
+  github_com_UniverseHappiness_WiseDx_internal_types.RegisterResponse:
     properties:
       message:
         type: string
       success:
         type: boolean
       tenant:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant'
       user:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.User'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.User'
     type: object
-  github_com_Tencent_WeKnora_internal_types.RetrieverEngineParams:
+  github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineParams:
     properties:
       retriever_engine_type:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverEngineType'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineType'
         description: Retriever engine type
       retriever_type:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverType'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverType'
         description: Retriever type
     type: object
-  github_com_Tencent_WeKnora_internal_types.RetrieverEngineType:
+  github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineType:
     enum:
     - postgres
     - elasticsearch
@@ -914,14 +914,14 @@ definitions:
     - InfinityRetrieverEngineType
     - ElasticFaissRetrieverEngineType
     - QdrantRetrieverEngineType
-  github_com_Tencent_WeKnora_internal_types.RetrieverEngines:
+  github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngines:
     properties:
       engines:
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverEngineParams'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngineParams'
         type: array
     type: object
-  github_com_Tencent_WeKnora_internal_types.RetrieverType:
+  github_com_UniverseHappiness_WiseDx_internal_types.RetrieverType:
     enum:
     - keywords
     - vector
@@ -939,7 +939,7 @@ definitions:
     - KeywordsRetrieverType
     - VectorRetrieverType
     - WebSearchRetrieverType
-  github_com_Tencent_WeKnora_internal_types.SearchParams:
+  github_com_UniverseHappiness_WiseDx_internal_types.SearchParams:
     properties:
       disable_keywords_match:
         type: boolean
@@ -958,7 +958,7 @@ definitions:
       vector_threshold:
         type: number
     type: object
-  github_com_Tencent_WeKnora_internal_types.SearchResult:
+  github_com_UniverseHappiness_WiseDx_internal_types.SearchResult:
     properties:
       chunk_index:
         description: Chunk index
@@ -1001,7 +1001,7 @@ definitions:
         type: string
       match_type:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MatchType'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MatchType'
         description: Match type
       metadata:
         additionalProperties:
@@ -1026,15 +1026,15 @@ definitions:
           type: string
         type: array
     type: object
-  github_com_Tencent_WeKnora_internal_types.Session:
+  github_com_UniverseHappiness_WiseDx_internal_types.Session:
     properties:
       agent_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.SessionAgentConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SessionAgentConfig'
         description: Agent 配置（会话级别，仅存储enabled和knowledge_bases）
       context_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ContextConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ContextConfig'
         description: 上下文管理配置（可选）
       created_at:
         type: string
@@ -1054,7 +1054,7 @@ definitions:
         type: string
       fallback_strategy:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FallbackStrategy'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FallbackStrategy'
         description: 兜底策略
       id:
         description: ID
@@ -1082,7 +1082,7 @@ definitions:
         type: string
       summary_parameters:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.SummaryConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SummaryConfig'
         description: 总结模型参数
       tenant_id:
         description: Tenant ID
@@ -1096,7 +1096,7 @@ definitions:
         description: 向量召回阈值
         type: number
     type: object
-  github_com_Tencent_WeKnora_internal_types.SessionAgentConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.SessionAgentConfig:
     properties:
       agent_mode_enabled:
         description: Whether agent mode is enabled for this session
@@ -1115,7 +1115,7 @@ definitions:
         description: Whether web search is enabled for this session
         type: boolean
     type: object
-  github_com_Tencent_WeKnora_internal_types.StorageConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.StorageConfig:
     properties:
       app_id:
         description: App ID
@@ -1139,7 +1139,7 @@ definitions:
         description: Secret Key
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.SummaryConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.SummaryConfig:
     properties:
       context_template:
         description: Context template
@@ -1178,11 +1178,11 @@ definitions:
         description: TopP
         type: number
     type: object
-  github_com_Tencent_WeKnora_internal_types.Tenant:
+  github_com_UniverseHappiness_WiseDx_internal_types.Tenant:
     properties:
       agent_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.AgentConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.AgentConfig'
         description: Global Agent configuration for this tenant (default for all sessions)
       api_key:
         description: API key
@@ -1192,12 +1192,12 @@ definitions:
         type: string
       context_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ContextConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ContextConfig'
         description: Global Context configuration for this tenant (default for all
           sessions)
       conversation_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ConversationConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ConversationConfig'
         description: Global Conversation configuration for this tenant (default for
           normal mode sessions)
       created_at:
@@ -1218,7 +1218,7 @@ definitions:
         type: string
       retriever_engines:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.RetrieverEngines'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RetrieverEngines'
         description: Retriever engines
       status:
         description: Status
@@ -1235,10 +1235,10 @@ definitions:
         type: string
       web_search_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.WebSearchConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.WebSearchConfig'
         description: Global WebSearch configuration for this tenant
     type: object
-  github_com_Tencent_WeKnora_internal_types.ToolCall:
+  github_com_UniverseHappiness_WiseDx_internal_types.ToolCall:
     properties:
       args:
         additionalProperties: true
@@ -1258,10 +1258,10 @@ definitions:
         type: string
       result:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ToolResult'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ToolResult'
         description: Execution result (contains Output)
     type: object
-  github_com_Tencent_WeKnora_internal_types.ToolResult:
+  github_com_UniverseHappiness_WiseDx_internal_types.ToolResult:
     properties:
       data:
         additionalProperties: true
@@ -1277,7 +1277,7 @@ definitions:
         description: Whether the tool executed successfully
         type: boolean
     type: object
-  github_com_Tencent_WeKnora_internal_types.User:
+  github_com_UniverseHappiness_WiseDx_internal_types.User:
     properties:
       avatar:
         description: Avatar URL of the user
@@ -1303,7 +1303,7 @@ definitions:
         type: boolean
       tenant:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant'
         description: Association relationship, not stored in the database
       tenant_id:
         description: Tenant ID that the user belongs to
@@ -1315,7 +1315,7 @@ definitions:
         description: Username of the user
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.VLMConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.VLMConfig:
     properties:
       api_key:
         description: API Key
@@ -1336,7 +1336,7 @@ definitions:
           Model Name
         type: string
     type: object
-  github_com_Tencent_WeKnora_internal_types.WebSearchConfig:
+  github_com_UniverseHappiness_WiseDx_internal_types.WebSearchConfig:
     properties:
       api_key:
         description: API密钥（如果需要）
@@ -1395,11 +1395,11 @@ definitions:
       name:
         type: string
       parameters:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ModelParameters'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelParameters'
       source:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ModelSource'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelSource'
       type:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ModelType'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelType'
     required:
     - name
     - parameters
@@ -1507,11 +1507,11 @@ definitions:
             type: boolean
           nodes:
             items:
-              $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.GraphNode'
+              $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphNode'
             type: array
           relations:
             items:
-              $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.GraphRelation'
+              $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.GraphRelation'
             type: array
           tags:
             items:
@@ -1529,7 +1529,7 @@ definitions:
             type: integer
         type: object
       vlm_config:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.VLMConfig'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.VLMConfig'
     required:
     - embeddingModelId
     - llmModelId
@@ -1593,7 +1593,7 @@ definitions:
   internal_handler.UpdateKnowledgeBaseRequest:
     properties:
       config:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.KnowledgeBaseConfig'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBaseConfig'
       description:
         type: string
       name:
@@ -1609,11 +1609,11 @@ definitions:
       name:
         type: string
       parameters:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ModelParameters'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelParameters'
       source:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ModelSource'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelSource'
       type:
-        $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ModelType'
+        $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ModelType'
     type: object
   internal_handler_session.CreateKnowledgeQARequest:
     properties:
@@ -1652,7 +1652,7 @@ definitions:
     properties:
       agent_config:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.SessionAgentConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SessionAgentConfig'
         description: 'Agent configuration (optional, session-level config only: enabled
           and knowledge_bases)'
       knowledge_base_id:
@@ -1669,7 +1669,7 @@ definitions:
       messages:
         description: Messages to use as context for title generation
         items:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Message'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Message'
         type: array
     required:
     - messages
@@ -1721,7 +1721,7 @@ definitions:
         type: string
       fallback_strategy:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FallbackStrategy'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FallbackStrategy'
         description: Strategy to use when no relevant knowledge is found
       keyword_threshold:
         description: Threshold for keyword-based retrieval
@@ -1746,7 +1746,7 @@ definitions:
         type: string
       summary_parameters:
         allOf:
-        - $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.SummaryConfig'
+        - $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SummaryConfig'
         description: Parameters for the summary model
       vector_threshold:
         description: Threshold for vector-based retrieval
@@ -1762,7 +1762,7 @@ definitions:
 info:
   contact:
     name: WeKnora Github
-    url: https://github.com/Tencent/WeKnora
+    url: https://github.com/UniverseHappiness/WiseDx
   description: WeKnora 知识库管理系统 API 文档
   termsOfService: http://swagger.io/terms/
   title: WeKnora API
@@ -1796,7 +1796,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 修改密码
@@ -1813,18 +1813,18 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.LoginRequest'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.LoginRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.LoginResponse'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.LoginResponse'
         "401":
           description: 认证失败
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       summary: 用户登录
       tags:
       - 认证
@@ -1844,7 +1844,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 用户登出
@@ -1866,7 +1866,7 @@ paths:
         "401":
           description: 未授权
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 获取当前用户信息
@@ -1898,7 +1898,7 @@ paths:
         "401":
           description: 令牌无效
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       summary: 刷新令牌
       tags:
       - 认证
@@ -1913,22 +1913,22 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.RegisterRequest'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RegisterRequest'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.RegisterResponse'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.RegisterResponse'
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "403":
           description: 注册功能已禁用
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       summary: 用户注册
       tags:
       - 认证
@@ -1948,7 +1948,7 @@ paths:
         "401":
           description: 令牌无效
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 验证令牌
@@ -1976,7 +1976,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2014,7 +2014,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2048,11 +2048,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 分块不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2091,11 +2091,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 分块不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2124,11 +2124,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 分块不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2166,11 +2166,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 分块不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2199,7 +2199,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2228,7 +2228,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2257,7 +2257,7 @@ paths:
         "404":
           description: 任务不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2287,7 +2287,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2333,7 +2333,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2368,7 +2368,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2397,7 +2397,7 @@ paths:
         "404":
           description: 知识库不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2431,11 +2431,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 知识库不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2465,7 +2465,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2495,7 +2495,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2525,7 +2525,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2577,7 +2577,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2606,7 +2606,7 @@ paths:
         "404":
           description: 任务不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2648,7 +2648,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2683,7 +2683,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2716,7 +2716,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2755,7 +2755,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2772,7 +2772,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.KnowledgeBase'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.KnowledgeBase'
       produces:
       - application/json
       responses:
@@ -2784,7 +2784,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2813,7 +2813,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2841,11 +2841,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 知识库不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2879,7 +2879,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2919,7 +2919,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2972,7 +2972,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -2994,7 +2994,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQBatchUpsertPayload'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQBatchUpsertPayload'
       produces:
       - application/json
       responses:
@@ -3006,7 +3006,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3040,11 +3040,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 条目不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3071,7 +3071,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryPayload'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload'
       produces:
       - application/json
       responses:
@@ -3083,7 +3083,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3111,7 +3111,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3134,7 +3134,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryFieldsBatchUpdate'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryFieldsBatchUpdate'
       produces:
       - application/json
       responses:
@@ -3146,7 +3146,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3181,7 +3181,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3204,7 +3204,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQEntryPayload'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQEntryPayload'
       produces:
       - application/json
       responses:
@@ -3216,7 +3216,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3239,7 +3239,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.FAQSearchRequest'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.FAQSearchRequest'
       produces:
       - application/json
       responses:
@@ -3251,7 +3251,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3274,7 +3274,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.SearchParams'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.SearchParams'
       produces:
       - application/json
       responses:
@@ -3286,7 +3286,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3335,7 +3335,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3381,7 +3381,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "409":
           description: 文件重复
           schema:
@@ -3409,7 +3409,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ManualKnowledgePayload'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ManualKnowledgePayload'
       produces:
       - application/json
       responses:
@@ -3421,7 +3421,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3463,7 +3463,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "409":
           description: URL重复
           schema:
@@ -3509,7 +3509,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3550,7 +3550,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3592,7 +3592,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3631,7 +3631,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3661,7 +3661,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3690,7 +3690,7 @@ paths:
         "404":
           description: 任务不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3719,7 +3719,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3747,11 +3747,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 知识不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3773,7 +3773,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Knowledge'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Knowledge'
       produces:
       - application/json
       responses:
@@ -3785,7 +3785,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3813,7 +3813,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3845,7 +3845,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3888,7 +3888,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3911,7 +3911,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.ManualKnowledgePayload'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.ManualKnowledgePayload'
       produces:
       - application/json
       responses:
@@ -3923,7 +3923,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3959,7 +3959,7 @@ paths:
         "400":
           description: Invalid request
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -3989,7 +3989,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4012,7 +4012,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4029,7 +4029,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.MCPService'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.MCPService'
       produces:
       - application/json
       responses:
@@ -4041,7 +4041,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4070,7 +4070,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4098,7 +4098,7 @@ paths:
         "404":
           description: 服务不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4132,7 +4132,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4161,7 +4161,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4190,7 +4190,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4219,7 +4219,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4253,7 +4253,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4291,7 +4291,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4314,7 +4314,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4343,7 +4343,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4372,7 +4372,7 @@ paths:
         "404":
           description: 模型不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4400,7 +4400,7 @@ paths:
         "404":
           description: 模型不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4434,7 +4434,7 @@ paths:
         "404":
           description: 模型不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4466,7 +4466,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4495,7 +4495,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4524,7 +4524,7 @@ paths:
         "404":
           description: 会话不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4552,7 +4552,7 @@ paths:
         "404":
           description: 会话不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4574,7 +4574,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Session'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Session'
       produces:
       - application/json
       responses:
@@ -4586,7 +4586,7 @@ paths:
         "404":
           description: 会话不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4621,7 +4621,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4655,7 +4655,7 @@ paths:
         "404":
           description: 会话或消息不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4690,7 +4690,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4725,7 +4725,7 @@ paths:
         "404":
           description: 会话或消息不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4760,7 +4760,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4790,7 +4790,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4828,7 +4828,7 @@ paths:
         "500":
           description: 服务器错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 获取租户列表
@@ -4844,7 +4844,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant'
       produces:
       - application/json
       responses:
@@ -4856,7 +4856,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 创建租户
@@ -4884,7 +4884,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 删除租户
@@ -4911,11 +4911,11 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
         "404":
           description: 租户不存在
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -4937,7 +4937,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/github_com_Tencent_WeKnora_internal_types.Tenant'
+          $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_types.Tenant'
       produces:
       - application/json
       responses:
@@ -4949,7 +4949,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 更新租户
@@ -4971,7 +4971,7 @@ paths:
         "403":
           description: 权限不足
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       summary: 获取所有租户列表
@@ -4999,7 +4999,7 @@ paths:
         "400":
           description: 不支持的键
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -5033,7 +5033,7 @@ paths:
         "400":
           description: 不支持的键
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -5056,7 +5056,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -5079,7 +5079,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -5102,7 +5102,7 @@ paths:
         "400":
           description: 请求参数错误
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []
@@ -5144,7 +5144,7 @@ paths:
         "403":
           description: 权限不足
           schema:
-            $ref: '#/definitions/github_com_Tencent_WeKnora_internal_errors.AppError'
+            $ref: '#/definitions/github_com_UniverseHappiness_WiseDx_internal_errors.AppError'
       security:
       - Bearer: []
       - ApiKeyAuth: []

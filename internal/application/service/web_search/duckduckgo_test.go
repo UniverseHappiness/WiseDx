@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/config"
+	"github.com/UniverseHappiness/WiseDx/internal/config"
 )
 
 // testRoundTripper rewrites outgoing requests that target DuckDuckGo hosts

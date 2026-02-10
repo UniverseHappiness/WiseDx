@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Tencent/WeKnora/internal/models/provider"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/models/provider"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // Reranker defines the interface for document reranking

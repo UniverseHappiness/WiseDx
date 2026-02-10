@@ -9,13 +9,13 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/dig"
 
-	"github.com/Tencent/WeKnora/internal/config"
-	"github.com/Tencent/WeKnora/internal/handler"
-	"github.com/Tencent/WeKnora/internal/handler/session"
-	"github.com/Tencent/WeKnora/internal/middleware"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/config"
+	"github.com/UniverseHappiness/WiseDx/internal/handler"
+	"github.com/UniverseHappiness/WiseDx/internal/handler/session"
+	"github.com/UniverseHappiness/WiseDx/internal/middleware"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 
-	_ "github.com/Tencent/WeKnora/docs" // swagger docs
+	_ "github.com/UniverseHappiness/WiseDx/docs" // swagger docs
 )
 
 // RouterParams 路由参数

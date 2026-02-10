@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // memoryStreamData holds stream events in memory

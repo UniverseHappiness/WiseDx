@@ -3,7 +3,7 @@ package llmcontext
 import (
 	"context"
 
-	"github.com/Tencent/WeKnora/internal/models/chat"
+	"github.com/UniverseHappiness/WiseDx/internal/models/chat"
 )
 
 // ContextStorage defines the interface for storing and retrieving conversation context

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Tencent/WeKnora/internal/models/provider"
-	"github.com/Tencent/WeKnora/internal/models/utils/ollama"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/models/provider"
+	"github.com/UniverseHappiness/WiseDx/internal/models/utils/ollama"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // Embedder defines the interface for text vectorization

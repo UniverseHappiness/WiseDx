@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/Tencent/WeKnora/blob/main/LICENSE">
+    <a href="https://github.com/UniverseHappiness/WiseDx/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-MIT-ffffff?labelColor=d4eaf7&color=2e6cc4" alt="License">
     </a>
     <a href="./CHANGELOG.md">
@@ -70,8 +70,8 @@
 
 ```bash
 # 克隆代码仓库
-git clone https://github.com/Tencent/WeKnora.git
-cd WeKnora
+git clone https://github.com/UniverseHappiness/WiseDx.git
+cd WiseDx
 
 # 配置环境变量
 cp .env.example .env

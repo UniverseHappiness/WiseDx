@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Tencent/WeKnora/internal/logger"
+	"github.com/UniverseHappiness/WiseDx/internal/logger"
 )
 
 // AliyunReranker implements a reranking system based on Aliyun DashScope models

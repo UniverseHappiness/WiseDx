@@ -160,19 +160,19 @@ const handleSettings = () => {
 // 打开 API 文档
 const openApiDoc = () => {
   menuVisible.value = false
-  window.open('https://github.com/Tencent/WeKnora/blob/main/docs/API.md', '_blank')
+  window.open('https://github.com/UniverseHappiness/WiseDx/blob/main/docs/API.md', '_blank')
 }
 
 // 打开官网
 const openWebsite = () => {
   menuVisible.value = false
-  window.open('https://weknora.weixin.qq.com/', '_blank')
+  window.open('https://github.com/UniverseHappiness/WiseDx/wiki', '_blank')
 }
 
 // 打开 GitHub
 const openGithub = () => {
   menuVisible.value = false
-  window.open('https://github.com/Tencent/WeKnora', '_blank')
+  window.open('https://github.com/UniverseHappiness/WiseDx', '_blank')
 }
 
 // 注销

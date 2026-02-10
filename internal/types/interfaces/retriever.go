@@ -3,8 +3,8 @@ package interfaces
 import (
 	"context"
 
-	"github.com/Tencent/WeKnora/internal/models/embedding"
-	"github.com/Tencent/WeKnora/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/models/embedding"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
 )
 
 // RetrieveEngine defines the retrieve engine interface

@@ -5,8 +5,8 @@ import (
 	"log"
 	"sync"
 
-	"github.com/Tencent/WeKnora/internal/types"
-	"github.com/Tencent/WeKnora/internal/types/interfaces"
+	"github.com/UniverseHappiness/WiseDx/internal/types"
+	"github.com/UniverseHappiness/WiseDx/internal/types/interfaces"
 )
 
 // ResourceCleaner is a resource cleaner that can be used to clean up resources
