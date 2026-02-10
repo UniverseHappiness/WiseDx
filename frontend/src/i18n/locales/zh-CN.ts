@@ -1311,12 +1311,12 @@ export default {
     fullApiAccess: "完整 API 访问",
     knowledgeBaseManagement: "知识库管理",
     carousel: {
-      agenticRagTitle: "Agentic RAG",
-      agenticRagDesc: "问题改写 + 智能召回 + 重排序",
-      hybridSearchTitle: "混合检索策略",
-      hybridSearchDesc: "BM25 + 向量 + 知识图谱",
-      smartDocRetrievalTitle: "智能文档检索",
-      smartDocRetrievalDesc: "PDF/Word/图片多格式解析",
+      agenticRagTitle: "医学推理 Agent",
+      agenticRagDesc: "临床问题拆解 + 多源证据检索 + 循证重排",
+      hybridSearchTitle: "医学混合检索",
+      hybridSearchDesc: "医学词表 + 临床语义 + 知识图谱",
+      smartDocRetrievalTitle: "医学文档理解",
+      smartDocRetrievalDesc: "指南/病例/影像报告多模态解析",
     },
   },
   time: {
