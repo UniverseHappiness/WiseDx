@@ -25,6 +25,10 @@
   </h4>
 </p>
 
+<p align="center">
+  <img src="docs/images/main_page.png" alt="WiseDx Main Page" width="100%"/>
+</p>
+
 # 💡 WiseDx - Professional Medical RAG Q&A and Retrieval Framework
 
 ## 📌 Overview

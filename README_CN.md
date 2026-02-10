@@ -25,6 +25,10 @@
   </h4>
 </p>
 
+<p align="center">
+  <img src="docs/images/main_page.png" alt="WiseDx Main Page" width="100%"/>
+</p>
+
 # 💡 WiseDx - 专业医学 RAG 智能问答与检索框架
 
 ## 📌 项目介绍
