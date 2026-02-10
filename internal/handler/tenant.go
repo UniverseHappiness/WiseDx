@@ -550,6 +550,8 @@ func (h *TenantHandler) updateTenantAgentConfigInternal(c *gin.Context) {
 		UseCustomSystemPrompt: useCustomPrompt,
 	}
 
+	tenant.AgentConfig = agentConfig
+
 	_, err := h.service.UpdateTenant(ctx, tenant)
 	if err != nil {
 		if appErr, ok := errors.IsAppError(err); ok {
@@ -790,8 +792,12 @@ func (h *TenantHandler) GetTenantConversationConfig(c *gin.Context) {
 
 	// If tenant has no conversation config, return defaults from config.yaml
 	var response *types.ConversationConfig
-	logger.Info(ctx, "Tenant has no conversation config, returning defaults")
-	response = h.buildDefaultConversationConfig()
+	if tenant.ConversationConfig == nil {
+		logger.Info(ctx, "Tenant has no conversation config, returning defaults")
+		response = h.buildDefaultConversationConfig()
+	} else {
+		response = tenant.ConversationConfig
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 		"data":    response,

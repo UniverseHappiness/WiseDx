@@ -158,11 +158,32 @@ func (s *customAgentService) mergeBuiltinAgentConfig(defaultAgent, dbAgent *type
 		merged.Config.ModelID = defaultAgent.Config.ModelID
 	}
 
+	// ReRank model: use user's value if set
+	if dbAgent.Config.RerankModelID != "" {
+		merged.Config.RerankModelID = dbAgent.Config.RerankModelID
+	} else {
+		merged.Config.RerankModelID = defaultAgent.Config.RerankModelID
+	}
+
+	// Context template: use user's value if set (for normal mode)
+	if dbAgent.Config.ContextTemplate != "" {
+		merged.Config.ContextTemplate = dbAgent.Config.ContextTemplate
+	} else {
+		merged.Config.ContextTemplate = defaultAgent.Config.ContextTemplate
+	}
+
 	// Temperature: use user's value if explicitly set (check if different from 0)
 	if dbAgent.Config.Temperature != 0 {
 		merged.Config.Temperature = dbAgent.Config.Temperature
 	} else {
 		merged.Config.Temperature = defaultAgent.Config.Temperature
+	}
+
+	// Thinking mode: use user's value
+	if dbAgent.Config.Thinking != nil {
+		merged.Config.Thinking = dbAgent.Config.Thinking
+	} else {
+		merged.Config.Thinking = defaultAgent.Config.Thinking
 	}
 
 	// Other configurable fields from user
@@ -216,7 +237,58 @@ func (s *customAgentService) mergeBuiltinAgentConfig(defaultAgent, dbAgent *type
 	merged.Config.MultiTurnEnabled = dbAgent.Config.MultiTurnEnabled
 	merged.Config.HistoryTurns = dbAgent.Config.HistoryTurns
 	merged.Config.KBSelectionMode = dbAgent.Config.KBSelectionMode
+	merged.Config.KnowledgeBases = dbAgent.Config.KnowledgeBases
 	merged.Config.RetrieveKBOnlyWhenMentioned = dbAgent.Config.RetrieveKBOnlyWhenMentioned
+
+	// MCP configuration
+	if dbAgent.Config.MCPSelectionMode != "" {
+		merged.Config.MCPSelectionMode = dbAgent.Config.MCPSelectionMode
+	} else {
+		merged.Config.MCPSelectionMode = defaultAgent.Config.MCPSelectionMode
+	}
+	merged.Config.MCPServices = dbAgent.Config.MCPServices
+
+	// FAQ strategy settings
+	merged.Config.FAQPriorityEnabled = dbAgent.Config.FAQPriorityEnabled
+	if dbAgent.Config.FAQDirectAnswerThreshold > 0 {
+		merged.Config.FAQDirectAnswerThreshold = dbAgent.Config.FAQDirectAnswerThreshold
+	} else {
+		merged.Config.FAQDirectAnswerThreshold = defaultAgent.Config.FAQDirectAnswerThreshold
+	}
+	if dbAgent.Config.FAQScoreBoost > 0 {
+		merged.Config.FAQScoreBoost = dbAgent.Config.FAQScoreBoost
+	} else {
+		merged.Config.FAQScoreBoost = defaultAgent.Config.FAQScoreBoost
+	}
+
+	// Advanced settings
+	merged.Config.EnableQueryExpansion = dbAgent.Config.EnableQueryExpansion
+	merged.Config.EnableRewrite = dbAgent.Config.EnableRewrite
+	if dbAgent.Config.RewritePromptSystem != "" {
+		merged.Config.RewritePromptSystem = dbAgent.Config.RewritePromptSystem
+	} else {
+		merged.Config.RewritePromptSystem = defaultAgent.Config.RewritePromptSystem
+	}
+	if dbAgent.Config.RewritePromptUser != "" {
+		merged.Config.RewritePromptUser = dbAgent.Config.RewritePromptUser
+	} else {
+		merged.Config.RewritePromptUser = defaultAgent.Config.RewritePromptUser
+	}
+	if dbAgent.Config.FallbackStrategy != "" {
+		merged.Config.FallbackStrategy = dbAgent.Config.FallbackStrategy
+	} else {
+		merged.Config.FallbackStrategy = defaultAgent.Config.FallbackStrategy
+	}
+	if dbAgent.Config.FallbackResponse != "" {
+		merged.Config.FallbackResponse = dbAgent.Config.FallbackResponse
+	} else {
+		merged.Config.FallbackResponse = defaultAgent.Config.FallbackResponse
+	}
+	if dbAgent.Config.FallbackPrompt != "" {
+		merged.Config.FallbackPrompt = dbAgent.Config.FallbackPrompt
+	} else {
+		merged.Config.FallbackPrompt = defaultAgent.Config.FallbackPrompt
+	}
 
 	// Set defaults if needed
 	if merged.Config.KBSelectionMode == "" {

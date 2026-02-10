@@ -1,7 +1,7 @@
 <template>
     <div class="aside_box">
         <div class="logo_box" @click="router.push('/platform/knowledge-bases')" style="cursor: pointer;">
-            <img class="logo" src="@/assets/img/weknora.png" alt="">
+            <img class="logo" src="@/assets/img/wisedx.png" alt="">
         </div>
         
         <!-- 租户选择器：仅在用户可切换租户时显示 -->

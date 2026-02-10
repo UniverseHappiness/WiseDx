@@ -1,102 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-  <!-- Background - Same green gradient -->
+  <!-- Background -->
   <defs>
-    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#F0FDF4;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#DCFCE7;stop-opacity:1" />
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFBEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FEF3C7;stop-opacity:1" />
     </linearGradient>
+    <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#D97706"/>
+    </marker>
+    <marker id="arrowBrown" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#92400E"/>
+    </marker>
   </defs>
-  <rect width="800" height="600" fill="url(#grad3)"/>
-  
-  <!-- Decorative circles -->
-  <circle cx="110" cy="85" r="105" fill="#10B981" opacity="0.04"/>
-  <circle cx="690" cy="515" r="125" fill="#10B981" opacity="0.04"/>
-  
+  <rect width="800" height="600" fill="url(#grad4)"/>
+
   <!-- Title -->
-  <text x="400" y="70" font-family="PingFang SC, sans-serif" font-size="36" font-weight="700" fill="#065F46" text-anchor="middle">Agentic RAG</text>
-  <text x="400" y="105" font-family="PingFang SC, sans-serif" font-size="16" fill="#059669" text-anchor="middle">基于 ReAct 范式的智能检索代理</text>
-  
-  <!-- Query Input -->
-  <g transform="translate(300, 140)">
-    <rect width="200" height="50" rx="10" fill="white" stroke="#10B981" stroke-width="2" filter="drop-shadow(0 4px 16px rgba(16, 185, 129, 0.15))"/>
-    <text x="100" y="32" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#065F46" text-anchor="middle">用户问题</text>
+  <text x="400" y="60" font-family="PingFang SC, sans-serif" font-size="32" font-weight="700" fill="#92400E" text-anchor="middle">医学智能 Reasoning RAG 流程</text>
+
+  <!-- Step 1: Input -->
+  <g transform="translate(50, 100)">
+    <rect width="180" height="80" rx="10" fill="white" stroke="#F59E0B" stroke-width="2"/>
+    <text x="90" y="35" font-family="PingFang SC, sans-serif" font-size="16" font-weight="700" fill="#92400E" text-anchor="middle">临床问题输入</text>
+    <text x="90" y="60" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280" text-anchor="middle">"该患者症状是否符合..."</text>
   </g>
-  
-  <!-- Arrow down -->
-  <path d="M400 200 L400 225" stroke="#059669" stroke-width="3" marker-end="url(#arrowGreen)"/>
-  
-  <!-- ReAct Loop Container -->
-  <g transform="translate(120, 235)">
-    <rect width="560" height="240" rx="16" fill="white" stroke="#8B5CF6" stroke-width="3" stroke-dasharray="10,5" filter="drop-shadow(0 4px 20px rgba(139, 92, 246, 0.15))"/>
-    <text x="280" y="30" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#5B21B6" text-anchor="middle">ReAct 循环</text>
-    
-    <!-- Reasoning -->
-    <g transform="translate(40, 55)">
-      <rect width="220" height="75" rx="10" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2"/>
-      <text x="110" y="25" font-family="PingFang SC, sans-serif" font-size="17" font-weight="700" fill="#5B21B6" text-anchor="middle">① Reasoning</text>
-      <text x="110" y="45" font-family="PingFang SC, sans-serif" font-size="13" fill="#6B21A8" text-anchor="middle">分析问题</text>
-      <text x="110" y="63" font-family="PingFang SC, sans-serif" font-size="13" fill="#6B21A8" text-anchor="middle">规划行动策略</text>
+
+  <!-- Arrow -->
+  <path d="M230 140 L280 140" stroke="#F59E0B" stroke-width="3" marker-end="url(#arrowAmber)"/>
+
+  <!-- Step 2: Reasoning Loop -->
+  <g transform="translate(300, 100)">
+    <rect width="450" height="360" rx="15" fill="white" stroke="#D97706" stroke-width="2.5" stroke-dasharray="8,4" fill-opacity="0.6"/>
+    <text x="225" y="30" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#92400E" text-anchor="middle">Agentic 医学推理引擎</text>
+
+    <!-- Reasoning Step -->
+    <g transform="translate(30, 60)">
+      <rect width="180" height="120" rx="10" fill="#FEF3C7" filter="drop-shadow(0 4px 12px rgba(217, 119, 6, 0.1))"/>
+      <text x="90" y="35" font-family="PingFang SC, sans-serif" font-size="15" font-weight="700" fill="#92400E" text-anchor="middle">① 推理与规划</text>
+      <text x="20" y="65" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F">Thought: 需要查阅肺癌</text>
+      <text x="20" y="85" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F">最新的 TNM 分期标准...</text>
     </g>
-    
-    <!-- Arrow to Tools -->
-    <path d="M270 92 L290 92" stroke="#8B5CF6" stroke-width="2.5" marker-end="url(#arrowPurple)"/>
-    
-    <!-- Acting with Tools -->
-    <g transform="translate(300, 55)">
-      <rect width="220" height="160" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
-      <text x="110" y="25" font-family="PingFang SC, sans-serif" font-size="17" font-weight="700" fill="#92400E" text-anchor="middle">② Acting (Tools)</text>
-      
-      <!-- Tool 1 -->
-      <g transform="translate(20, 38)">
-        <rect width="180" height="28" rx="6" fill="white" stroke="#F59E0B" stroke-width="1.5"/>
-        <circle cx="14" cy="14" r="6" fill="#FBBF24"/>
-        <text x="95" y="18" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F" text-anchor="middle">🔍 向量检索</text>
+
+    <!-- Arrow -->
+    <path d="M210 120 L240 120" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowAmber)"/>
+
+    <!-- Tool Call Step -->
+    <g transform="translate(240, 60)">
+      <rect width="180" height="180" rx="10" fill="#FDF6E3" stroke="#F59E0B" stroke-width="1.5"/>
+      <text x="90" y="30" font-family="PingFang SC, sans-serif" font-size="15" font-weight="700" fill="#92400E" text-anchor="middle">② 医学工具调用</text>
+
+      <!-- Tool List -->
+      <g transform="translate(15, 50)">
+        <rect width="150" height="25" rx="4" fill="white" stroke="#F59E0B" stroke-width="1"/>
+        <text x="75" y="17" font-family="PingFang SC, sans-serif" font-size="11" fill="#78350F" text-anchor="middle">🔍 医学文献检索</text>
       </g>
-      
-      <!-- Tool 2 -->
-      <g transform="translate(20, 73)">
-        <rect width="180" height="28" rx="6" fill="white" stroke="#F59E0B" stroke-width="1.5"/>
-        <circle cx="14" cy="14" r="6" fill="#FBBF24"/>
-        <text x="95" y="18" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F" text-anchor="middle">🔗 知识图谱</text>
+      <g transform="translate(15, 85)">
+        <rect width="150" height="25" rx="4" fill="white" stroke="#F59E0B" stroke-width="1"/>
+        <text x="75" y="17" font-family="PingFang SC, sans-serif" font-size="11" fill="#78350F" text-anchor="middle">📊 临床指南查询</text>
       </g>
-      
-      <!-- Tool 3 -->
-      <g transform="translate(20, 108)">
-        <rect width="180" height="28" rx="6" fill="white" stroke="#F59E0B" stroke-width="1.5"/>
-        <circle cx="14" cy="14" r="6" fill="#FBBF24"/>
-        <text x="95" y="18" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F" text-anchor="middle">📊 BM25检索</text>
+      <g transform="translate(15, 120)">
+        <rect width="150" height="25" rx="4" fill="white" stroke="#F59E0B" stroke-width="1"/>
+        <text x="75" y="17" font-family="PingFang SC, sans-serif" font-size="11" fill="#78350F" text-anchor="middle">🧬 知识图谱关联</text>
       </g>
     </g>
-    
-    <!-- Arrow back to Reasoning (loop) -->
-    <path d="M300 160 Q 280 195 150 160" stroke="#8B5CF6" stroke-width="2.5" stroke-dasharray="5,3" fill="none" marker-end="url(#arrowPurple)"/>
-    <text x="220" y="200" font-family="PingFang SC, sans-serif" font-size="12" fill="#7C3AED" text-anchor="middle">迭代优化</text>
+
+    <!-- Loop Back -->
+    <path d="M330 240 Q 330 300 120 180" stroke="#92400E" stroke-width="2" stroke-dasharray="5,3" fill="none" marker-end="url(#arrowBrown)"/>
+    <text x="225" y="300" font-family="PingFang SC, sans-serif" font-size="12" fill="#92400E" text-anchor="middle">观察反馈与动态修正</text>
   </g>
-  
-  <!-- Arrow down to result -->
-  <path d="M400 485 L400 505" stroke="#059669" stroke-width="3" marker-end="url(#arrowGreen)"/>
-  
-  <!-- Final Answer -->
-  <g transform="translate(250, 515)">
-    <rect width="300" height="50" rx="10" fill="#10B981" filter="drop-shadow(0 4px 16px rgba(16, 185, 129, 0.25))"/>
-    <text x="150" y="32" font-family="PingFang SC, sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle">③ 生成增强答案</text>
+
+  <!-- Result -->
+  <g transform="translate(300, 500)">
+    <rect width="450" height="70" rx="12" fill="#F59E0B" filter="drop-shadow(0 4px 15px rgba(245, 158, 11, 0.3))"/>
+    <text x="225" y="40" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">③ 生成循证医学建议</text>
   </g>
-  
-  <!-- Side annotation -->
-  <g transform="translate(50, 320)">
-    <text x="0" y="0" font-family="PingFang SC, sans-serif" font-size="13" font-weight="600" fill="#059669">特点：</text>
-    <text x="0" y="22" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280">• 自主推理</text>
-    <text x="0" y="42" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280">• 工具调用</text>
-    <text x="0" y="62" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280">• 动态迭代</text>
+
+  <!-- Annotation -->
+  <g transform="translate(50, 300)">
+    <text x="0" y="0" font-family="PingFang SC, sans-serif" font-size="14" font-weight="700" fill="#92400E">系统特点：</text>
+    <text x="0" y="25" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280">• 临床逻辑推理</text>
+    <text x="0" y="45" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280">• 多源证据融合</text>
+    <text x="0" y="65" font-family="PingFang SC, sans-serif" font-size="12" fill="#6B7280">• 结论可溯源性</text>
   </g>
-  
-  <!-- Arrow markers -->
-  <defs>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#059669"/>
-    </marker>
-    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#8B5CF6"/>
-    </marker>
-  </defs>
 </svg>

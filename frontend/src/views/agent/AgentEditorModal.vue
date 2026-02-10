@@ -1288,8 +1288,13 @@ watch(() => props.visible, async (val) => {
         agentData.config = JSON.parse(JSON.stringify(defaultFormData.config));
       }
       
-      // 补全可能缺失的字段
+      // 补全可能缺失的字段（保留后端返回的关键配置）
+      const backendKbMode = agentData.config.kb_selection_mode;
+      const backendMcpMode = agentData.config.mcp_selection_mode;
       agentData.config = { ...defaultFormData.config, ...agentData.config };
+      // 恢复后端返回的选择模式（避免被默认值覆盖）
+      if (backendKbMode) agentData.config.kb_selection_mode = backendKbMode;
+      if (backendMcpMode) agentData.config.mcp_selection_mode = backendMcpMode;
       
       // 确保数组字段存在
       if (!agentData.config.suggested_prompts) agentData.config.suggested_prompts = [];
@@ -1342,27 +1347,35 @@ watch(() => props.visible, async (val) => {
 
 // 初始化知识库选择模式
 const initKbSelectionMode = () => {
-  if (formData.value.config.kb_selection_mode) {
-    // 如果有保存的模式，直接使用
-    kbSelectionMode.value = formData.value.config.kb_selection_mode;
+  const savedMode = formData.value.config.kb_selection_mode;
+  if (savedMode && ['all', 'selected', 'none'].includes(savedMode)) {
+    // 如果有有效的保存模式，直接使用
+    kbSelectionMode.value = savedMode as 'all' | 'selected' | 'none';
   } else if (formData.value.config.knowledge_bases?.length > 0) {
-    // 有指定知识库
+    // 有指定知识库，设置为 selected 模式
     kbSelectionMode.value = 'selected';
+    formData.value.config.kb_selection_mode = 'selected';
   } else {
+    // 默认为不使用知识库
     kbSelectionMode.value = 'none';
+    formData.value.config.kb_selection_mode = 'none';
   }
 };
 
 // 初始化 MCP 选择模式
 const initMcpSelectionMode = () => {
-  if (formData.value.config.mcp_selection_mode) {
-    // 如果有保存的模式，直接使用
-    mcpSelectionMode.value = formData.value.config.mcp_selection_mode;
+  const savedMode = formData.value.config.mcp_selection_mode;
+  if (savedMode && ['all', 'selected', 'none'].includes(savedMode)) {
+    // 如果有有效的保存模式，直接使用
+    mcpSelectionMode.value = savedMode as 'all' | 'selected' | 'none';
   } else if (formData.value.config.mcp_services?.length > 0) {
-    // 有指定 MCP 服务
+    // 有指定 MCP 服务，设置为 selected 模式
     mcpSelectionMode.value = 'selected';
+    formData.value.config.mcp_selection_mode = 'selected';
   } else {
+    // 默认为不使用 MCP
     mcpSelectionMode.value = 'none';
+    formData.value.config.mcp_selection_mode = 'none';
   }
 };
 
