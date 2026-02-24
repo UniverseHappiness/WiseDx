@@ -59,9 +59,10 @@ func TracingMiddleware() gin.HandlerFunc {
 		// Record request body (for POST/PUT/PATCH requests)
 		if c.Request.Method == "POST" || c.Request.Method == "PUT" || c.Request.Method == "PATCH" {
 			if c.Request.Body != nil {
+				// 把整个流读完，游标到 EOF 了
 				bodyBytes, _ := io.ReadAll(c.Request.Body)
 				span.SetAttributes(attribute.String("http.request.body", string(bodyBytes)))
-				// Reset request body because ReadAll consumes the Reader content
+				// Reset request body because ReadAll consumes the Reader content  重新用读出来的字节构造一个新的 Reader，游标在开头
 				c.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
 			}
 		}
