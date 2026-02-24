@@ -49,21 +49,22 @@
         
         <!-- Patient Info Sidebar -->
         <PatientInfoSidebar
-            v-if="isMedicalAgent"
+            v-if="isMedicalAgent && (hasCollectedData || hasProgressData)"
             :collected-data="aggregatedCollectedData"
-            :visible="showPatientSidebar && hasCollectedData"
+            :plan-steps="latestPlanSteps"
+            :visible="showPatientSidebar"
             @close="showPatientSidebar = false"
         />
         
         <!-- Sidebar Toggle Button -->
         <div 
-            v-if="isMedicalAgent && hasCollectedData" 
+            v-if="isMedicalAgent && (hasCollectedData || hasProgressData)" 
             class="sidebar-toggle"
             :class="{ 'sidebar-open': showPatientSidebar }"
             @click="showPatientSidebar = !showPatientSidebar"
         >
             <t-icon :name="showPatientSidebar ? 'chevron-right' : 'chevron-left'" />
-            <span v-if="!showPatientSidebar">{{ $t('agent.patientInfo') }}</span>
+            <span v-if="!showPatientSidebar">{{ $t('agent.consultationInfo') }}</span>
         </div>
     </div>
     <KnowledgeBaseEditorModal 
@@ -143,37 +144,117 @@ const handleKBEditorSuccess = (kbId) => {
 const showPatientSidebar = ref(true);
 
 // Check if current session is medical consultant agent
+// Since agent_id is not stored in session, we check if there's medical consultation data
 const isMedicalAgent = computed(() => {
-    return sessionData.value?.agent_id === 'builtin-medical-consultant';
+    // 如果有步骤数据且步骤ID包含医疗问诊相关的特征（step1-step6），则认为是医疗问诊
+    if (latestPlanSteps.value.length > 0) {
+        const hasMedicalSteps = latestPlanSteps.value.some(
+            step => /^step[1-6]$/.test(step.id)
+        );
+        if (hasMedicalSteps) {
+            console.log('[Sidebar] Detected medical agent by plan steps');
+            return true;
+        }
+    }
+    
+    // 或者如果有收集的医疗相关数据（姓名、年龄、性别等），也认为是医疗问诊
+    if (Object.keys(aggregatedCollectedData.value).length > 0) {
+        const medicalFields = ['姓名', '年龄', '性别', '主诉', '现病史', '既往史'];
+        const hasAnyMedicalField = Object.keys(aggregatedCollectedData.value).some(
+            key => medicalFields.includes(key)
+        );
+        if (hasAnyMedicalField) {
+            console.log('[Sidebar] Detected medical agent by collected data fields');
+            return true;
+        }
+    }
+    
+    // 最后尝试通过 sessionData.agent_id 判断（如果未来添加了这个字段）
+    const agentId = sessionData.value?.agent_id;
+    if (agentId === 'builtin-medical-consultant') {
+        console.log('[Sidebar] Detected medical agent by agent_id');
+        return true;
+    }
+    
+    console.log('[Sidebar] Not a medical agent session');
+    return false;
 });
 
 // Aggregate collected_data from all messages
 const aggregatedCollectedData = computed(() => {
     const result = {};
     
+    console.log('[Sidebar] Scanning messages for collected_data, total messages:', messagesList.length);
+    
     for (const msg of messagesList) {
-        if (msg.role === 'assistant' && msg.agentEventStream) {
+        if (msg && msg.role === 'assistant' && Array.isArray(msg.agentEventStream)) {
+            console.log('[Sidebar] Checking message, agentEventStream length:', msg.agentEventStream.length);
+            
             // Find all todo_write events with collected_data
             const todoWriteEvents = msg.agentEventStream.filter(
-                e => e.type === 'tool_call' && e.tool_name === 'todo_write' && e.tool_data?.collected_data
+                e => e && e.type === 'tool_call' && e.tool_name === 'todo_write'
             );
+            
+            console.log('[Sidebar] Found todo_write events:', todoWriteEvents.length);
             
             // Merge collected_data from each event
             for (const event of todoWriteEvents) {
-                const data = event.tool_data.collected_data;
-                if (data && typeof data === 'object') {
-                    Object.assign(result, data);
+                console.log('[Sidebar] todo_write event tool_data:', event.tool_data);
+                
+                const data = event.tool_data?.collected_data;
+                if (data) {
+                    console.log('[Sidebar] Found collected_data:', data);
+                    if (typeof data === 'object' && !Array.isArray(data)) {
+                        Object.assign(result, data);
+                    }
                 }
             }
         }
     }
     
+    console.log('[Sidebar] Final aggregatedCollectedData:', result);
     return result;
 });
 
-// Check if there is any collected data
+// Get latest plan steps from todo_write events
+const latestPlanSteps = computed(() => {
+    // Iterate through messages in reverse to find the latest plan
+    for (let i = messagesList.length - 1; i >= 0; i--) {
+        const msg = messagesList[i];
+        if (msg && msg.role === 'assistant' && Array.isArray(msg.agentEventStream)) {
+            // Find the most recent todo_write event with steps
+            const todoWriteEvents = msg.agentEventStream.filter(
+                e => e && e.type === 'tool_call' && e.tool_name === 'todo_write' && e.tool_data?.steps
+            );
+            
+            if (todoWriteEvents.length > 0) {
+                // Return the steps from the last todo_write event
+                const lastEvent = todoWriteEvents[todoWriteEvents.length - 1];
+                const steps = lastEvent.tool_data?.steps;
+                // Ensure steps is an array
+                if (Array.isArray(steps) && steps.length > 0) {
+                    console.log('[Sidebar] Found plan steps:', steps.length, steps);
+                    return steps;
+                }
+            }
+        }
+    }
+    
+    console.log('[Sidebar] No plan steps found');
+    return [];
+});
+
+// Check if there is any collected data or progress
 const hasCollectedData = computed(() => {
-    return Object.keys(aggregatedCollectedData.value).length > 0;
+    const hasData = Object.keys(aggregatedCollectedData.value).length > 0;
+    console.log('[Sidebar] hasCollectedData:', hasData, 'keys:', Object.keys(aggregatedCollectedData.value));
+    return hasData;
+});
+
+const hasProgressData = computed(() => {
+    const hasProgress = latestPlanSteps.value.length > 0;
+    console.log('[Sidebar] hasProgressData:', hasProgress, 'steps:', latestPlanSteps.value.length);
+    return hasProgress;
 });
 
 const getUserQuery = (index) => {
@@ -1225,12 +1306,17 @@ onMounted(async () => {
     
     // Load session data to get agent_config
     try {
+        console.log('[Session] Loading session data for:', session_id.value);
         const sessionRes = await getSession(session_id.value);
+        console.log('[Session] Session API response:', sessionRes);
         if (sessionRes?.data) {
             sessionData.value = sessionRes.data;
+            console.log('[Session] Session data loaded:', sessionData.value);
+        } else {
+            console.warn('[Session] No data in response');
         }
     } catch (error) {
-        console.error('Failed to load session data:', error);
+        console.error('[Session] Failed to load session data:', error);
     }
     
     checkmenuTitle(session_id.value)
@@ -1273,7 +1359,7 @@ onBeforeRouteUpdate((to, from, next) => {
     
     &.sidebar-open {
         .chat {
-            max-width: calc(100vw - 260px - 280px);
+            max-width: calc(100vw - 260px - 320px);
         }
     }
 }
@@ -1440,7 +1526,7 @@ onBeforeRouteUpdate((to, from, next) => {
     }
     
     &.sidebar-open {
-        right: 280px;
+        right: 320px;
         padding: 8px;
     }
     
