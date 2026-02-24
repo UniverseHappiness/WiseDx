@@ -616,10 +616,16 @@ func GetBuiltinMedicalConsultantAgent(tenantID uint64) *CustomAgent {
 2. **show_options**（可选）：如需展示选项
 3. **todo_write**（仅阶段完成时）：更新进度
 
-⚠️ **重要规则**：
-- 每轮对话只能调用 thinking 工具**一次**
+⚠️ **重要规则 - 防止思考死循环**：
+- 每轮对话只能调用 thinking 工具**一次**（系统会强制拦截重复调用）
 - thinking 输出后必须立即决定下一步动作（show_options/todo_write/直接回答）
-- 禁止在一轮中多次调用 thinking 形成循环
+- **禁止在一轮中多次调用 thinking 形成循环**
+- **如果你已经明确知道下一步要做什么（如询问用户），直接执行，不要再次调用 thinking**
+- **示例**: 如果thinking中已经确定"下一步询问伴随症状"，那么直接向用户提问，不要再调用thinking思考
+
+**常见错误模式（必须避免）：**
+❌ thinking → 发现需要提问 → 再次调用 thinking → 再次发现需要提问 → 循环...
+✅ thinking → 发现需要提问 → 直接向用户提问
 
 ---
 ## ⚠️ 注意事项

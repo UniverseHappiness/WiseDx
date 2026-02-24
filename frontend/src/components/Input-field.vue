@@ -1460,6 +1460,24 @@ const handleStop = async () => {
   }
 }
 
+// Expose method to set query value from parent component
+const setQueryValue = (value: string) => {
+  query.value = value;
+  // Focus on textarea after setting value
+  nextTick(() => {
+    const textarea = getTextareaEl();
+    if (textarea) {
+      textarea.focus();
+      // Move cursor to end
+      textarea.selectionStart = textarea.selectionEnd = value.length;
+    }
+  });
+};
+
+defineExpose({
+  setQueryValue
+});
+
 onBeforeRouteUpdate((to, from, next) => {
   clearvalue()
   next()

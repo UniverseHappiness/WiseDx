@@ -267,9 +267,28 @@ func (e *AgentEngine) executeLoop(
 				len(response.ToolCalls),
 			)
 
+			// Track tool calls in this round to prevent thinking loop
+			toolCallsInRound := make(map[string]int)
+
 			for i, tc := range response.ToolCalls {
 				logger.Infof(ctx, "[Agent][Round-%d][Tool-%d/%d] Tool: %s, ID: %s",
 					state.CurrentRound+1, i+1, len(response.ToolCalls), tc.Function.Name, tc.ID)
+
+				// Check if thinking tool is called more than once in this round
+				if tc.Function.Name == "thinking" {
+					toolCallsInRound["thinking"]++
+					if toolCallsInRound["thinking"] > 1 {
+						logger.Warnf(ctx, "[Agent][Round-%d][Tool-%d/%d] WARNING: thinking tool called %d times in this round (should be called only once). Skipping duplicate call to prevent loop.",
+							state.CurrentRound+1, i+1, len(response.ToolCalls), toolCallsInRound["thinking"])
+						common.PipelineWarn(ctx, "Agent", "thinking_duplicate_call", map[string]interface{}{
+							"iteration": state.CurrentRound,
+							"round":     state.CurrentRound + 1,
+							"count":     toolCallsInRound["thinking"],
+						})
+						// Skip this thinking call
+						continue
+					}
+				}
 
 				var args map[string]any
 				if err := json.Unmarshal([]byte(tc.Function.Arguments), &args); err != nil {
@@ -427,24 +446,6 @@ func (e *AgentEngine) executeLoop(
 					}
 				}
 
-				// Optional: Reflection after each tool call (streaming)
-				// Only do reflection if agent is not stopping
-				if e.config.ReflectionEnabled && result != nil && !state.IsComplete {
-					reflection, err := e.streamReflectionToEventBus(
-						ctx, tc.ID, tc.Function.Name, result.Output,
-						state.CurrentRound, sessionID,
-					)
-					if err != nil {
-						logger.Warnf(ctx, "Reflection failed: %v", err)
-					} else if reflection != "" {
-						// Store reflection in the corresponding tool call
-						// Find the tool call we just added and update it
-						if len(step.ToolCalls) > 0 {
-							lastIdx := len(step.ToolCalls) - 1
-							step.ToolCalls[lastIdx].Reflection = reflection
-						}
-					}
-				}
 			}
 		}
 
@@ -658,60 +659,6 @@ func (e *AgentEngine) streamLLMToEventBus(
 	}
 
 	return fullContent, toolCalls, nil
-}
-
-// streamReflectionToEventBus streams reflection process through EventBus
-// Note: Reflection is now handled through the think tool in main loop
-func (e *AgentEngine) streamReflectionToEventBus(
-	ctx context.Context,
-	toolCallID string,
-	toolName string,
-	result string,
-	iteration int,
-	sessionID string,
-) (string, error) {
-	// Simplified reflection without BuildReflectionPrompt
-	reflectionPrompt := fmt.Sprintf(`请评估刚才调用工具 %s 的结果，并决定下一步行动。
-
-工具返回: %s
-
-思考:
-1. 结果是否满足需求？
-2. 下一步应该做什么？`, toolName, result)
-
-	messages := []chat.Message{
-		{Role: "user", Content: reflectionPrompt},
-	}
-
-	// Generate a single ID for this entire reflection stream
-	reflectionID := generateEventID("reflection")
-
-	fullReflection, _, err := e.streamLLMToEventBus(
-		ctx,
-		messages,
-		&chat.ChatOptions{Temperature: 0.5},
-		func(chunk *types.StreamResponse, fullContent string) {
-			if chunk.Content != "" {
-				e.eventBus.Emit(ctx, event.Event{
-					ID:        reflectionID, // Same ID for all chunks in this stream
-					Type:      event.EventAgentReflection,
-					SessionID: sessionID,
-					Data: event.AgentReflectionData{
-						ToolCallID: toolCallID,
-						Content:    chunk.Content,
-						Iteration:  iteration,
-						Done:       chunk.Done,
-					},
-				})
-			}
-		},
-	)
-	if err != nil {
-		logger.Warnf(ctx, "Reflection failed: %v", err)
-		return "", err
-	}
-
-	return fullReflection, nil
 }
 
 // streamThinkingToEventBus streams the thinking process through EventBus

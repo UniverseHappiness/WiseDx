@@ -35,9 +35,10 @@ Use this tool when you need users to select from predefined options, for example
 }
 
 ## Notes
-- After calling this tool, the frontend will display option buttons
-- When user clicks, the selected value will be sent as user's reply
-- You need to wait for the user's next message to get the selection result`,
+- After calling this tool, the Agent will STOP and wait for user input
+- When user clicks an option, it will be filled into the input box (not auto-sent)
+- User can modify the selection before sending
+- The user's message will be your next input to continue the conversation`,
 	schema: utils.GenerateSchema[ShowOptionsInput](),
 }
 
@@ -101,7 +102,7 @@ func (t *ShowOptionsTool) Execute(ctx context.Context, args json.RawMessage) (*t
 	if input.MultiSelect {
 		output += "\n(Multiple selection allowed)"
 	}
-	output += "\n\nPlease wait for user selection before continuing."
+	output += "\n\nAgent stopped. Waiting for user to select and send their choice."
 
 	// Prepare structured data for event emission
 	optionsData := make([]map[string]string, len(input.Options))

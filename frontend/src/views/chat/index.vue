@@ -37,6 +37,7 @@
             </div>
             <div style="min-height: 115px; margin: 16px auto 4px;width: 100%;max-width: 800px;">
                 <InputField 
+                    ref="inputFieldRef"
                     @send-msg="(query, modelId, mentionedItems) => sendMsg(query, modelId, mentionedItems)" 
                     @stop-generation="handleStopGeneration"
                     :isReplying="isReplying" 
@@ -119,6 +120,7 @@ const scrollLock = ref(false);
 const isNeedTitle = ref(false);
 const isFirstEnter = ref(true);
 const loading = ref(false);
+const inputFieldRef = ref(null); // Reference to InputField component
 let fullContent = ref('')
 let userquery = ref('')
 
@@ -387,8 +389,12 @@ const handleExportSelect = (data) => {
 // Handle quick reply selection from bot message
 const handleQuickReplySelectFromBot = (value) => {
     console.log('[Chat] Quick reply selected:', value);
-    // Send the selected value as a user message
-    sendMsg(value);
+    // Fill the selected value into the input box (not auto-send)
+    if (inputFieldRef.value && inputFieldRef.value.setQueryValue) {
+        inputFieldRef.value.setQueryValue(value);
+    } else {
+        console.error('[Chat] InputField ref or setQueryValue method not available');
+    }
 };
 watch([() => route.params], (newvalue) => {
     isFirstEnter.value = true;
