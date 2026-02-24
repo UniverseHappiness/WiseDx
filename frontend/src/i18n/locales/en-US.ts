@@ -146,6 +146,9 @@ export default {
     // Additional translations for KnowledgeBase.vue
     newSession: 'New Chat',
     editDocument: 'Edit Document',
+    downloadMarkdown: 'Download Markdown',
+    downloadSuccess: 'Download successful',
+    downloadFailed: 'Download failed',
     draft: 'Draft',
     draftTip: 'Temporarily saved and not included in retrieval',
     untitledDocument: 'Untitled Document',

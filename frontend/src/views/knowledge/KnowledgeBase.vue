@@ -23,6 +23,7 @@ import {
   uploadKnowledgeFile,
   createKnowledgeFromURL,
   listKnowledgeBases,
+  downKnowledgeDetails,
 } from "@/api/knowledge-base/index";
 import FAQEntryManager from './components/FAQEntryManager.vue';
 import { useI18n } from 'vue-i18n';
@@ -885,6 +886,29 @@ const handleManualEdit = (index: number, item: KnowledgeCard) => {
   });
 };
 
+const handleManualDownload = async (index: number, item: KnowledgeCard) => {
+  if (isFAQ.value) return;
+  if (cardList.value[index]) {
+    cardList.value[index].isMore = false;
+  }
+  try {
+    const blob = await downKnowledgeDetails(item.id);
+    const url = URL.createObjectURL(blob as Blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = item.file_name || `${item.title || 'knowledge'}.md`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    MessagePlugin.success(t('knowledgeBase.downloadSuccess') || '下载成功');
+  } catch (error) {
+    console.error('Download failed:', error);
+    MessagePlugin.error(t('knowledgeBase.downloadFailed') || '下载失败');
+  }
+};
+
+
 const handleScroll = () => {
   if (isFAQ.value) return;
   const element = knowledgeScroll.value;
@@ -1245,6 +1269,14 @@ async function createNewSession(value: string): Promise<void> {
                               >
                                 <t-icon class="icon" name="edit" />
                                 <span>{{ t('knowledgeBase.editDocument') }}</span>
+                              </div>
+                              <div
+                                v-if="item.type === 'manual'"
+                                class="card-menu-item"
+                                @click.stop="handleManualDownload(index, item)"
+                              >
+                                <t-icon class="icon" name="download" />
+                                <span>{{ t('knowledgeBase.downloadMarkdown') }}</span>
                               </div>
                               <div class="card-menu-item danger" @click.stop="delCard(index, item)">
                                 <t-icon class="icon" name="delete" />

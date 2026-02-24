@@ -2056,7 +2056,38 @@ func (s *knowledgeService) GetKnowledgeFile(ctx context.Context, id string) (io.
 		return nil, "", err
 	}
 
-	// Get the file from storage
+	// For manual knowledge, generate markdown file from metadata
+	if knowledge.IsManual() {
+		meta, err := knowledge.ManualMetadata()
+		if err != nil {
+			logger.Errorf(ctx, "Failed to parse manual metadata for download: %v", err)
+			return nil, "", werrors.NewInternalServerError("无法获取手动知识内容")
+		}
+		if meta == nil || meta.Content == "" {
+			return nil, "", werrors.NewNotFoundError("手动知识内容为空")
+		}
+
+		// Create a reader from the markdown content
+		content := meta.Content
+		reader := io.NopCloser(strings.NewReader(content))
+		
+		// Ensure filename has .md extension
+		filename := knowledge.FileName
+		if filename == "" {
+			filename = fmt.Sprintf("%s.md", knowledge.Title)
+		}
+		if !strings.HasSuffix(strings.ToLower(filename), ".md") {
+			filename = filename + ".md"
+		}
+
+		return reader, filename, nil
+	}
+
+	// For regular file-based knowledge, get the file from storage
+	if knowledge.FilePath == "" {
+		return nil, "", werrors.NewNotFoundError("文件路径不存在")
+	}
+
 	file, err := s.fileSvc.GetFile(ctx, knowledge.FilePath)
 	if err != nil {
 		return nil, "", err
