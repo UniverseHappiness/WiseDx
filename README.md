@@ -20,7 +20,7 @@
 <p align="center">
   <h4 align="center">
 
-  [Overview](#-overview) • [Key Features](#-key-features) • [Medical Capabilities](#-medical-capabilities) • [Getting Started](#-getting-started) • [Acknowledgements](#-acknowledgements)
+  [Overview](#-overview) • [Key Features](#-key-features) • [Medical Capabilities](#-medical-capabilities) • [Getting Started](#-getting-started) • [Documentation](https://github.com/UniverseHappiness/WiseDx/wiki) • [Acknowledgements](#-acknowledgements)
 
   </h4>
 </p>
