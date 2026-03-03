@@ -98,6 +98,7 @@ export interface UpdateAgentRequest {
 export const BUILTIN_QUICK_ANSWER_ID = 'builtin-quick-answer';
 export const BUILTIN_SMART_REASONING_ID = 'builtin-smart-reasoning';
 export const BUILTIN_MEDICAL_CONSULTANT_ID = 'builtin-medical-consultant';
+export const BUILTIN_DEEP_RESEARCHER_ID = 'builtin-deep-researcher';
 
 // AgentMode 常量
 export const AGENT_MODE_QUICK_ANSWER = 'quick-answer';

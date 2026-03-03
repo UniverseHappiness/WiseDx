@@ -760,6 +760,7 @@ export default {
     argumentsLabel: "参数",
     toolFallback: "工具",
     consultationProgress: "问诊进度",
+    researchProgress: "研究进度",
     consultationInfo: "问诊信息",
     collectedInfo: "已收集信息",
     completed: "已完成",

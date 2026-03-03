@@ -213,6 +213,7 @@ export default {
     argumentsLabel: 'Arguments',
     toolFallback: 'Tool',
     consultationProgress: 'Consultation Progress',
+    researchProgress: 'Research Progress',
     consultationInfo: 'Consultation Information',
     collectedInfo: 'Collected Information',
     completed: 'Completed',
