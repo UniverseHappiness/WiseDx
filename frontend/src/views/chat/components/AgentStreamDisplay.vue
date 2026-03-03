@@ -8,6 +8,14 @@
       :visible="true"
       :agent-id="agentId"
     />
+
+    <!-- Research Progress Bar (for deep researcher agent) -->
+    <ResearchProgress
+      v-if="shouldShowResearchProgress"
+      :steps="latestPlanSteps"
+      :visible="true"
+      :agent-id="agentId"
+    />
     
     <!-- Collapsed intermediate steps -->
     <div v-if="shouldShowCollapsedSteps" class="intermediate-steps-collapsed">
@@ -250,6 +258,7 @@ import DOMPurify from 'dompurify';
 import ToolResultRenderer from './ToolResultRenderer.vue';
 import QuickReplyOptions from './QuickReplyOptions.vue';
 import ConsultationProgress from './ConsultationProgress.vue';
+import ResearchProgress from './ResearchProgress.vue';
 import picturePreview from '@/components/picture-preview.vue';
 import { getChunkByIdOnly } from '@/api/knowledge-base';
 import { MessagePlugin } from 'tdesign-vue-next';
@@ -453,6 +462,11 @@ const latestPlanSteps = computed(() => {
 // Check if should show consultation progress (only for medical consultant agent)
 const shouldShowConsultationProgress = computed(() => {
   return props.agentId === 'builtin-medical-consultant' && latestPlanSteps.value.length > 0;
+});
+
+// Check if should show research progress (only for deep researcher agent)
+const shouldShowResearchProgress = computed(() => {
+  return props.agentId === 'builtin-deep-researcher' && latestPlanSteps.value.length > 0;
 });
 
 // Get the latest collected data from todo_write events (for patient info sidebar)
