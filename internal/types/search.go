@@ -104,6 +104,14 @@ type SearchParams struct {
 	KnowledgeIDs         []string `json:"knowledge_ids"`
 	TagIDs               []string `json:"tag_ids"` // Tag IDs for filtering (used for FAQ priority filtering)
 	OnlyRecommended      bool     `json:"only_recommended"`
+	// Optional: override embedding model for testing (if empty, use knowledge base's default)
+	EmbeddingModelID string `json:"embedding_model_id,omitempty"`
+	// Optional: rerank model for testing (if empty, no reranking)
+	RerankModelID string `json:"rerank_model_id,omitempty"`
+	// Optional: rerank threshold (default 0.3)
+	RerankThreshold float64 `json:"rerank_threshold,omitempty"`
+	// Optional: rerank top k (default same as MatchCount)
+	RerankTopK int `json:"rerank_top_k,omitempty"`
 }
 
 // Value implements the driver.Valuer interface, used to convert SearchResult to database value

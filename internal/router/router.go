@@ -222,6 +222,7 @@ func RegisterKnowledgeBaseRoutes(r *gin.RouterGroup, handler *handler.KnowledgeB
 		kb.DELETE("/:id", handler.DeleteKnowledgeBase)
 		// 混合搜索
 		kb.GET("/:id/hybrid-search", handler.HybridSearch)
+		kb.POST("/:id/hybrid-search", handler.HybridSearch)
 		// 拷贝知识库
 		kb.POST("/copy", handler.CopyKnowledgeBase)
 		// 获取知识库复制进度

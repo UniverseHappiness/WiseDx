@@ -517,10 +517,17 @@ func (s *knowledgeBaseService) HybridSearch(ctx context.Context,
 	if retrieveEngine.SupportRetriever(types.VectorRetrieverType) && !params.DisableVectorMatch {
 		logger.Info(ctx, "Vector retrieval supported, preparing vector retrieval parameters")
 
-		logger.Infof(ctx, "Getting embedding model, model ID: %s", kb.EmbeddingModelID)
-		embeddingModel, err = s.modelService.GetEmbeddingModel(ctx, kb.EmbeddingModelID)
+		// Use override embedding model ID if provided, otherwise use knowledge base's default
+		embeddingModelID := kb.EmbeddingModelID
+		if params.EmbeddingModelID != "" {
+			embeddingModelID = params.EmbeddingModelID
+			logger.Infof(ctx, "Using override embedding model ID: %s", embeddingModelID)
+		}
+
+		logger.Infof(ctx, "Getting embedding model, model ID: %s", embeddingModelID)
+		embeddingModel, err = s.modelService.GetEmbeddingModel(ctx, embeddingModelID)
 		if err != nil {
-			logger.Errorf(ctx, "Failed to get embedding model, model ID: %s, error: %v", kb.EmbeddingModelID, err)
+			logger.Errorf(ctx, "Failed to get embedding model, model ID: %s, error: %v", embeddingModelID, err)
 			return nil, err
 		}
 		logger.Infof(ctx, "Embedding model retrieved: %v", embeddingModel)
@@ -742,6 +749,18 @@ func (s *knowledgeBaseService) HybridSearch(ctx context.Context,
 	// Limit to MatchCount
 	if len(deduplicatedChunks) > params.MatchCount {
 		deduplicatedChunks = deduplicatedChunks[:params.MatchCount]
+	}
+
+	// Apply rerank if rerank model is specified
+	if params.RerankModelID != "" {
+		logger.Infof(ctx, "Applying rerank with model ID: %s", params.RerankModelID)
+		rerankedChunks, err := s.applyRerank(ctx, params, deduplicatedChunks)
+		if err != nil {
+			logger.Warnf(ctx, "Rerank failed, using original results: %v", err)
+		} else {
+			deduplicatedChunks = rerankedChunks
+			logger.Infof(ctx, "Rerank completed, result count: %d", len(deduplicatedChunks))
+		}
 	}
 
 	return s.processSearchResults(ctx, deduplicatedChunks)
@@ -1223,4 +1242,88 @@ func (s *knowledgeBaseService) fetchKnowledgeData(ctx context.Context,
 	}
 
 	return knowledgeMap, nil
+}
+
+// applyRerank applies rerank model to search results
+func (s *knowledgeBaseService) applyRerank(ctx context.Context,
+	params types.SearchParams,
+	chunks []*types.IndexWithScore,
+) ([]*types.IndexWithScore, error) {
+	if len(chunks) == 0 {
+		return chunks, nil
+	}
+
+	// Get rerank model
+	reranker, err := s.modelService.GetRerankModel(ctx, params.RerankModelID)
+	if err != nil {
+		return nil, err
+	}
+
+	// Prepare passages for reranking
+	passages := make([]string, len(chunks))
+	for i, chunk := range chunks {
+		passages[i] = chunk.Content
+	}
+
+	// Call rerank model
+	rerankResults, err := reranker.Rerank(ctx, params.QueryText, passages)
+	if err != nil {
+		return nil, err
+	}
+
+	// Set default threshold
+	threshold := params.RerankThreshold
+	if threshold <= 0 {
+		threshold = 0.3
+	}
+
+	// Filter and sort by rerank score
+	type rerankItem struct {
+		chunk *types.IndexWithScore
+		score float64
+	}
+	var filteredItems []rerankItem
+
+	for _, result := range rerankResults {
+		if result.Index >= len(chunks) {
+			continue
+		}
+		if result.RelevanceScore >= threshold {
+			filteredItems = append(filteredItems, rerankItem{
+				chunk: chunks[result.Index],
+				score: result.RelevanceScore,
+			})
+		}
+	}
+
+	// Sort by rerank score descending
+	slices.SortFunc(filteredItems, func(a, b rerankItem) int {
+		if a.score > b.score {
+			return -1
+		} else if a.score < b.score {
+			return 1
+		}
+		return 0
+	})
+
+	// Apply rerank top k
+	topK := params.RerankTopK
+	if topK <= 0 {
+		topK = params.MatchCount
+	}
+	if len(filteredItems) > topK {
+		filteredItems = filteredItems[:topK]
+	}
+
+	// Update scores and return
+	result := make([]*types.IndexWithScore, len(filteredItems))
+	for i, item := range filteredItems {
+		item.chunk.Score = item.score
+		result[i] = item.chunk
+	}
+
+	logger.Infof(ctx, "Rerank: input=%d, filtered=%d (threshold=%.2f, topK=%d)",
+		len(chunks), len(result), threshold, topK)
+
+	return result, nil
 }

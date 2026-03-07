@@ -194,6 +194,15 @@ export function get(url: string) {
   return instance.get(url);
 }
 
+// GET request with JSON body (for special APIs like hybrid-search)
+export function getWithBody(url: string, data = {}) {
+  return instance.request({
+    method: 'GET',
+    url: url,
+    data: data,
+  });
+}
+
 export async function getDown(url: string) {
   let res = await instance.get(url, {
     responseType: "blob",

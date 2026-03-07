@@ -1,0 +1,985 @@
+digraph {
+	rankdir=RL;
+	graph [compound=true];
+	
+		subgraph cluster_0 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_0 [shape=plaintext label="NewResourceCleaner"];
+			
+			"interfaces.ResourceCleaner" [label=<interfaces.ResourceCleaner>];
+			
+		}
+		
+		
+		subgraph cluster_1 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/config";
+			constructor_1 [shape=plaintext label="LoadConfig"];
+			
+			"*config.Config" [label=<*config.Config>];
+			
+		}
+		
+		
+		subgraph cluster_2 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_2 [shape=plaintext label="initTracer"];
+			
+			"*tracing.Tracer" [label=<*tracing.Tracer>];
+			
+		}
+		
+		
+		subgraph cluster_3 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_3 [shape=plaintext label="initDatabase"];
+			
+			"*gorm.DB" [label=<*gorm.DB>];
+			
+		}
+		
+			constructor_3 -> "*config.Config" [ltail=cluster_3];
+		
+		
+		subgraph cluster_4 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_4 [shape=plaintext label="initFileService"];
+			
+			"interfaces.FileService" [label=<interfaces.FileService>];
+			
+		}
+		
+			constructor_4 -> "*config.Config" [ltail=cluster_4];
+		
+		
+		subgraph cluster_5 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_5 [shape=plaintext label="initRedisClient"];
+			
+			"*redis.Client" [label=<*redis.Client>];
+			
+		}
+		
+		
+		subgraph cluster_6 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_6 [shape=plaintext label="initAntsPool"];
+			
+			"*ants.Pool" [label=<*ants.Pool>];
+			
+		}
+		
+			constructor_6 -> "*config.Config" [ltail=cluster_6];
+		
+		
+		subgraph cluster_7 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_7 [shape=plaintext label="initContextStorage"];
+			
+			"llmcontext.ContextStorage" [label=<llmcontext.ContextStorage>];
+			
+		}
+		
+			constructor_7 -> "*redis.Client" [ltail=cluster_7];
+		
+		
+		subgraph cluster_8 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_8 [shape=plaintext label="initRetrieveEngineRegistry"];
+			
+			"interfaces.RetrieveEngineRegistry" [label=<interfaces.RetrieveEngineRegistry>];
+			
+		}
+		
+			constructor_8 -> "*gorm.DB" [ltail=cluster_8];
+		
+			constructor_8 -> "*config.Config" [ltail=cluster_8];
+		
+		
+		subgraph cluster_9 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_9 [shape=plaintext label="initDocReaderClient"];
+			
+			"*client.Client" [label=<*client.Client>];
+			
+		}
+		
+			constructor_9 -> "*config.Config" [ltail=cluster_9];
+		
+		
+		subgraph cluster_10 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_10 [shape=plaintext label="initOllamaService"];
+			
+			"*ollama.OllamaService" [label=<*ollama.OllamaService>];
+			
+		}
+		
+		
+		subgraph cluster_11 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_11 [shape=plaintext label="initNeo4jClient"];
+			
+			"neo4j.Driver" [label=<neo4j.Driver>];
+			
+		}
+		
+		
+		subgraph cluster_12 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/stream";
+			constructor_12 [shape=plaintext label="NewStreamManager"];
+			
+			"interfaces.StreamManager" [label=<interfaces.StreamManager>];
+			
+		}
+		
+		
+		subgraph cluster_13 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/container";
+			constructor_13 [shape=plaintext label="NewDuckDB"];
+			
+			"*sql.DB" [label=<*sql.DB>];
+			
+		}
+		
+		
+		subgraph cluster_14 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_14 [shape=plaintext label="NewTenantRepository"];
+			
+			"interfaces.TenantRepository" [label=<interfaces.TenantRepository>];
+			
+		}
+		
+			constructor_14 -> "*gorm.DB" [ltail=cluster_14];
+		
+		
+		subgraph cluster_15 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_15 [shape=plaintext label="NewKnowledgeBaseRepository"];
+			
+			"interfaces.KnowledgeBaseRepository" [label=<interfaces.KnowledgeBaseRepository>];
+			
+		}
+		
+			constructor_15 -> "*gorm.DB" [ltail=cluster_15];
+		
+		
+		subgraph cluster_16 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_16 [shape=plaintext label="NewKnowledgeRepository"];
+			
+			"interfaces.KnowledgeRepository" [label=<interfaces.KnowledgeRepository>];
+			
+		}
+		
+			constructor_16 -> "*gorm.DB" [ltail=cluster_16];
+		
+		
+		subgraph cluster_17 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_17 [shape=plaintext label="NewChunkRepository"];
+			
+			"interfaces.ChunkRepository" [label=<interfaces.ChunkRepository>];
+			
+		}
+		
+			constructor_17 -> "*gorm.DB" [ltail=cluster_17];
+		
+		
+		subgraph cluster_18 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_18 [shape=plaintext label="NewKnowledgeTagRepository"];
+			
+			"interfaces.KnowledgeTagRepository" [label=<interfaces.KnowledgeTagRepository>];
+			
+		}
+		
+			constructor_18 -> "*gorm.DB" [ltail=cluster_18];
+		
+		
+		subgraph cluster_19 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_19 [shape=plaintext label="NewSessionRepository"];
+			
+			"interfaces.SessionRepository" [label=<interfaces.SessionRepository>];
+			
+		}
+		
+			constructor_19 -> "*gorm.DB" [ltail=cluster_19];
+		
+		
+		subgraph cluster_20 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_20 [shape=plaintext label="NewMessageRepository"];
+			
+			"interfaces.MessageRepository" [label=<interfaces.MessageRepository>];
+			
+		}
+		
+			constructor_20 -> "*gorm.DB" [ltail=cluster_20];
+		
+		
+		subgraph cluster_21 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_21 [shape=plaintext label="NewModelRepository"];
+			
+			"interfaces.ModelRepository" [label=<interfaces.ModelRepository>];
+			
+		}
+		
+			constructor_21 -> "*gorm.DB" [ltail=cluster_21];
+		
+		
+		subgraph cluster_22 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_22 [shape=plaintext label="NewUserRepository"];
+			
+			"interfaces.UserRepository" [label=<interfaces.UserRepository>];
+			
+		}
+		
+			constructor_22 -> "*gorm.DB" [ltail=cluster_22];
+		
+		
+		subgraph cluster_23 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_23 [shape=plaintext label="NewAuthTokenRepository"];
+			
+			"interfaces.AuthTokenRepository" [label=<interfaces.AuthTokenRepository>];
+			
+		}
+		
+			constructor_23 -> "*gorm.DB" [ltail=cluster_23];
+		
+		
+		subgraph cluster_24 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository/retriever/neo4j";
+			constructor_24 [shape=plaintext label="NewNeo4jRepository"];
+			
+			"interfaces.RetrieveGraphRepository" [label=<interfaces.RetrieveGraphRepository>];
+			
+		}
+		
+			constructor_24 -> "neo4j.Driver" [ltail=cluster_24];
+		
+		
+		subgraph cluster_25 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_25 [shape=plaintext label="NewMCPServiceRepository"];
+			
+			"interfaces.MCPServiceRepository" [label=<interfaces.MCPServiceRepository>];
+			
+		}
+		
+			constructor_25 -> "*gorm.DB" [ltail=cluster_25];
+		
+		
+		subgraph cluster_26 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/repository";
+			constructor_26 [shape=plaintext label="NewCustomAgentRepository"];
+			
+			"interfaces.CustomAgentRepository" [label=<interfaces.CustomAgentRepository>];
+			
+		}
+		
+			constructor_26 -> "*gorm.DB" [ltail=cluster_26];
+		
+		
+		subgraph cluster_27 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_27 [shape=plaintext label="NewWebSearchStateService"];
+			
+			"interfaces.WebSearchStateService" [label=<interfaces.WebSearchStateService>];
+			
+		}
+		
+			constructor_27 -> "*redis.Client" [ltail=cluster_27];
+		
+			constructor_27 -> "interfaces.KnowledgeService" [ltail=cluster_27];
+		
+			constructor_27 -> "interfaces.KnowledgeBaseService" [ltail=cluster_27];
+		
+		
+		subgraph cluster_28 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/mcp";
+			constructor_28 [shape=plaintext label="NewMCPManager"];
+			
+			"*mcp.MCPManager" [label=<*mcp.MCPManager>];
+			
+		}
+		
+		
+		subgraph cluster_29 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_29 [shape=plaintext label="NewTenantService"];
+			
+			"interfaces.TenantService" [label=<interfaces.TenantService>];
+			
+		}
+		
+			constructor_29 -> "interfaces.TenantRepository" [ltail=cluster_29];
+		
+		
+		subgraph cluster_30 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_30 [shape=plaintext label="NewKnowledgeBaseService"];
+			
+			"interfaces.KnowledgeBaseService" [label=<interfaces.KnowledgeBaseService>];
+			
+		}
+		
+			constructor_30 -> "interfaces.KnowledgeBaseRepository" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.KnowledgeRepository" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.ChunkRepository" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.ModelService" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.RetrieveEngineRegistry" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.TenantRepository" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.FileService" [ltail=cluster_30];
+		
+			constructor_30 -> "interfaces.RetrieveGraphRepository" [ltail=cluster_30];
+		
+			constructor_30 -> "*asynq.Client" [ltail=cluster_30];
+		
+		
+		subgraph cluster_31 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_31 [shape=plaintext label="NewKnowledgeService"];
+			
+			"interfaces.KnowledgeService" [label=<interfaces.KnowledgeService>];
+			
+		}
+		
+			constructor_31 -> "*config.Config" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.KnowledgeRepository" [ltail=cluster_31];
+		
+			constructor_31 -> "*client.Client" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.KnowledgeBaseService" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.TenantRepository" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.ChunkService" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.ChunkRepository" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.KnowledgeTagRepository" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.KnowledgeTagService" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.FileService" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.ModelService" [ltail=cluster_31];
+		
+			constructor_31 -> "*asynq.Client" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.RetrieveGraphRepository" [ltail=cluster_31];
+		
+			constructor_31 -> "interfaces.RetrieveEngineRegistry" [ltail=cluster_31];
+		
+			constructor_31 -> "*redis.Client" [ltail=cluster_31];
+		
+		
+		subgraph cluster_32 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_32 [shape=plaintext label="NewChunkService"];
+			
+			"interfaces.ChunkService" [label=<interfaces.ChunkService>];
+			
+		}
+		
+			constructor_32 -> "interfaces.ChunkRepository" [ltail=cluster_32];
+		
+			constructor_32 -> "interfaces.KnowledgeBaseRepository" [ltail=cluster_32];
+		
+			constructor_32 -> "interfaces.ModelService" [ltail=cluster_32];
+		
+			constructor_32 -> "interfaces.RetrieveEngineRegistry" [ltail=cluster_32];
+		
+		
+		subgraph cluster_33 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_33 [shape=plaintext label="NewKnowledgeTagService"];
+			
+			"interfaces.KnowledgeTagService" [label=<interfaces.KnowledgeTagService>];
+			
+		}
+		
+			constructor_33 -> "interfaces.KnowledgeBaseService" [ltail=cluster_33];
+		
+			constructor_33 -> "interfaces.KnowledgeTagRepository" [ltail=cluster_33];
+		
+			constructor_33 -> "interfaces.KnowledgeRepository" [ltail=cluster_33];
+		
+			constructor_33 -> "interfaces.ChunkRepository" [ltail=cluster_33];
+		
+			constructor_33 -> "interfaces.RetrieveEngineRegistry" [ltail=cluster_33];
+		
+			constructor_33 -> "interfaces.ModelService" [ltail=cluster_33];
+		
+			constructor_33 -> "*asynq.Client" [ltail=cluster_33];
+		
+		
+		subgraph cluster_34 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/models/embedding";
+			constructor_34 [shape=plaintext label="NewBatchEmbedder"];
+			
+			"embedding.EmbedderPooler" [label=<embedding.EmbedderPooler>];
+			
+		}
+		
+			constructor_34 -> "*ants.Pool" [ltail=cluster_34];
+		
+		
+		subgraph cluster_35 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_35 [shape=plaintext label="NewModelService"];
+			
+			"interfaces.ModelService" [label=<interfaces.ModelService>];
+			
+		}
+		
+			constructor_35 -> "interfaces.ModelRepository" [ltail=cluster_35];
+		
+			constructor_35 -> "*ollama.OllamaService" [ltail=cluster_35];
+		
+			constructor_35 -> "embedding.EmbedderPooler" [ltail=cluster_35];
+		
+		
+		subgraph cluster_36 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_36 [shape=plaintext label="NewDatasetService"];
+			
+			"interfaces.DatasetService" [label=<interfaces.DatasetService>];
+			
+		}
+		
+		
+		subgraph cluster_37 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_37 [shape=plaintext label="NewEvaluationService"];
+			
+			"interfaces.EvaluationService" [label=<interfaces.EvaluationService>];
+			
+		}
+		
+			constructor_37 -> "*config.Config" [ltail=cluster_37];
+		
+			constructor_37 -> "interfaces.DatasetService" [ltail=cluster_37];
+		
+			constructor_37 -> "interfaces.KnowledgeBaseService" [ltail=cluster_37];
+		
+			constructor_37 -> "interfaces.KnowledgeService" [ltail=cluster_37];
+		
+			constructor_37 -> "interfaces.SessionService" [ltail=cluster_37];
+		
+			constructor_37 -> "interfaces.ModelService" [ltail=cluster_37];
+		
+		
+		subgraph cluster_38 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_38 [shape=plaintext label="NewUserService"];
+			
+			"interfaces.UserService" [label=<interfaces.UserService>];
+			
+		}
+		
+			constructor_38 -> "interfaces.UserRepository" [ltail=cluster_38];
+		
+			constructor_38 -> "interfaces.AuthTokenRepository" [ltail=cluster_38];
+		
+			constructor_38 -> "interfaces.TenantService" [ltail=cluster_38];
+		
+		
+		subgraph cluster_39 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_39 [shape=plaintext label="NewChunkExtractService"];
+			
+			"interfaces.TaskHandler[name=chunkExtracter]" [label=<interfaces.TaskHandler<BR /><FONT POINT-SIZE="10">Name: chunkExtracter</FONT>>];
+			
+		}
+		
+			constructor_39 -> "*config.Config" [ltail=cluster_39];
+		
+			constructor_39 -> "interfaces.ModelService" [ltail=cluster_39];
+		
+			constructor_39 -> "interfaces.KnowledgeBaseRepository" [ltail=cluster_39];
+		
+			constructor_39 -> "interfaces.ChunkRepository" [ltail=cluster_39];
+		
+			constructor_39 -> "interfaces.RetrieveGraphRepository" [ltail=cluster_39];
+		
+		
+		subgraph cluster_40 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_40 [shape=plaintext label="NewDataTableSummaryService"];
+			
+			"interfaces.TaskHandler[name=dataTableSummary]" [label=<interfaces.TaskHandler<BR /><FONT POINT-SIZE="10">Name: dataTableSummary</FONT>>];
+			
+		}
+		
+			constructor_40 -> "interfaces.ModelService" [ltail=cluster_40];
+		
+			constructor_40 -> "interfaces.KnowledgeService" [ltail=cluster_40];
+		
+			constructor_40 -> "interfaces.ChunkService" [ltail=cluster_40];
+		
+			constructor_40 -> "interfaces.TenantService" [ltail=cluster_40];
+		
+			constructor_40 -> "interfaces.RetrieveEngineRegistry" [ltail=cluster_40];
+		
+			constructor_40 -> "*sql.DB" [ltail=cluster_40];
+		
+		
+		subgraph cluster_41 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_41 [shape=plaintext label="NewMessageService"];
+			
+			"interfaces.MessageService" [label=<interfaces.MessageService>];
+			
+		}
+		
+			constructor_41 -> "interfaces.MessageRepository" [ltail=cluster_41];
+		
+			constructor_41 -> "interfaces.SessionRepository" [ltail=cluster_41];
+		
+		
+		subgraph cluster_42 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_42 [shape=plaintext label="NewMCPServiceService"];
+			
+			"interfaces.MCPServiceService" [label=<interfaces.MCPServiceService>];
+			
+		}
+		
+			constructor_42 -> "interfaces.MCPServiceRepository" [ltail=cluster_42];
+		
+			constructor_42 -> "*mcp.MCPManager" [ltail=cluster_42];
+		
+		
+		subgraph cluster_43 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_43 [shape=plaintext label="NewCustomAgentService"];
+			
+			"interfaces.CustomAgentService" [label=<interfaces.CustomAgentService>];
+			
+		}
+		
+			constructor_43 -> "interfaces.CustomAgentRepository" [ltail=cluster_43];
+		
+		
+		subgraph cluster_44 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service/web_search";
+			constructor_44 [shape=plaintext label="NewRegistry"];
+			
+			"*web_search.Registry" [label=<*web_search.Registry>];
+			
+		}
+		
+		
+		subgraph cluster_45 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_45 [shape=plaintext label="NewWebSearchService"];
+			
+			"interfaces.WebSearchService" [label=<interfaces.WebSearchService>];
+			
+		}
+		
+			constructor_45 -> "*config.Config" [ltail=cluster_45];
+		
+			constructor_45 -> "*web_search.Registry" [ltail=cluster_45];
+		
+		
+		subgraph cluster_46 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/event";
+			constructor_46 [shape=plaintext label="NewEventBus"];
+			
+			"*event.EventBus" [label=<*event.EventBus>];
+			
+		}
+		
+		
+		subgraph cluster_47 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_47 [shape=plaintext label="NewAgentService"];
+			
+			"interfaces.AgentService" [label=<interfaces.AgentService>];
+			
+		}
+		
+			constructor_47 -> "*config.Config" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.ModelService" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.KnowledgeBaseService" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.KnowledgeService" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.ChunkService" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.MCPServiceService" [ltail=cluster_47];
+		
+			constructor_47 -> "*mcp.MCPManager" [ltail=cluster_47];
+		
+			constructor_47 -> "*event.EventBus" [ltail=cluster_47];
+		
+			constructor_47 -> "*gorm.DB" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.WebSearchService" [ltail=cluster_47];
+		
+			constructor_47 -> "*sql.DB" [ltail=cluster_47];
+		
+			constructor_47 -> "interfaces.WebSearchStateService" [ltail=cluster_47];
+		
+		
+		subgraph cluster_48 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service";
+			constructor_48 [shape=plaintext label="NewSessionService"];
+			
+			"interfaces.SessionService" [label=<interfaces.SessionService>];
+			
+		}
+		
+			constructor_48 -> "*config.Config" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.SessionRepository" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.MessageRepository" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.KnowledgeBaseService" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.KnowledgeService" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.ChunkService" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.ModelService" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.TenantService" [ltail=cluster_48];
+		
+			constructor_48 -> "*chatpipline.EventManager" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.AgentService" [ltail=cluster_48];
+		
+			constructor_48 -> "llmcontext.ContextStorage" [ltail=cluster_48];
+		
+			constructor_48 -> "interfaces.WebSearchStateService" [ltail=cluster_48];
+		
+		
+		subgraph cluster_49 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/router";
+			constructor_49 [shape=plaintext label="NewAsyncqClient"];
+			
+			"*asynq.Client" [label=<*asynq.Client>];
+			
+		}
+		
+		
+		subgraph cluster_50 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/router";
+			constructor_50 [shape=plaintext label="NewAsynqServer"];
+			
+			"*asynq.Server" [label=<*asynq.Server>];
+			
+		}
+		
+		
+		subgraph cluster_51 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/application/service/chat_pipline";
+			constructor_51 [shape=plaintext label="NewEventManager"];
+			
+			"*chatpipline.EventManager" [label=<*chatpipline.EventManager>];
+			
+		}
+		
+		
+		subgraph cluster_52 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_52 [shape=plaintext label="NewTenantHandler"];
+			
+			"*handler.TenantHandler" [label=<*handler.TenantHandler>];
+			
+		}
+		
+			constructor_52 -> "interfaces.TenantService" [ltail=cluster_52];
+		
+			constructor_52 -> "interfaces.UserService" [ltail=cluster_52];
+		
+			constructor_52 -> "*config.Config" [ltail=cluster_52];
+		
+		
+		subgraph cluster_53 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_53 [shape=plaintext label="NewKnowledgeBaseHandler"];
+			
+			"*handler.KnowledgeBaseHandler" [label=<*handler.KnowledgeBaseHandler>];
+			
+		}
+		
+			constructor_53 -> "interfaces.KnowledgeBaseService" [ltail=cluster_53];
+		
+			constructor_53 -> "interfaces.KnowledgeService" [ltail=cluster_53];
+		
+			constructor_53 -> "*asynq.Client" [ltail=cluster_53];
+		
+		
+		subgraph cluster_54 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_54 [shape=plaintext label="NewKnowledgeHandler"];
+			
+			"*handler.KnowledgeHandler" [label=<*handler.KnowledgeHandler>];
+			
+		}
+		
+			constructor_54 -> "interfaces.KnowledgeService" [ltail=cluster_54];
+		
+			constructor_54 -> "interfaces.KnowledgeBaseService" [ltail=cluster_54];
+		
+		
+		subgraph cluster_55 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_55 [shape=plaintext label="NewChunkHandler"];
+			
+			"*handler.ChunkHandler" [label=<*handler.ChunkHandler>];
+			
+		}
+		
+			constructor_55 -> "interfaces.ChunkService" [ltail=cluster_55];
+		
+		
+		subgraph cluster_56 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_56 [shape=plaintext label="NewFAQHandler"];
+			
+			"*handler.FAQHandler" [label=<*handler.FAQHandler>];
+			
+		}
+		
+			constructor_56 -> "interfaces.KnowledgeService" [ltail=cluster_56];
+		
+		
+		subgraph cluster_57 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_57 [shape=plaintext label="NewTagHandler"];
+			
+			"*handler.TagHandler" [label=<*handler.TagHandler>];
+			
+		}
+		
+			constructor_57 -> "interfaces.KnowledgeTagService" [ltail=cluster_57];
+		
+			constructor_57 -> "interfaces.KnowledgeTagRepository" [ltail=cluster_57];
+		
+			constructor_57 -> "interfaces.ChunkRepository" [ltail=cluster_57];
+		
+		
+		subgraph cluster_58 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler/session";
+			constructor_58 [shape=plaintext label="NewHandler"];
+			
+			"*session.Handler" [label=<*session.Handler>];
+			
+		}
+		
+			constructor_58 -> "interfaces.SessionService" [ltail=cluster_58];
+		
+			constructor_58 -> "interfaces.MessageService" [ltail=cluster_58];
+		
+			constructor_58 -> "interfaces.StreamManager" [ltail=cluster_58];
+		
+			constructor_58 -> "*config.Config" [ltail=cluster_58];
+		
+			constructor_58 -> "interfaces.KnowledgeBaseService" [ltail=cluster_58];
+		
+			constructor_58 -> "interfaces.CustomAgentService" [ltail=cluster_58];
+		
+		
+		subgraph cluster_59 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_59 [shape=plaintext label="NewMessageHandler"];
+			
+			"*handler.MessageHandler" [label=<*handler.MessageHandler>];
+			
+		}
+		
+			constructor_59 -> "interfaces.MessageService" [ltail=cluster_59];
+		
+		
+		subgraph cluster_60 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_60 [shape=plaintext label="NewModelHandler"];
+			
+			"*handler.ModelHandler" [label=<*handler.ModelHandler>];
+			
+		}
+		
+			constructor_60 -> "interfaces.ModelService" [ltail=cluster_60];
+		
+		
+		subgraph cluster_61 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_61 [shape=plaintext label="NewEvaluationHandler"];
+			
+			"*handler.EvaluationHandler" [label=<*handler.EvaluationHandler>];
+			
+		}
+		
+			constructor_61 -> "interfaces.EvaluationService" [ltail=cluster_61];
+		
+		
+		subgraph cluster_62 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_62 [shape=plaintext label="NewInitializationHandler"];
+			
+			"*handler.InitializationHandler" [label=<*handler.InitializationHandler>];
+			
+		}
+		
+			constructor_62 -> "*config.Config" [ltail=cluster_62];
+		
+			constructor_62 -> "interfaces.TenantService" [ltail=cluster_62];
+		
+			constructor_62 -> "interfaces.ModelService" [ltail=cluster_62];
+		
+			constructor_62 -> "interfaces.KnowledgeBaseService" [ltail=cluster_62];
+		
+			constructor_62 -> "interfaces.KnowledgeBaseRepository" [ltail=cluster_62];
+		
+			constructor_62 -> "interfaces.KnowledgeService" [ltail=cluster_62];
+		
+			constructor_62 -> "*ollama.OllamaService" [ltail=cluster_62];
+		
+			constructor_62 -> "*client.Client" [ltail=cluster_62];
+		
+			constructor_62 -> "embedding.EmbedderPooler" [ltail=cluster_62];
+		
+		
+		subgraph cluster_63 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_63 [shape=plaintext label="NewAuthHandler"];
+			
+			"*handler.AuthHandler" [label=<*handler.AuthHandler>];
+			
+		}
+		
+			constructor_63 -> "*config.Config" [ltail=cluster_63];
+		
+			constructor_63 -> "interfaces.UserService" [ltail=cluster_63];
+		
+			constructor_63 -> "interfaces.TenantService" [ltail=cluster_63];
+		
+		
+		subgraph cluster_64 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_64 [shape=plaintext label="NewSystemHandler"];
+			
+			"*handler.SystemHandler" [label=<*handler.SystemHandler>];
+			
+		}
+		
+			constructor_64 -> "*config.Config" [ltail=cluster_64];
+		
+			constructor_64 -> "neo4j.Driver" [ltail=cluster_64];
+		
+		
+		subgraph cluster_65 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_65 [shape=plaintext label="NewMCPServiceHandler"];
+			
+			"*handler.MCPServiceHandler" [label=<*handler.MCPServiceHandler>];
+			
+		}
+		
+			constructor_65 -> "interfaces.MCPServiceService" [ltail=cluster_65];
+		
+		
+		subgraph cluster_66 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_66 [shape=plaintext label="NewWebSearchHandler"];
+			
+			"*handler.WebSearchHandler" [label=<*handler.WebSearchHandler>];
+			
+		}
+		
+			constructor_66 -> "*web_search.Registry" [ltail=cluster_66];
+		
+		
+		subgraph cluster_67 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/handler";
+			constructor_67 [shape=plaintext label="NewCustomAgentHandler"];
+			
+			"*handler.CustomAgentHandler" [label=<*handler.CustomAgentHandler>];
+			
+		}
+		
+			constructor_67 -> "interfaces.CustomAgentService" [ltail=cluster_67];
+		
+		
+		subgraph cluster_68 {
+			label = "github.com/UniverseHappiness/WiseDx/internal/router";
+			constructor_68 [shape=plaintext label="NewRouter"];
+			
+			"*gin.Engine" [label=<*gin.Engine>];
+			
+		}
+		
+			constructor_68 -> "*config.Config" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.UserService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.KnowledgeBaseService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.KnowledgeService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.ChunkService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.SessionService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.MessageService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.ModelService" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.EvaluationService" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.KnowledgeBaseHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.KnowledgeHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.TenantHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "interfaces.TenantService" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.ChunkHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*session.Handler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.MessageHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.ModelHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.EvaluationHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.AuthHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.InitializationHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.SystemHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.MCPServiceHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.WebSearchHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.FAQHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.TagHandler" [ltail=cluster_68];
+		
+			constructor_68 -> "*handler.CustomAgentHandler" [ltail=cluster_68];
+		
+		
+	
+}

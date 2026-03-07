@@ -113,6 +113,11 @@
                 <div v-if="currentSection === 'mcp'" class="section">
                   <McpSettings />
                 </div>
+
+                <!-- 检索测试 -->
+                <div v-if="currentSection === 'retrieval-test'" class="section">
+                  <RetrievalTestSettings />
+                </div>
               </div>
             </div>
           </div>
@@ -135,6 +140,7 @@ import ModelSettings from './ModelSettings.vue'
 import OllamaSettings from './OllamaSettings.vue'
 import McpSettings from './McpSettings.vue'
 import WebSearchSettings from './WebSearchSettings.vue'
+import RetrievalTestSettings from './RetrievalTestSettings.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -161,6 +167,7 @@ const navItems = computed(() => [
   { key: 'ollama', icon: 'server', label: 'Ollama' },
   { key: 'websearch', icon: 'search', label: t('settings.webSearchConfig')  },
   { key: 'mcp', icon: 'tools', label: t('settings.mcpService') },
+  { key: 'retrieval-test', icon: 'search-1', label: t('settings.retrievalTest') },
   { key: 'system', icon: 'info-circle', label: t('settings.systemSettings') },
   { key: 'tenant', icon: 'user-circle', label: t('settings.tenantInfo') },
   { key: 'api', icon: 'secured', label: t('settings.apiInfo') }

@@ -272,3 +272,19 @@ export function searchKnowledge(keyword: string, offset = 0, limit = 20, fileTyp
   }
   return get(url);
 }
+
+// 混合检索（向量搜索 + 关键词搜索）
+export function hybridSearch(kbId: string, data: {
+  query_text: string
+  vector_threshold?: number
+  keyword_threshold?: number
+  match_count?: number
+  disable_keywords_match?: boolean
+  disable_vector_match?: boolean
+  embedding_model_id?: string
+  rerank_model_id?: string
+  rerank_threshold?: number
+  rerank_top_k?: number
+}) {
+  return post(`/api/v1/knowledge-bases/${kbId}/hybrid-search`, data);
+}
