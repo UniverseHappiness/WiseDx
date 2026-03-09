@@ -1,7 +1,7 @@
 apiVersion: v2
 name: weknora
 description: |
-  WeKnora - AI-powered Knowledge RAG Platform for building intelligent knowledge bases
+  WiseDx - AI-powered Knowledge RAG Platform for building intelligent knowledge bases
   with document parsing, vector search, and LLM integration.
 type: application
 version: 0.1.0
@@ -20,7 +20,7 @@ keywords:
   - vector-search
   - chatbot
 maintainers:
-  - name: WeKnora Community
+  - name: WiseDx Community
     url: https://github.com/UniverseHappiness/WiseDx
 annotations:
   artifacthub.io/license: MIT

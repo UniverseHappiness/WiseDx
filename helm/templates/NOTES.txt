@@ -7,7 +7,7 @@ Ref: https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/templates/NO
 */}}
 
 ================================================================================
-  WeKnora has been installed successfully!
+  WiseDx has been installed successfully!
 ================================================================================
 
 Release: {{ .Release.Name }}
@@ -19,13 +19,13 @@ Version: {{ .Chart.AppVersion }}
 --------------------------------------------------------------------------------
 
 {{- if .Values.ingress.enabled }}
-WeKnora is accessible via Ingress:
+WiseDx is accessible via Ingress:
 
   URL: {{ if .Values.ingress.tls.enabled }}https{{ else }}http{{ end }}://{{ .Values.ingress.host }}
 
 {{- else }}
 
-To access WeKnora, use port-forwarding:
+To access WiseDx, use port-forwarding:
 
   # Frontend (Web UI)
   kubectl port-forward svc/frontend -n {{ .Release.Namespace }} 8080:80
@@ -36,7 +36,7 @@ To access WeKnora, use port-forwarding:
 
 {{- if not .Values.ingress.enabled }}
 
-To expose WeKnora externally, enable Ingress:
+To expose WiseDx externally, enable Ingress:
 
   helm upgrade {{ .Release.Name }} ./helm \
     --set ingress.enabled=true \
@@ -86,7 +86,7 @@ Optional components enabled:
   CONNECTING TO LLM
 --------------------------------------------------------------------------------
 
-WeKnora requires an LLM backend. Configure via environment variables:
+WiseDx requires an LLM backend. Configure via environment variables:
 
   helm upgrade {{ .Release.Name }} ./helm \
     --set app.extraEnv[0].name=OLLAMA_BASE_URL \
