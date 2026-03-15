@@ -316,6 +316,7 @@ func (s *knowledgeService) CreateKnowledgeFromFile(ctx context.Context,
 		}
 	}
 
+	requestID, _ := ctx.Value(types.RequestIDContextKey).(string)
 	taskPayload := types.DocumentProcessPayload{
 		TenantID:                 tenantID,
 		KnowledgeID:              knowledge.ID,
@@ -326,6 +327,7 @@ func (s *knowledgeService) CreateKnowledgeFromFile(ctx context.Context,
 		EnableMultimodel:         enableMultimodelValue,
 		EnableQuestionGeneration: enableQuestionGeneration,
 		QuestionCount:            questionCount,
+		RequestId:                requestID,
 	}
 
 	payloadBytes, err := json.Marshal(taskPayload)
@@ -335,10 +337,23 @@ func (s *knowledgeService) CreateKnowledgeFromFile(ctx context.Context,
 		return knowledge, nil
 	}
 
-	task := asynq.NewTask(types.TypeDocumentProcess, payloadBytes, asynq.Queue("default"))
+	// 使用 knowledge.ID 作为幂等任务 ID，防止同一文档被重复处理；
+	// MaxRetry(3) 确保瞬时错误（网络、gRPC 超时等）可自动重试。
+	task := asynq.NewTask(
+		types.TypeDocumentProcess,
+		payloadBytes,
+		asynq.TaskID("document:process:"+knowledge.ID),
+		asynq.Queue("default"),
+		asynq.MaxRetry(3),
+	)
 	info, err := s.task.Enqueue(task)
 	if err != nil {
-		logger.Errorf(ctx, "Failed to enqueue document process task: %v", err)
+		if errors.Is(err, asynq.ErrTaskIDConflict) {
+			// 任务已在队列中（幂等性保证），视为成功
+			logger.Infof(ctx, "Document process task already queued (idempotent), knowledge_id=%s", knowledge.ID)
+		} else {
+			logger.Errorf(ctx, "Failed to enqueue document process task: %v", err)
+		}
 		// 即使入队失败，也返回knowledge，因为文件已保存
 		return knowledge, nil
 	}
@@ -463,6 +478,7 @@ func (s *knowledgeService) CreateKnowledgeFromURL(ctx context.Context,
 		}
 	}
 
+	requestID, _ := ctx.Value(types.RequestIDContextKey).(string)
 	taskPayload := types.DocumentProcessPayload{
 		TenantID:                 tenantID,
 		KnowledgeID:              knowledge.ID,
@@ -471,6 +487,7 @@ func (s *knowledgeService) CreateKnowledgeFromURL(ctx context.Context,
 		EnableMultimodel:         enableMultimodelValue,
 		EnableQuestionGeneration: enableQuestionGeneration,
 		QuestionCount:            questionCount,
+		RequestId:                requestID,
 	}
 
 	payloadBytes, err := json.Marshal(taskPayload)
@@ -479,10 +496,23 @@ func (s *knowledgeService) CreateKnowledgeFromURL(ctx context.Context,
 		return knowledge, nil
 	}
 
-	task := asynq.NewTask(types.TypeDocumentProcess, payloadBytes, asynq.Queue("default"))
+	// 使用 knowledge.ID 作为幂等任务 ID，防止同一文档被重复处理；
+	// MaxRetry(3) 确保瞬时错误（网络、gRPC 超时等）可自动重试。
+	task := asynq.NewTask(
+		types.TypeDocumentProcess,
+		payloadBytes,
+		asynq.TaskID("document:process:"+knowledge.ID),
+		asynq.Queue("default"),
+		asynq.MaxRetry(3),
+	)
 	info, err := s.task.Enqueue(task)
 	if err != nil {
-		logger.Errorf(ctx, "Failed to enqueue URL process task: %v", err)
+		if errors.Is(err, asynq.ErrTaskIDConflict) {
+			// 任务已在队列中（幂等性保证），视为成功
+			logger.Infof(ctx, "URL process task already queued (idempotent), knowledge_id=%s", knowledge.ID)
+		} else {
+			logger.Errorf(ctx, "Failed to enqueue URL process task: %v", err)
+		}
 		return knowledge, nil
 	}
 	logger.Infof(ctx, "Enqueued URL process task: id=%s queue=%s knowledge_id=%s", info.ID, info.Queue, knowledge.ID)
@@ -667,6 +697,7 @@ func (s *knowledgeService) createKnowledgeFromPassageInternal(ctx context.Contex
 			}
 		}
 
+		requestID, _ := ctx.Value(types.RequestIDContextKey).(string)
 		taskPayload := types.DocumentProcessPayload{
 			TenantID:                 tenantID,
 			KnowledgeID:              knowledge.ID,
@@ -675,6 +706,7 @@ func (s *knowledgeService) createKnowledgeFromPassageInternal(ctx context.Contex
 			EnableMultimodel:         false, // 文本段落不支持多模态
 			EnableQuestionGeneration: enableQuestionGeneration,
 			QuestionCount:            questionCount,
+			RequestId:                requestID,
 		}
 
 		payloadBytes, err := json.Marshal(taskPayload)
@@ -684,10 +716,23 @@ func (s *knowledgeService) createKnowledgeFromPassageInternal(ctx context.Contex
 			return knowledge, nil
 		}
 
-		task := asynq.NewTask(types.TypeDocumentProcess, payloadBytes, asynq.Queue("default"))
+		// 使用 knowledge.ID 作为幂等任务 ID，防止同一文档被重复处理；
+		// MaxRetry(3) 确保瞬时错误可自动重试。
+		task := asynq.NewTask(
+			types.TypeDocumentProcess,
+			payloadBytes,
+			asynq.TaskID("document:process:"+knowledge.ID),
+			asynq.Queue("default"),
+			asynq.MaxRetry(3),
+		)
 		info, err := s.task.Enqueue(task)
 		if err != nil {
-			logger.Errorf(ctx, "Failed to enqueue passage process task: %v", err)
+			if errors.Is(err, asynq.ErrTaskIDConflict) {
+				// 任务已在队列中（幂等性保证），视为成功
+				logger.Infof(ctx, "Passage process task already queued (idempotent), knowledge_id=%s", knowledge.ID)
+			} else {
+				logger.Errorf(ctx, "Failed to enqueue passage process task: %v", err)
+			}
 			return knowledge, nil
 		}
 		logger.Infof(ctx, "Enqueued passage process task: id=%s queue=%s knowledge_id=%s", info.ID, info.Queue, knowledge.ID)

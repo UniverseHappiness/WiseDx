@@ -389,3 +389,182 @@ ls -lah /home/ubuntu/WiseDx/docs/api/knowledge-chat-*.md
 所有文档已准备好供开发者、架构师和运维人员使用。
 
 **感谢您的使用！** 🚀
+
+---
+
+# Go + Python gRPC 跨语言解析流水线设计说明
+
+## 🏗️ 整体架构
+
+针对医学文档解析耗时长的问题，系统设计了一套 **Go + Python gRPC 跨语言解析流水线**，通过 **Asynq 异步任务队列**解耦耗时操作，并具备完善的**幂等性校验**与**失败自动重试**机制。
+
+```
+HTTP 客户端
+    │  POST /api/v1/knowledge/file
+    ▼
+Go HTTP 服务 (cmd/server/main.go)
+    │  CreateKnowledgeFromFile / CreateKnowledgeFromURL
+    │  → 创建 Knowledge 记录（ParseStatus=pending）
+    │  → 入队 Asynq 任务（TypeDocumentProcess）
+    │    TaskID="document:process:<knowledgeID>"  ← 幂等键
+    │    MaxRetry=3                               ← 自动重试
+    ▼
+Redis（Asynq 队列存储）
+    │
+    ▼
+Go Worker (router/task.go → knowledge.ProcessDocument)
+    │  幂等性检查：ParseStatus==completed → 直接返回
+    │  ParseStatus==deleting   → 直接返回
+    │  获取重试计数 retryCount / maxRetry
+    ▼
+Python gRPC 服务 (docreader/main.py)
+    │  DocReader.ReadFromFile / DocReader.ReadFromURL
+    │  → BaseParser 解析文档（PDF/Word/图片…）
+    │  → TextSplitter 分块
+    │  → OCR/VLM 多模态处理（可选）
+    │  ← 返回 ReadResponse{chunks}
+    ▼
+Go Worker（续）
+    │  processChunks() → 存储分块、建立向量索引
+    │  ParseStatus=completed
+    │  （可选）enqueue 问题生成 / 摘要生成任务
+    ▼
+数据库 / 向量库
+```
+
+---
+
+## 🔧 核心实现细节
+
+### 1. Asynq 异步任务队列
+
+**队列配置** (`internal/router/task.go`):
+
+```go
+srv := asynq.NewServer(opt, asynq.Config{
+    Queues: map[string]int{
+        "critical": 6, // 最高优先级
+        "default":  3, // 默认优先级（文档处理）
+        "low":      1, // 最低优先级（问题生成、摘要）
+    },
+})
+```
+
+**任务类型注册**:
+
+| 任务类型 | 常量 | 队列 | MaxRetry |
+|---------|------|------|---------|
+| 文档处理 | `types.TypeDocumentProcess` | default | 3 |
+| FAQ 导入 | `types.TypeFAQImport` | default | 可配置 |
+| 问题生成 | `types.TypeQuestionGeneration` | low | 3 |
+| 摘要生成 | `types.TypeSummaryGeneration` | low | 3 |
+| 知识库复制 | `types.TypeKBClone` | default | 3 |
+
+### 2. 幂等性校验（双重保障）
+
+**层级一 — Asynq TaskID 去重**（任务入队层）:
+
+```go
+// internal/application/service/knowledge.go
+task := asynq.NewTask(
+    types.TypeDocumentProcess,
+    payloadBytes,
+    asynq.TaskID("document:process:"+knowledge.ID), // 幂等键
+    asynq.Queue("default"),
+    asynq.MaxRetry(3),
+)
+info, err := s.task.Enqueue(task)
+if err != nil {
+    if errors.Is(err, asynq.ErrTaskIDConflict) {
+        // 任务已在队列中，视为成功
+        logger.Infof(ctx, "Document process task already queued (idempotent)")
+    } else {
+        logger.Errorf(ctx, "Failed to enqueue task: %v", err)
+    }
+    return knowledge, nil
+}
+```
+
+**层级二 — ParseStatus 状态检查**（任务执行层）:
+
+```go
+// knowledge.ProcessDocument()
+if knowledge.ParseStatus == types.ParseStatusCompleted {
+    return nil // 幂等：已完成，直接退出
+}
+if knowledge.ParseStatus == types.ParseStatusDeleting {
+    return nil // 避免与删除操作冲突
+}
+```
+
+### 3. 失败自动重试
+
+```go
+// 获取重试上下文
+retryCount, _ := asynq.GetRetryCount(ctx)
+maxRetry, _ := asynq.GetMaxRetry(ctx)
+isLastRetry := retryCount >= maxRetry
+
+// 仅在最后一次重试失败时，将状态更新为 failed
+if isLastRetry {
+    knowledge.ParseStatus = "failed"
+    knowledge.ErrorMessage = err.Error()
+    s.repo.UpdateKnowledge(ctx, knowledge)
+}
+// 返回 error 触发 Asynq 调度下一次重试
+return fmt.Errorf("failed to read file from docreader: %w", err)
+```
+
+重试场景包括：gRPC 超时、网络闪断、Python 服务临时不可用等瞬时错误。
+不可恢复的错误（如文件不存在、SSRF 防护拒绝）直接返回 `nil`，不触发重试。
+
+### 4. Go → Python gRPC 调用链
+
+**Proto 定义** (`docreader/proto/docreader.proto`):
+
+```protobuf
+service DocReader {
+  rpc ReadFromFile(ReadFromFileRequest) returns (ReadResponse) {}
+  rpc ReadFromURL(ReadFromURLRequest)   returns (ReadResponse) {}
+}
+```
+
+**Go 端调用** (`internal/application/service/knowledge.go`):
+
+```go
+fileResp, err := s.docReaderClient.ReadFromFile(ctx, &proto.ReadFromFileRequest{
+    FileContent: contentBytes,
+    FileName:    payload.FileName,
+    FileType:    payload.FileType,
+    ReadConfig:  &proto.ReadConfig{
+        ChunkSize:        int32(kb.ChunkingConfig.ChunkSize),
+        EnableMultimodal: payload.EnableMultimodel,
+        StorageConfig:    storageConfig,
+        VlmConfig:        vlmConfig,
+    },
+    RequestId: payload.RequestId, // 全链路追踪
+})
+```
+
+**Python 端解析** (`docreader/main.py` → `docreader/parser/`):
+
+- PDF → MinerU (结构化解析 + 表格/公式) / markitdown (回退)
+- Word / Excel / 网页 / 图片 → 对应解析器
+- OCR → PaddleOCR（离线）/ VLM（在线，图片描述）
+- 文本分块 → `TextSplitter`（保护公式、表格、代码块完整性）
+
+---
+
+## 📊 流水线特性总结
+
+| 特性 | 实现方式 |
+|------|---------|
+| **跨语言通信** | Go ↔ Python via gRPC + Protobuf |
+| **异步解耦** | Asynq + Redis 任务队列 |
+| **幂等性** | Asynq TaskID + ParseStatus 双重校验 |
+| **自动重试** | `asynq.MaxRetry(3)` + 最后重试才标记失败 |
+| **优先级调度** | critical(6) / default(3) / low(1) 三级队列 |
+| **请求追踪** | RequestId 从 HTTP → Asynq Payload → gRPC 全链路传递 |
+| **多模态支持** | PaddleOCR + VLM 可选启用，图片描述异步处理 |
+| **安全防护** | SSRF 二次校验（入队时 + 执行时）|
+
